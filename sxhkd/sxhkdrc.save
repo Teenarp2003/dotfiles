@@ -1,0 +1,38 @@
+alt + Escape
+	pkill -USR1 -x sxhkd
+# quit/restart bspcm
+alt + shift + {q,r}
+	bspc {quit,wm -r}
+# open terminal
+super + Return
+	tilix
+
+# close app
+alt + {_,shift + }c
+	bspc node -{k,c}
+
+alt + {t,ctrl + t,l,f}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+alt + {_,shift + }{1-9,0}
+	bspc {desktop -f node -d} '^{1-9,10}'
+# alternate between tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# open firefox
+super + c
+	firefox
+
+# cycle between desktops
+super + bracket{left,right}
+	bspc desktop -f {prev,next}
+# Toggle floating
+alt + d
+    if [ -z "$(bspc query -N -n focused.floating)" ]; then \
+        bspc node focused -t floating; \
+    else \
+        bspc node focused -t tiled; \
+    fi
+super + e
+	sudo nautilus

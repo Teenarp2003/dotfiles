@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vol=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
+notif=$(notify-send "VOLUME" "${vol}")

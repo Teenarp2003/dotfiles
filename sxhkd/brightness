@@ -1,0 +1,6 @@
+#!/bin/bash
+
+brightness=$(cat /sys/class/backlight/amdgpu_bl0/actual_brightness)
+brightness_percent=$(echo "${brightness}/255*100" | bc -l | cut -d. -f1)
+
+notif=$(notify-send -t 500 "BRIGHTNESS" "$brightness_percent")

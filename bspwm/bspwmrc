@@ -1,0 +1,42 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6
+bspc config border_width         1
+bspc config window_gap           8
+
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+
+#bspc rule -a glava state=floating layer=below sticky=true locked=true border=off
+bspc rule -a kdeconnect.app state=floating
+bspc rule -a Blueberry.py state=floating
+bspc rule -a Nitrogen state=floating
+bspc rule -a Google-chrome desktop='^2' -l monocle
+bspc rule -a firefox desktop='^2'
+bspc rule -a spotify desktop='^4'
+bspc rule -a GitKraken desktop='^5'
+bspc rule -a Code desktop='^3'
+bspc rule -a Screenkey manage=off
+bspc rule -a env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify %U desktop='^4'
+
+# polybar and other stuff
+$HOME/.config/polybar/launch.sh 
+
+# Lxpolkit polkit gui
+lxpolkit & 
+
+# Dunst notification manager
+dunst &
+
+#glava ! cant stop anymore..
+glava --desktop &
+#glava -d -m radial &
+wmname LG3D
+
+#chown teenarp2003 /sys/class/backlight/amdgpu_bl0/brightness
+# sudo chgrp video  /sys/class/backlight/amdgpu_bl0/brightness
