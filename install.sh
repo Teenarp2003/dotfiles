@@ -5,4 +5,4 @@ cd yay-git
 makepkg -si
 rm -rf yay-git
 yay -S --noconfirm nerd-fonts-cascadia-code nerd-fonts-meslo nerd-fonts-mononoki
-cp -r ~/dotfiles ~/.config
+git clone https://github.com/teenarp2003/dotfiles.git .config
