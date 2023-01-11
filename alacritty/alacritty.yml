@@ -1,0 +1,83 @@
+## Color
+import:
+- ~/.config/alacritty/colors-light.yml
+
+## env vars
+env:
+  TERM: xterm-256color
+
+## window settings
+window:
+  opacity: 0.3
+  padding:
+    x: 10
+    y: 10
+
+
+# Class (window name)
+class:
+  instance: Alacritty
+  general: Alacritty
+
+# Scrolling
+scrolling:
+  history: 10000
+  multiplier: 3
+
+#key
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+
+    # Visual
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0.5
+  color: "#e4c9af"
+
+# Selection?
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+# writing thing (cursor) 
+cursor:
+  style: 'Underline'
+
+# def Shell
+shell:
+  program: /usr/bin/fish
+
+## Font stuff
+font:
+  normal:
+    family: SourceCodePro
+    style:  Black
+
+  bold:
+    family: Victor Mono
+    style: Semibold Italic
+
+  italic:
+    family: Victor Mono
+    style: Italic
+
+  bold_italic:
+    family: Victor Mono
+    style: Bold Italic
+
+  size: 10
+
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+# Mouse config
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+# General config
+live_config_reload: true
+draw_bold_text_with_bright_colors: true
