@@ -32,8 +32,8 @@ prompt {
 	padding: 						8px;
 	background-color: 				@IMG;
 	text-color: 					@BG;
-    border:                  		0px 0px 0px 0px;
-    border-color:                  	@BDR;
+    border:                  		2px solid;
+    border-color:                  	@BGA;
     border-radius:                  10px;
 }
 

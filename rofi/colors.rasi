@@ -5,12 +5,12 @@
 
 * {
     BG:    #1A1A27;
-    BGA:   #30343Bff;
-    FG:    #D8D8D8ff;
-    BDR:   #62AEEFff;
-    SEL:   #62AEEFff;
-    UGT:   #E06B74ff;
-	IMG:   #E5C07Aff;
-	ON:    #98C379ff;
-	OFF:   #E06B74ff;
+    BGA:   #30343B;
+    FG:    #D8D8D8;
+   BDR:   #62AEEF;
+    SEL:   #62AEEF;
+    UGT:   #E06B74;
+	IMG:   #E5C07A;
+	ON:    #98C379;
+	OFF:   #E06B74;
 }

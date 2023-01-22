@@ -7,7 +7,7 @@ function fish_greeting
    echo 
    echo ░▀█▀▒██▀▒██▀░█▄░█▒▄▀▄▒█▀▄▒█▀▄░▒░░▀█░█▀█░▀█░█▀
    echo ░▒█▒░█▄▄░█▄▄░█▒▀█░█▀█░█▀▄░█▀▒░▀▀░█▄░█▄█░█▄░██
-   echo Time: (set_color yellow; date +%T; set_color normal)
+   echo Uptime: (set_color yellow; uptime -p | sed -e 's/up //g'; set_color normal)
    echo Machine: $hostname
    echo Shell: $SHELL
 end

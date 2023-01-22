@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-## Author  : Aditya Shakya
-## Mail    : adi1090x@gmail.com
-## Github  : @adi1090x
-## Twitter : @adi1090x
+## Script written originally by Aditya Shakya on Github  : @adi1090x
 
 dir="~/.config/polybar/scripts/rofi"
 uptime=$(uptime -p | sed -e 's/up //g')
@@ -11,12 +8,13 @@ uptime=$(uptime -p | sed -e 's/up //g')
 rofi_command="rofi -theme $dir/power.rasi"
 
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-#lock=" Lock"
-suspend=" Sleep"
-logout=" Logout"
 
+shutdown='襤  Poweroff'
+reboot=' Reboot'
+lock='  Lock'
+suspend='⏾ Suspend'
+logout=' Logout'
+yes=''
 # Confirmation
 confirm_exit() {
 	rofi -dmenu\
@@ -32,9 +30,9 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$suspend\n$logout\n$reboot\n$shutdown"
+options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
 
-chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_command -p "$uptime" -dmenu -selected-row 0)"
 case $chosen in
     $shutdown)
 #		ans=$( &)
@@ -56,13 +54,11 @@ case $chosen in
 #			msg
  #       fi
         ;;
- #   $lock)
-#		if [[ -f /usr/bin/i3lock ]]; then
-#			i3lock
-#		elif [[ -f /usr/bin/betterlockscreen ]]; then
-#			betterlockscreen -l
-#		fi
- #       ;;
+    $lock)
+		if [[ -f /usr/bin/betterlockscreen ]]; then
+			betterlockscreen -l blur
+		fi
+        ;;
     $suspend)
 #		ans=$(#confirm_exit &)
 #		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
