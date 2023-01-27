@@ -29,7 +29,8 @@ super + m
 # Rotate tree
 super + shift + {d,a}
     bspc node @/ -C {forward,backward}
-
+Print
+  spectacle -rcb
 # open browser
 super + c
 	google-chrome-stable
