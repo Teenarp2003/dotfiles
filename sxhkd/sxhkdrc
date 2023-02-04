@@ -42,7 +42,7 @@ super + {Left,Right}
 	bspc desktop -f {prev,next}
 # Focus the next/previous node in the current desktop:
 alt + {_,shift +}Tab
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local.window
 #Sound Controls
 XF86Audio{Raise,Lower}Volume
     amixer set Master 1%{+,-} 1>/dev/null && ~/.config/sxhkd/volume-up
