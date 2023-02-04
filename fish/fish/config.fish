@@ -7,7 +7,7 @@ function fish_greeting
    echo 
    echo ░▀█▀▒██▀▒██▀░█▄░█▒▄▀▄▒█▀▄▒█▀▄░▒░░▀█░█▀█░▀█░█▀
    echo ░▒█▒░█▄▄░█▄▄░█▒▀█░█▀█░█▀▄░█▀▒░▀▀░█▄░█▄█░█▄░██
-   echo Uptime: (set_color yellow; uptime -p | sed -e 's/up //g'; set_color normal)
+   echo Time: (set_color yellow; date +%T; set_color normal)
    echo Machine: $hostname
    echo Shell: $SHELL
 end
@@ -15,11 +15,15 @@ end
 
 starship init fish | source
 
+alias 'connect'='nmcli --ask con up JioFiber-AP_5G'
 alias ls='exa -lah --icons'
 alias vim='nvim'
 alias vi='nvim'
 alias edit='nvim'
 alias cls='clear'
+alias push='git push https://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@github.com/Teenarp2003/.config.git'
+alias mountZ='sudo mount -m UUID=1DABC81970C129B1 /run/media/Z'
+#alias glava='glava --desktop --force-mod=bars'
 
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs

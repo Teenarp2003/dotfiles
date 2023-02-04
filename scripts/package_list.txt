@@ -4,9 +4,6 @@ bspwm
 polybar
 sxhkd
 picom
-fish
-starship
-exa
 otf-cascadia-code-nerd
 ttf-iosevka-nerd
 ttf-meslo-nerd
@@ -21,3 +18,4 @@ adobe-source-code-pro-fonts
 playerctl
 dunst
 nitrogen
+

@@ -45,15 +45,15 @@ alt + {_,shift +}Tab
 	bspc node -f {next,prev}.local
 #Sound Controls
 XF86Audio{Raise,Lower}Volume
-    amixer set Master 1%{+,-} 1>/dev/null && volume-up
+    amixer set Master 1%{+,-} 1>/dev/null && ~/.config/sxhkd/volume-up
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle 1>/dev/null
 XF86MonBrightness{Up,Down}  
-  brightnessctl s 10{+,-} && brightness
+  brillo -q {-A,-U} 10 && ~/.config/sxhkd/brightness
 XF86Audio{Play,Stop,Prev,Next}
 	playerctl --player=spotify {play-pause,stop,previous,next
 super + s 
-  spotify --uri=%U & sleep 3s && picom-trans -n "Spotify" -o 70
+  spotify --uri=%U & sleep 3s && picom-trans -n "Spotify" -o 80
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}
@@ -81,4 +81,7 @@ super + alt + {Left,Down,Up,Right}
 # contract a window by moving one of its side inward
 super + alt + ctrl + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# move a floating window
+ctrl + alt + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 
