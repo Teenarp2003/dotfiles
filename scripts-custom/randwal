@@ -1,0 +1,4 @@
+#!/bin/bash
+my_array=(~/.config/wallpaper/*)
+wal -i ${my_array[$(( $RANDOM % ${#my_array[@]}))]}
+glava-colors

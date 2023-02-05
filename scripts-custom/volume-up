@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vol=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
+notif=$(~/volume-notification-dunst/notify-send.sh -t 500 --print-id --replace=10 "VOLUME" "${vol}")

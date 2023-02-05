@@ -1,0 +1,14 @@
+#!/bin/bash
+## Create a variable with the path to the FIFO (First-In-First-Out Queue) we want to use. $XDG_RUNTIME_DIR is a standard location on many Linux distros that is similar to /tmp but only accessible by the current user. It should be a path like /run/user/1000.
+fifo="$XDG_RUNTIME_DIR/glava.fifo"
+# Test to see if the FIFO already exists. If the test fails, execute the other half of the || statement and create it.
+[[ -e "$fifo" ]] || mkfifo "$fifo"
+# Read data from the FIFO and pipe it into the glava executable. & puts the whole line into the background so that the rest of the script can run. glava will execute newline separated commands written to the FIFO.
+#tail -f "$fifo" | /bin/glava --stdin &
+# Get the desired color from the pywal cache. --raw-output just removes the quotes from around the value
+foreground="$(jq --raw-output '.colors.color2' "$HOME/.cache/wal/colors.json")"
+# Write the color to the FIFO. glava interprets it as a command to set foreground color of the bars in the visualization.
+rm "/$XDG_RUNTIME_DIR/glava.fifo"
+echo "$foreground" >> "$fifo"
+killall glava
+tail -f "$fifo" | /bin/glava --desktop --stdin &
