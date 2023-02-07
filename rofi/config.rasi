@@ -11,7 +11,7 @@ configuration {
 }
 
 @import "font.rasi"
-@import "colors.rasi"
+@import "~/.cache/wal/colors.rasi"
 
 window {
     transparency:                   "real";
@@ -41,15 +41,15 @@ textbox-prompt-colon{
 	expand: 						false;
 	str: 							"Apps:";
     border-radius:                  100%;
-    background-color:               @SEL;
+    background-color:               @BGA;
     text-color:                     @BG;
     padding:                        8px 12px 8px 12px;
 	font:							"SourceCodePro Black 14";
 }
 
 entry {
-    background-color:               @BGA;
-    text-color:                     @FG;
+    background-color:               @SEL;
+    text-color:                     @TXTBX;
     placeholder-color:              @FG;
     expand:                         true;
     horizontal-align:               0;
@@ -136,7 +136,7 @@ element alternate.active {
 }
 
 element selected {
-    background-color:               @BGA;
+    background-color:               @BDR;
     text-color:                     @SEL;
     border:                  		0px 0px 0px 0px;
     border-radius:                  10px;
