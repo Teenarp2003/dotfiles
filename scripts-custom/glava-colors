@@ -6,7 +6,7 @@ fifo="$XDG_RUNTIME_DIR/glava.fifo"
 # Read data from the FIFO and pipe it into the glava executable. & puts the whole line into the background so that the rest of the script can run. glava will execute newline separated commands written to the FIFO.
 #tail -f "$fifo" | /bin/glava --stdin &
 # Get the desired color from the pywal cache. --raw-output just removes the quotes from around the value
-foreground="$(jq --raw-output '.colors.color2' "$HOME/.cache/wal/colors.json")"
+foreground="$(jq --raw-output '.colors.color1' "$HOME/.cache/wal/colors.json")"
 # Write the color to the FIFO. glava interprets it as a command to set foreground color of the bars in the visualization.
 rm "/$XDG_RUNTIME_DIR/glava.fifo"
 echo "$foreground" >> "$fifo"

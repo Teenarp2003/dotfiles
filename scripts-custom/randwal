@@ -1,4 +1,6 @@
 #!/bin/bash
 my_array=(~/.config/wallpaper/*)
+killall glava
 wal -i ${my_array[$(( $RANDOM % ${#my_array[@]}))]}
 glava-colors
+bspc wm -r
