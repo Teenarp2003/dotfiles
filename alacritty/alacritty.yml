@@ -1,6 +1,7 @@
 ## Color
 import:
-- ~/.config/alacritty/colors-light.yml
+- ~/.cache/wal/colors-alacritty.yml
+
 
 ## env vars
 env:
@@ -8,7 +9,7 @@ env:
 
 ## window settings
 window:
-  opacity: 0.3
+  opacity: 0.7
   padding:
     x: 10
     y: 10

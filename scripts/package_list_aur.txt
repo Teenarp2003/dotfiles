@@ -8,3 +8,4 @@ sddm-sugar-dark
 sweet-gtk-theme-dark
 win11-icon-theme-git
 yay-git
+networkmanager-dmenu-git

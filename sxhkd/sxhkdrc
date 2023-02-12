@@ -1,7 +1,8 @@
 # Reload sxhkdrc
 super + shift + r
     pkill -usr1 -x sxhkd; notify-send 'SXHKD' 'Reloaded config'
-
+super + {1-6}
+     bspc desktop -f focused:^{1-6}
 # quit/restart bspcm
 alt + shift + {q,r}
 	bspc {quit,wm -r}; notify-send 'BSPWM' 'Reloaded config'
@@ -14,9 +15,12 @@ super + shift + w
 # close app
 alt + c
 	bspc node -k
+super + period
+  emoji-picker
 alt + x
 	bspc node -c
-
+super + w
+  wallpaperch
 
 alt + {t,ctrl + t,l,f}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -70,7 +74,7 @@ super + shift + {Left,Right}
 
 # Power menu
 super + q
-  exec bash ~/.config/polybar/scripts/run.sh
+  exec bash ~/.config/rofi/power.sh
 
 super + l
   exec betterlockscreen -l blur

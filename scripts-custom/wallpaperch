@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Rofi wallpaper selection script
+
+# Get the wallpaper path from rofi
+wallpaper=$(ls ~/.config/wallpaper/ | rofi -dmenu -p "Select Wallpaper:" -theme ~/.config/rofi/config.rasi)
+wallpaper_path=~/.config/wallpaper/$wallpaper
+exc_path=~/.config/wallpaper/forest-bridge.jpg
+if ["$wallpaper_path" -eq "$exc_path"]; then
+  echo "hello"
+fi
+# Set the wallpaper using feh
+feh --bg-fill "$wallpaper_path"
+wal -i "$wallpaper_path"
+sleep 2s
+bspc wm -r
+sleep 1s
+glava-colors
+
+

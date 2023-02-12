@@ -14,12 +14,12 @@ end
 end
 
 starship init fish | source
-
 alias ls='exa -lah --icons'
 alias vim='nvim'
 alias vi='nvim'
 alias edit='nvim'
 alias cls='clear'
+#alias glava='glava --desktop --force-mod=bars'
 
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
