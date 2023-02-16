@@ -4,13 +4,13 @@ if status is-interactive
   set -U fish_user_paths ~/bin ~/.local/bin
 function fish_greeting
    
-   echo 
-   echo ░▀█▀▒██▀▒██▀░█▄░█▒▄▀▄▒█▀▄▒█▀▄░▒░░▀█░█▀█░▀█░█▀
-   echo ░▒█▒░█▄▄░█▄▄░█▒▀█░█▀█░█▀▄░█▀▒░▀▀░█▄░█▄█░█▄░██
-   echo Uptime: (set_color yellow; uptime -p | sed -e 's/up //g'; set_color normal)
-   echo Machine: $hostname
-   echo Shell: $SHELL
-end
+    #   echo 
+    #   echo ░▀█▀▒██▀▒██▀░█▄░█▒▄▀▄▒█▀▄▒█▀▄░▒░░▀█░█▀█░▀█░█▀
+    #   echo ░▒█▒░█▄▄░█▄▄░█▒▀█░█▀█░█▀▄░█▀▒░▀▀░█▄░█▄█░█▄░██
+       echo Uptime: (set_color yellow; uptime -p | sed -e 's/up //g'; set_color normal)
+    #   echo Machine: $hostname
+    #   echo Shell: $SHELL
+  end
 end
 
 starship init fish | source

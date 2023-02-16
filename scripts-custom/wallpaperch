@@ -1,20 +1,26 @@
 #!/bin/bash
 
 # Rofi wallpaper selection script
+wallpaper=$(exa ~/.config/wallpaper | while read A ; do  echo -en "$A\x00icon\x1f~/.config/wallpaper/$A\n" ; done | rofi -dmenu -theme .config/rofi/config.rasi)
 
-# Get the wallpaper path from rofi
-wallpaper=$(ls ~/.config/wallpaper/ | rofi -dmenu -p "Select Wallpaper:" -theme ~/.config/rofi/config.rasi)
-wallpaper_path=~/.config/wallpaper/$wallpaper
-exc_path=~/.config/wallpaper/forest-bridge.jpg
-if ["$wallpaper_path" -eq "$exc_path"]; then
-  echo "hello"
+wallpapersel=$wallpaper
+wallpaper_path=~/.config/wallpaper/$wallpapersel
+# Set the theme using pywal
+if [ -z "$wallpapersel" ]; then 
+  wallpaper_path="NULL"; 
 fi
-# Set the wallpaper using feh
-feh --bg-fill "$wallpaper_path"
 wal -i "$wallpaper_path"
-sleep 2s
-bspc wm -r
-sleep 1s
+. "${HOME}/.cache/wal/colors.sh"
+# Set the border colors.
+bspc config normal_border_color "$color1"
+bspc config active_border_color "$color2"
+bspc config focused_border_color "$color15"
 glava-colors
-
-
+if pgrep -x spotify >/dev/null 
+  then
+    spicetify apply
+    sleep 4s
+    picom-trans -n "Spotify" --opacity=65
+  else
+    echo "No Running Instance of Spotify"
+fi

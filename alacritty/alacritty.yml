@@ -51,8 +51,8 @@ shell:
 ## Font stuff
 font:
   normal:
-    family: SourceCodePro
-    style:  Black
+    family: Victor Mono
+    style:  Semibold Italic
 
   bold:
     family: Victor Mono

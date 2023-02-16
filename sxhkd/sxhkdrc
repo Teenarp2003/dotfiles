@@ -15,16 +15,19 @@ super + shift + w
 # close app
 alt + c
 	bspc node -k
+# Launch emoji-picker
 super + period
   emoji-picker
+# Close window
 alt + x
 	bspc node -c
+#Launch Wallpaper Changer
 super + w
   wallpaperch
-
+# Move window in floating mode
 alt + {t,ctrl + t,l,f}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
+# 
 alt + {_,shift + }{1-9,0}
 	bspc {desktop -f node -d} '^{1-9,10}'
 # alternate between tiled and monocle layout
@@ -33,8 +36,12 @@ super + m
 # Rotate tree
 super + shift + {d,a}
     bspc node @/ -C {forward,backward}
+# Screenshot and copy
 Print
   spectacle -rcb
+# screenshot and open
+alt + Print
+  spectacle -f
 # open browser
 super + c
 	google-chrome-stable
@@ -56,8 +63,9 @@ XF86MonBrightness{Up,Down}
   brillo -q {-A,-U} 10 && ~/.config/sxhkd/brightness
 XF86Audio{Play,Stop,Prev,Next}
 	playerctl --player=spotify {play-pause,stop,previous,next
+# Launch Spotify
 super + s 
-  spotify --uri=%U & sleep 3s && picom-trans -n "Spotify" -o 80
+  spotify --uri=%U & sleep 3s && picom-trans -n "Spotify" -o 65
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}
