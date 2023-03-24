@@ -8,7 +8,7 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 #Nitrogen
 ~/.fehbg
 # Launch picom
-picom -b
+picom --animations --experimental-backends -b
 # Launch
 polybar top &
 echo "Bar launched..."

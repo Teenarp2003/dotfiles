@@ -1,7 +1,7 @@
 if status is-interactive
   ## Adding paths
   set -e fish_user_paths
-  set -U fish_user_paths ~/bin ~/.local/bin
+  set -U fish_user_paths ~/bin ~/.local/bin /opt/anaconda/bin 
 function fish_greeting
    
     #   echo 
@@ -20,7 +20,7 @@ alias vi='nvim'
 alias edit='nvim'
 alias cls='clear'
 #alias glava='glava --desktop --force-mod=bars'
-
+alias lampp='sudo /opt/lampp/lampp'
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
@@ -42,4 +42,15 @@ alias rm='rm -i'
 
 export EDITOR=nvim;
 export VISUAL=nvim;
+
 fish_add_path /home/teenarp2026/.spicetify
+fish_add_path /home/teenarp2026/anaconda3/bin 
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /opt/anaconda/bin/conda
+    eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
+
