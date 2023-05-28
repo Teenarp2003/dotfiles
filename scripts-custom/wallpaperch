@@ -20,8 +20,6 @@ betterlockscreen -u $wallpaper_path blur
 if pgrep -x spotify >/dev/null 
   then
     spicetify apply
-    sleep 4s
-    picom-trans -n "Spotify" --opacity=65
   else
     echo "No Running Instance of Spotify"
 fi
