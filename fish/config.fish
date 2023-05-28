@@ -20,6 +20,7 @@ alias vi='nvim'
 alias edit='nvim'
 alias cls='clear'
 #alias glava='glava --desktop --force-mod=bars'
+alias lenovolegion='sudo LenovoLegionLinux/python/legion_linux/legion_linux/legion_gui.py'
 alias lampp='sudo /opt/lampp/lampp'
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs

@@ -9,7 +9,7 @@ env:
 
 ## window settings
 window:
-  opacity: 0.7
+  opacity: 0.5
   padding:
     x: 10
     y: 10

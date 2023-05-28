@@ -44,7 +44,7 @@ alt + Print
   spectacle -f
 # open browser
 super + c
-	google-chrome-stable
+	google-chrome-stable 
 # open VScode
 super + v
 	code
@@ -65,7 +65,7 @@ XF86Audio{Play,Stop,Prev,Next}
 	playerctl --player=spotify {play-pause,stop,previous,next
 # Launch Spotify
 super + s 
-     bspc desktop -f focused:^4 && spotify --uri=%U & sleep 3s && picom-trans -n "Spotify" -o 65
+     bspc desktop -f focused:^4 && spotify --uri=%U 
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}
@@ -96,5 +96,9 @@ super + alt + ctrl + {Left,Down,Up,Right}
 # move a floating window
 ctrl + alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+# restart pulseaudio
 super + p
   pulseaudio -k && bspc wm -r
+#Full screen
+super + f
+  bspc node -t \~fullscreen
