@@ -5,4 +5,4 @@ Community repositories:
 
 AUR Packages:
 
-```brillo cava picom-ft-labs plymouth-git ttf-victor-mono-nerd otf-cascadia-code-nerd ```
+```brillo cava picom-ft-labs plymouth-git ttf-victor-mono-nerd wpgtk ```
