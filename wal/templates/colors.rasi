@@ -1,0 +1,12 @@
+* {{
+    BG:    {color0};
+    BGA:   {color3};
+    FG:    {color7};
+   BDR:   {color14};
+    SEL:   {color0};
+    UGT:    {color7};
+    TXTBX: {color10};
+	IMG:   {color13};
+	ON:    {color14};
+	OFF:   {color14};
+}}
