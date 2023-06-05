@@ -3,6 +3,9 @@ super + shift + r
     pkill -usr1 -x sxhkd; notify-send 'SXHKD' 'Reloaded config'
 super + {1-6}
      bspc desktop -f focused:^{1-6}
+#switch to last used desktop
+super + Tab
+    bspc desktop -f last
 # quit/restart bspcm
 alt + shift + {q,r}
 	bspc {quit,wm -r}; notify-send 'BSPWM' 'Reloaded config'
@@ -56,7 +59,7 @@ alt + {_,shift +}Tab
 	bspc node -f {next,prev}.local.window
 #Sound Controls
 XF86Audio{Raise,Lower}Volume
-    amixer set Master 1%{+,-} 1>/dev/null && ~/.config/sxhkd/volume-up
+    amixer set Master 1%{+,-} 1>/dev/null && volume-up
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle 1>/dev/null
 XF86MonBrightness{Up,Down}  
@@ -65,7 +68,7 @@ XF86Audio{Play,Stop,Prev,Next}
 	playerctl --player=spotify {play-pause,stop,previous,next
 # Launch Spotify
 super + s 
-     bspc desktop -f focused:^4 && spotify --uri=%U 
+     bspc desktop -f focused:^4 && spotify 
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}

@@ -41,7 +41,7 @@ alias fgrep='fgrep --color=auto'
 alias rm='rm -i'
 
 
-export EDITOR=nvim;
+export EDITOR=/usr/bin/nvim;
 export VISUAL=nvim;
 
 fish_add_path /home/teenarp2026/.spicetify

@@ -34,19 +34,16 @@ bspc rule -a Code desktop='^3'
 bspc rule -a Screenkey manage=off
 bspc rule -a env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify %U desktop='^4'
 
-# polybar and other stuff
-$HOME/.config/polybar/launch.sh 
-
 # Lxpolkit polkit gui
 lxpolkit & 
-
 # Dunst notification manager
 dunst &
-
+# polybar and other stuff
+$HOME/.config/polybar/launch.sh 
 #glava ! cant stop anymore..
 glava-colors
 #glava -d -m radial &
 wmname LG3D
-
+xsetroot -cursor_name left_ptr
 #chown teenarp2003 /sys/class/backlight/amdgpu_bl0/brightness
 # sudo chgrp video  /sys/class/backlight/amdgpu_bl0/brightness
