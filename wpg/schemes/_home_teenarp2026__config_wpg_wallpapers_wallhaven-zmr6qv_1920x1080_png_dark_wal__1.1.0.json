@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/wallhaven-zmr6qv_1920x1080.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f0d0e",
+        "foreground": "#afbebc",
+        "cursor": "#afbebc"
+    },
+    "colors": {
+        "color0": "#0f0d0e",
+        "color1": "#323D42",
+        "color2": "#38464A",
+        "color3": "#2A5564",
+        "color4": "#475255",
+        "color5": "#586869",
+        "color6": "#8C6C6B",
+        "color7": "#afbebc",
+        "color8": "#7a8583",
+        "color9": "#323D42",
+        "color10": "#38464A",
+        "color11": "#2A5564",
+        "color12": "#475255",
+        "color13": "#586869",
+        "color14": "#8C6C6B",
+        "color15": "#afbebc"
+    }
+}

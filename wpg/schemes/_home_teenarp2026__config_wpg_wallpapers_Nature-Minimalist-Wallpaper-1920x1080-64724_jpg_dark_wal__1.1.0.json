@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/Nature-Minimalist-Wallpaper-1920x1080-64724.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#02022c",
+        "foreground": "#5decec",
+        "cursor": "#5decec"
+    },
+    "colors": {
+        "color0": "#02022c",
+        "color1": "#085ca8",
+        "color2": "#1626c6",
+        "color3": "#0873bd",
+        "color4": "#9d36e4",
+        "color5": "#0a96da",
+        "color6": "#0ca8f0",
+        "color7": "#5decec",
+        "color8": "#3faddb",
+        "color9": "#085ca8",
+        "color10": "#1626c6",
+        "color11": "#0873bd",
+        "color12": "#9d36e4",
+        "color13": "#0a96da",
+        "color14": "#0ca8f0",
+        "color15": "#5decec"
+    }
+}

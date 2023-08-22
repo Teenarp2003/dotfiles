@@ -1,5 +1,5 @@
 #! /bin/sh
-
+numlockx
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d 1 2 3 4 5 6

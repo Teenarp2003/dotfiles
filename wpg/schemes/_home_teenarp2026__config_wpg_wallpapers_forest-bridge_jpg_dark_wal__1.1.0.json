@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/forest-bridge.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#00191F",
+        "foreground": "#d8f6f1",
+        "cursor": "#d8f6f1"
+    },
+    "colors": {
+        "color0": "#00191F",
+        "color1": "#88B9D9",
+        "color2": "#94C5DA",
+        "color3": "#9DD2FD",
+        "color4": "#AADAFE",
+        "color5": "#B8EAFB",
+        "color6": "#C1FFF4",
+        "color7": "#d8f6f1",
+        "color8": "#97aca8",
+        "color9": "#88B9D9",
+        "color10": "#94C5DA",
+        "color11": "#9DD2FD",
+        "color12": "#AADAFE",
+        "color13": "#B8EAFB",
+        "color14": "#C1FFF4",
+        "color15": "#d8f6f1"
+    }
+}

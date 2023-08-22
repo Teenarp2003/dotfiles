@@ -102,6 +102,10 @@ ctrl + alt + {Left,Down,Up,Right}
 # restart pulseaudio
 super + p
   pulseaudio -k && bspc wm -r
+super + h 
+  sudo rofi-system.sh
 #Full screen
 super + f
   bspc node -t \~fullscreen
+super + b
+ rofi-bluetooth

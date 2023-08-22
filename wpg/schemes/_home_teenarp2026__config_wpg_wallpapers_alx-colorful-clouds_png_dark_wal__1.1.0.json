@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/alx-colorful-clouds.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0F1627",
+        "foreground": "#86cfcf",
+        "cursor": "#86cfcf"
+    },
+    "colors": {
+        "color0": "#0F1627",
+        "color1": "#9D3354",
+        "color2": "#B42E47",
+        "color3": "#E35964",
+        "color4": "#FA9C75",
+        "color5": "#346D8D",
+        "color6": "#C856A5",
+        "color7": "#86cfcf",
+        "color8": "#5d9090",
+        "color9": "#9D3354",
+        "color10": "#B42E47",
+        "color11": "#E35964",
+        "color12": "#FA9C75",
+        "color13": "#346D8D",
+        "color14": "#C856A5",
+        "color15": "#86cfcf"
+    }
+}

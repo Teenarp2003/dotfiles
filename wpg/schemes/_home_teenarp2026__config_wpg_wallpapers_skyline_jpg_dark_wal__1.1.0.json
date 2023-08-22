@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/skyline.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#010206",
+        "foreground": "#bfa88b",
+        "cursor": "#bfa88b"
+    },
+    "colors": {
+        "color0": "#010206",
+        "color1": "#030946",
+        "color2": "#062C55",
+        "color3": "#282B4F",
+        "color4": "#054C6B",
+        "color5": "#095A65",
+        "color6": "#575340",
+        "color7": "#bfa88b",
+        "color8": "#857561",
+        "color9": "#030946",
+        "color10": "#062C55",
+        "color11": "#282B4F",
+        "color12": "#054C6B",
+        "color13": "#095A65",
+        "color14": "#575340",
+        "color15": "#bfa88b"
+    }
+}

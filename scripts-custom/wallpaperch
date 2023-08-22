@@ -2,8 +2,8 @@
 
 # Rofi wallpaper selection script
 wallpaper=$(exa ~/.config/wallpaper | while read A ; do  echo -en "$A\x00icon\x1f~/.config/wallpaper/$A\n" ; done | rofi -dmenu -theme .config/rofi/wallpaper.rasi)
-
 wallpapersel=$wallpaper
+echo "$wallpapersel" > ~/.cache/wal/wal-n.txt
 wallpaper_path=~/.config/wallpaper/$wallpapersel
 # Set the theme using pywal
 if [ -z "$wallpapersel" ]; then 
@@ -11,15 +11,12 @@ if [ -z "$wallpapersel" ]; then
 fi
 wal -i "$wallpaper_path"
 . "${HOME}/.cache/wal/colors.sh"
-# Set the border colors.
 bspc config normal_border_color "$color1"
 bspc config active_border_color "$color2"
 bspc config focused_border_color "$color15"
+wpg -a $wallpaper_path
+wpg -ns $wallpapersel
 glava-colors
+. "${HOME}/.cache/wal/colors.sh"
+spicetify  update
 betterlockscreen -u $wallpaper_path blur
-if pgrep -x spotify >/dev/null 
-  then
-    spicetify apply
-  else
-    echo "No Running Instance of Spotify"
-fi

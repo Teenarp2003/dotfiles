@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/wallhaven-mpo7jk_1920x1080.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#020002",
+        "foreground": "#df9db9",
+        "cursor": "#df9db9"
+    },
+    "colors": {
+        "color0": "#020002",
+        "color1": "#A33C67",
+        "color2": "#D34A78",
+        "color3": "#5D3785",
+        "color4": "#663C92",
+        "color5": "#7D408F",
+        "color6": "#9C448B",
+        "color7": "#df9db9",
+        "color8": "#9c6d81",
+        "color9": "#A33C67",
+        "color10": "#D34A78",
+        "color11": "#5D3785",
+        "color12": "#663C92",
+        "color13": "#7D408F",
+        "color14": "#9C448B",
+        "color15": "#df9db9"
+    }
+}

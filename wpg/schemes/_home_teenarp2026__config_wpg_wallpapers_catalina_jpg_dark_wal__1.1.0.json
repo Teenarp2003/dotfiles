@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/catalina.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0C0E1A",
+        "foreground": "#9cacbf",
+        "cursor": "#9cacbf"
+    },
+    "colors": {
+        "color0": "#0C0E1A",
+        "color1": "#1C3963",
+        "color2": "#223E66",
+        "color3": "#354355",
+        "color4": "#2C486F",
+        "color5": "#4A5364",
+        "color6": "#3C5B83",
+        "color7": "#9cacbf",
+        "color8": "#6d7885",
+        "color9": "#1C3963",
+        "color10": "#223E66",
+        "color11": "#354355",
+        "color12": "#2C486F",
+        "color13": "#4A5364",
+        "color14": "#3C5B83",
+        "color15": "#9cacbf"
+    }
+}

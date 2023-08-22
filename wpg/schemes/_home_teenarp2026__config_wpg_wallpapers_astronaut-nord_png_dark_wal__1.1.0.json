@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/astronaut-nord.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#121019",
+        "foreground": "#c3dee5",
+        "cursor": "#c3dee5"
+    },
+    "colors": {
+        "color0": "#121019",
+        "color1": "#8F78AF",
+        "color2": "#6E93CC",
+        "color3": "#73B2C4",
+        "color4": "#7DB8CF",
+        "color5": "#8D93BA",
+        "color6": "#85A7C7",
+        "color7": "#c3dee5",
+        "color8": "#889ba0",
+        "color9": "#8F78AF",
+        "color10": "#6E93CC",
+        "color11": "#73B2C4",
+        "color12": "#7DB8CF",
+        "color13": "#8D93BA",
+        "color14": "#85A7C7",
+        "color15": "#c3dee5"
+    }
+}

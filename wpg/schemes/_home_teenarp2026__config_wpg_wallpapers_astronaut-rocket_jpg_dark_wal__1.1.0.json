@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/astronaut-rocket.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f0d11",
+        "foreground": "#dfdedf",
+        "cursor": "#dfdedf"
+    },
+    "colors": {
+        "color0": "#0f0d11",
+        "color1": "#6D6B6E",
+        "color2": "#A85B24",
+        "color3": "#DFA732",
+        "color4": "#7F7E81",
+        "color5": "#9C9A9C",
+        "color6": "#C6C2BB",
+        "color7": "#dfdedf",
+        "color8": "#9c9b9c",
+        "color9": "#6D6B6E",
+        "color10": "#A85B24",
+        "color11": "#DFA732",
+        "color12": "#7F7E81",
+        "color13": "#9C9A9C",
+        "color14": "#C6C2BB",
+        "color15": "#dfdedf"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/deer-forest.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#120f1c",
+        "foreground": "#deaba0",
+        "cursor": "#deaba0"
+    },
+    "colors": {
+        "color0": "#120f1c",
+        "color1": "#3B4270",
+        "color2": "#50476F",
+        "color3": "#6F4C6A",
+        "color4": "#B05442",
+        "color5": "#A15863",
+        "color6": "#DA6D4C",
+        "color7": "#deaba0",
+        "color8": "#9b7770",
+        "color9": "#3B4270",
+        "color10": "#50476F",
+        "color11": "#6F4C6A",
+        "color12": "#B05442",
+        "color13": "#A15863",
+        "color14": "#DA6D4C",
+        "color15": "#deaba0"
+    }
+}

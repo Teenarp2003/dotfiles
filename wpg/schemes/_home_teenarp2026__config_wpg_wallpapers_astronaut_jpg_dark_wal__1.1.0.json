@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/astronaut.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0E151D",
+        "foreground": "#dfffff",
+        "cursor": "#dfffff"
+    },
+    "colors": {
+        "color0": "#0E151D",
+        "color1": "#5A5D59",
+        "color2": "#2E3643",
+        "color3": "#A95453",
+        "color4": "#46A25E",
+        "color5": "#30534D",
+        "color6": "#AE9F54",
+        "color7": "#a8c4c2",
+        "color8": "#1d2d3f",
+        "color9": "#6f8467",
+        "color10": "#34445e",
+        "color11": "#ec5d5b",
+        "color12": "#4be172",
+        "color13": "#357469",
+        "color14": "#f2d95c",
+        "color15": "#dfffff"
+    }
+}

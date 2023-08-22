@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/nebula.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#000000",
+        "foreground": "#aeffff",
+        "cursor": "#aeffff"
+    },
+    "colors": {
+        "color0": "#000000",
+        "color1": "#526564",
+        "color2": "#11BF56",
+        "color3": "#085B5A",
+        "color4": "#0D489F",
+        "color5": "#0B5E98",
+        "color6": "#099A62",
+        "color7": "#82dad6",
+        "color8": "#191919",
+        "color9": "#5e8f8c",
+        "color10": "#08ff6c",
+        "color11": "#037c7b",
+        "color12": "#055bda",
+        "color13": "#037cd0",
+        "color14": "#01d281",
+        "color15": "#aeffff"
+    }
+}

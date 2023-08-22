@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/moon1.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f0f0f",
+        "foreground": "#eaeaea",
+        "cursor": "#eaeaea"
+    },
+    "colors": {
+        "color0": "#0f0f0f",
+        "color1": "#777777",
+        "color2": "#8F8F8F",
+        "color3": "#A8A8A8",
+        "color4": "#B8B8B8",
+        "color5": "#C8C8C8",
+        "color6": "#D7D7D7",
+        "color7": "#eaeaea",
+        "color8": "#a3a3a3",
+        "color9": "#777777",
+        "color10": "#8F8F8F",
+        "color11": "#A8A8A8",
+        "color12": "#B8B8B8",
+        "color13": "#C8C8C8",
+        "color14": "#D7D7D7",
+        "color15": "#eaeaea"
+    }
+}

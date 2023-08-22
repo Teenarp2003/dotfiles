@@ -8,7 +8,7 @@ configuration {
 }
 
 @import "font.rasi"
-@import "/home/teenarp2026/.cache/wal/colors.rasi"
+@import "~/.cache/wal/colors.rasi"
 
 window {
     transparency:                   "real";

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/tron-small.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#000000",
+        "foreground": "#e1ffff",
+        "cursor": "#e1ffff"
+    },
+    "colors": {
+        "color0": "#000000",
+        "color1": "#476E74",
+        "color2": "#0B6B71",
+        "color3": "#058991",
+        "color4": "#047B83",
+        "color5": "#517B83",
+        "color6": "#119DA5",
+        "color7": "#abc8cc",
+        "color8": "#191919",
+        "color9": "#5097a2",
+        "color10": "#06929b",
+        "color11": "#01b6c2",
+        "color12": "#01a3ae",
+        "color13": "#5ba9b8",
+        "color14": "#0ad6e2",
+        "color15": "#e1ffff"
+    }
+}

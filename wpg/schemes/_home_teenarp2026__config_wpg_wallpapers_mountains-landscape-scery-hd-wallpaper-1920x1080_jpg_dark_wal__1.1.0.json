@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/mountains-landscape-scery-hd-wallpaper-1920x1080.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0e181a",
+        "foreground": "#cbdcdb",
+        "cursor": "#cbdcdb"
+    },
+    "colors": {
+        "color0": "#0e181a",
+        "color1": "#507B84",
+        "color2": "#5A868E",
+        "color3": "#679198",
+        "color4": "#76A1A7",
+        "color5": "#9AA8A2",
+        "color6": "#8BB3B6",
+        "color7": "#cbdcdb",
+        "color8": "#8e9a99",
+        "color9": "#507B84",
+        "color10": "#5A868E",
+        "color11": "#679198",
+        "color12": "#76A1A7",
+        "color13": "#9AA8A2",
+        "color14": "#8BB3B6",
+        "color15": "#cbdcdb"
+    }
+}

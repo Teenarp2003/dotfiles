@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/mountain-trees-minimalist-7xpryajznty61ra3.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1c0a1b",
+        "foreground": "#fffbef",
+        "cursor": "#fffbef"
+    },
+    "colors": {
+        "color0": "#1c0a1b",
+        "color1": "#C02A44",
+        "color2": "#F96C47",
+        "color3": "#F88553",
+        "color4": "#F5C1A7",
+        "color5": "#B97787",
+        "color6": "#FEDBC5",
+        "color7": "#f6e4d9",
+        "color8": "#41163f",
+        "color9": "#ff274e",
+        "color10": "#ff8047",
+        "color11": "#ffa456",
+        "color12": "#ffe6b5",
+        "color13": "#ff86a5",
+        "color14": "#fff1c5",
+        "color15": "#fffbef"
+    }
+}
