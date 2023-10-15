@@ -14,7 +14,7 @@ function fish_greeting
 end
 
 starship init fish | source
-alias ls='exa -lah --icons'
+alias ls='eza -lah --icons'
 alias vim='nvim'
 alias vi='nvim'
 alias edit='nvim'

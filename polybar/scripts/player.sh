@@ -1,30 +1,50 @@
 #!/bin/sh
+player_list=($(playerctl -l))
+def_player=${player_list[0]}
+player_on=""
 
-player_status=$(playerctl -p spotify status 2> /dev/null)
-song_name=$(playerctl -p spotify metadata title --no-messages)
+for player in "${player_list[@]}"; do
+    status=$(playerctl -p "$player" status)
+    if [ "$status" == "Playing" ]; then
+        player_on="$player"
+        break
+    elif [ "$status" == "Paused" ]; then
+        player_on=""
+    fi
+done
+
+if [ -z "$player_on" ]; then
+    player_f=$def_player
+else
+    player_f=$player_on
+fi
+
+player_status=$(playerctl -p "$player_f" status 2> /dev/null)
+song_name=$(playerctl -p "$player_f" metadata title --no-messages)
 song_name_mod=${song_name:0:12}"..."
-song_name_set=$(playerctl -p spotify metadata title --no-messages |wc -w )
+song_name_set=$(echo "$song_name" | wc -w)
 
-artist_name=$(playerctl -p spotify metadata artist --no-messages)
-artist_name_len=$(playerctl -p spotify metadata artist --no-messages | wc -c)
-artist_name_mod=$(playerctl -p spotify metadata artist --no-messages| head -n1 | awk '{print $1;}')
+artist_name=$(playerctl -p "$player_f" metadata artist --no-messages)
+artist_name_len=$(echo "$artist_name" | wc -c)
+artist_name_mod=$(echo "$artist_name" | head -n1 | awk '{print $1;}')
 
 if [ "$song_name_set" -gt "2" ]; then
-  song_name_disp=${song_name_mod}
+    song_name_disp=${song_name_mod}
 else
-  song_name_disp=${song_name}
+    song_name_disp=${song_name}
 fi
 
 if [ "$artist_name_len" -gt "10" ]; then
-  artist_name_disp=${artist_name_mod}
+    artist_name_disp=${artist_name_mod}
 else
-  artist_name_disp=${artist_name}
+    artist_name_disp=${artist_name}
 fi
 
-if [ "$player_status" = "Playing" ]; then
-  echo "${artist_name_disp}  ${song_name_disp}"
+if [[ "$player_status" = "Playing" || "$player_status" = "Stopped" ]]; then
+    echo "${artist_name_disp}  ${song_name_disp}"
 elif [ "$player_status" = "Paused" ]; then
-  echo "${artist_name_disp}  ${song_name_disp}"
+    echo "${artist_name_disp}  ${song_name_disp}"
 else
     echo ""
 fi
+

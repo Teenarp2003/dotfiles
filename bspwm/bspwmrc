@@ -47,3 +47,4 @@ wmname LG3D
 xsetroot -cursor_name left_ptr
 #chown teenarp2003 /sys/class/backlight/amdgpu_bl0/brightness
 # sudo chgrp video  /sys/class/backlight/amdgpu_bl0/brightness
+/usr/lib/kdeconnectd

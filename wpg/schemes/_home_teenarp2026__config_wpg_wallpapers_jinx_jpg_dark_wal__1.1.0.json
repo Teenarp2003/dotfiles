@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/jinx.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0a090a",
+        "foreground": "#ffb8b8",
+        "cursor": "#ffb8b8"
+    },
+    "colors": {
+        "color0": "#0a090a",
+        "color1": "#4D2629",
+        "color2": "#262558",
+        "color3": "#8F1B1F",
+        "color4": "#8B1C22",
+        "color5": "#972327",
+        "color6": "#AF2527",
+        "color7": "#d78a8a",
+        "color8": "#242024",
+        "color9": "#6b292e",
+        "color10": "#29277a",
+        "color11": "#c5171d",
+        "color12": "#bf1922",
+        "color13": "#d02127",
+        "color14": "#f12225",
+        "color15": "#ffb8b8"
+    }
+}
