@@ -2,8 +2,10 @@
 
 # Terminate already running bar instances and env programs
 pkill polybar 
+pkill fusuma 
 # Wait until the processes have been shut down
 while pgrep -x polybar >/dev/null; do sleep 1; done
+while pgrep -x fusuma >/dev/null; do sleep 1; done
 
 #Nitrogen
 ~/.fehbg
@@ -11,4 +13,5 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 picom --animations -b
 # Launch
 polybar top &
-echo "Bar launched..."
+echo "Bar launched..." &
+fusuma

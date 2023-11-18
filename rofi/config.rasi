@@ -15,8 +15,8 @@ window {
     background-color:               @BG;
     text-color:                     @FG;
     border-radius:                  10px;
-    width:                          400px;
-    height:                         420px;
+    width:                          1000px;
+    height:                         720px;
     location:                       center;
     anchor:                         center;
     x-offset:                       0;
@@ -80,7 +80,7 @@ case-indicator {
 
 listview {
     background-color:               @BG;
-    columns:                        1;
+    columns:                        5;
     lines:							7;
     spacing:                        4px;
     cycle:                          true;
@@ -106,7 +106,7 @@ element {
 element-icon {
     background-color: 				inherit;
     text-color:       				inherit;
-    size:                           30px;
+    size:                           40px;
     border:                         1px;
 }
 

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/shuttle.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#122128",
+        "foreground": "#fffff8",
+        "cursor": "#fffff8"
+    },
+    "colors": {
+        "color0": "#122128",
+        "color1": "#788186",
+        "color2": "#898989",
+        "color3": "#A8A59C",
+        "color4": "#ADADAC",
+        "color5": "#D2C2AD",
+        "color6": "#C6C6C6",
+        "color7": "#e9e3dd",
+        "color8": "#213d4a",
+        "color9": "#8bacbe",
+        "color10": "#c3a0a0",
+        "color11": "#efe0b5",
+        "color12": "#f7f7c9",
+        "color13": "#ffffc8",
+        "color14": "#ffe5e5",
+        "color15": "#fffff8"
+    }
+}

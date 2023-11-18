@@ -47,7 +47,7 @@ alt + Print
   spectacle -f
 # open browser
 super + c
-	google-chrome-stable 
+  chromium
 # open VScode
 super + v
 	code
@@ -114,3 +114,5 @@ alt + shift + p
 #lenovo keybindings. can be customized.
 super + p
    bspc desktop -f last
+alt + v
+  clipmenu

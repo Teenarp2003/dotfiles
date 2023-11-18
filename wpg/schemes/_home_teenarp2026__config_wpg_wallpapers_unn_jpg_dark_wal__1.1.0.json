@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/unn.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0f0f0f",
+        "foreground": "#fcffff",
+        "cursor": "#fcffff"
+    },
+    "colors": {
+        "color0": "#0f0f0f",
+        "color1": "#8D9092",
+        "color2": "#9C9FA3",
+        "color3": "#ABAFB2",
+        "color4": "#BCC0C4",
+        "color5": "#CDD2D6",
+        "color6": "#D8DDE2",
+        "color7": "#e5e8ea",
+        "color8": "#282828",
+        "color9": "#a4bed0",
+        "color10": "#b6cbe8",
+        "color11": "#c7e6fd",
+        "color12": "#dbf9ff",
+        "color13": "#e0ffff",
+        "color14": "#dffeff",
+        "color15": "#fcffff"
+    }
+}
