@@ -68,7 +68,7 @@ XF86Audio{Play,Stop,Prev,Next}
 	playerctl -i chromium {play-pause,stop,previous,next
 # Launch Spotify
 super + s 
-     bspc desktop -f focused:^4 && spotify 
+     bspc desktop -f focused:^4 && spicetify watch -s 
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}

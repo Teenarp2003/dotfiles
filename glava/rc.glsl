@@ -45,10 +45,10 @@
 #request setshaderversion 330
 
 /* Window title */
-#request settitle "GLava"
+#request settitle "glava"
 
 /* Window geometry (x, y, width, height) */
-#request setgeometry 0 0 1920 1080
+#request setgeometry 0 40 1920 1040
 
 /* Window background color (RGB format).
    Does not work with `setopacity "xroot"` */
@@ -68,7 +68,7 @@
    will do nothing, but you can use "!+" and "!-" to stack on top
    or below other windows.
 */
-#request setxwintype "normal"
+#request setxwintype "dock"
 
 /* (X11 only) EWMH Window state atoms (multiple can be specified).
    Possible values are:
@@ -111,7 +111,7 @@
 /* Buffer swap interval (vsync), set to '0' to prevent
    waiting for refresh, '1' (or more) to wait for the specified
    amount of frames. */
-#request setswap 1
+#request setswap 0
 
 /* Linear interpolation for audio data frames. Drastically
    improves smoothness with configurations that yield low UPS
@@ -131,7 +131,7 @@
 
 /* Frame limiter, set to the frames per second (FPS) desired or
    simply set to zero (or lower) to disable the frame limiter. */
-#request setframerate 120
+#request setframerate 144
 
 /* Suspends rendering if a fullscreen window is focused while
    GLava is still visible (ie. on another monitor). This prevents
@@ -177,7 +177,7 @@
    smooth the data, as accuracy beyond this setting is mostly
    meaningless for visual purposes.
 */
-#request setsamplesize 1024
+#request setsamplesize 512
 
 /* Audio buffer size to be used for processing and shaders. 
    Increasing this value can have the effect of adding 'gravity'

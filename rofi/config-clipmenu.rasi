@@ -15,7 +15,7 @@ window {
     background-color:               @BG;
     text-color:                     @FG;
     border-radius:                  10px;
-    width:                          400px;
+    width:                          650px;
     height:                         520px;
     location:                       center;
     anchor:                         center;

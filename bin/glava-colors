@@ -1,9 +1,23 @@
 #!/bin/bash
 ## Create a variable with the path to the FIFO (First-In-First-Out Queue) we want to use. $XDG_RUNTIME_DIR is a standard location on many Linux distros that is similar to /tmp but only accessible by the current user. It should be a path like /run/user/1000.
-fifo="$XDG_RUNTIME_DIR/glava.fifo"
-# Get the desired color from the pywal cache. --raw-output just removes the quotes from around the value
+
+background="$(jq --raw-output '.colors.color0' "$HOME/.cache/wal/colors.json")"
 foreground="$(jq --raw-output '.colors.color2' "$HOME/.cache/wal/colors.json")"
+fifo="$XDG_RUNTIME_DIR/glava.fifo"
+lifo="$XDG_RUNTIME_DIR/glava-bg.fifo"
+hexcode=${background#"#"}
+
+# Invert each character
+inverted=""
+for ((i = 0; i < ${#hexcode}; i++)); do
+    char=${hexcode:$i:1}
+    inverted+="$(printf '%x' $((15 - 0x$char)))"
+done
+inverted="#$inverted"
 rm "/$XDG_RUNTIME_DIR/glava.fifo"
+rm "/$XDG_RUNTIME_DIR/glava-bg.fifo"
 echo "$foreground" >> "$fifo"
+echo "$background" >> "$lifo"
 killall glava
 tail -f "$fifo" | /bin/glava --desktop --stdin &
+tail -f "$lifo" | /bin/glava --desktop --force-mod=graph --stdin &
