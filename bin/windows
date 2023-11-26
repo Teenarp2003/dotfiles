@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo /usr/sbin/grub-reboot "1"
+echo "changed grub"
+/sbin/reboot

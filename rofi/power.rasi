@@ -41,7 +41,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       480px;
     x-offset:                    0px;
     y-offset:                    0px;
     enabled:                     true;
@@ -100,8 +100,8 @@ error-message {
 // List of buttons.
 listview {
     enabled:                     true;
-    columns:                     5;
-    lines:                       1;
+    columns:                     3;
+    lines:                       2;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

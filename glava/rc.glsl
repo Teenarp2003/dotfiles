@@ -131,7 +131,7 @@
 
 /* Frame limiter, set to the frames per second (FPS) desired or
    simply set to zero (or lower) to disable the frame limiter. */
-#request setframerate 144
+#request setframerate 120
 
 /* Suspends rendering if a fullscreen window is focused while
    GLava is still visible (ie. on another monitor). This prevents

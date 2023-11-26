@@ -13,6 +13,7 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 # Options
 shutdown='⏻'
 reboot='󰑓'
+reboot_win=''
 lock=''
 suspend='⏾'
 logout=''
@@ -46,7 +47,7 @@ confirm_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$suspend\n$lock\n$shutdown\n$reboot\n$logout" | rofi_cmd
+	echo -e "$suspend\n$lock\n$shutdown\n$reboot\n$reboot_win\n$logout" | rofi_cmd
 }
 
 # Execute Command
@@ -57,6 +58,8 @@ run_cmd() {
 			systemctl poweroff
 		elif [[ $1 == '--reboot' ]]; then
 			systemctl reboot
+    elif [[ $1 == '--reboot_win' ]]; then
+      windows 
 		elif [[ $1 == '--suspend' ]]; then
 			mpc -q pause
 			amixer set Master mute
@@ -98,5 +101,8 @@ case ${chosen} in
         ;;
     $logout)
 		run_cmd --logout
+        ;;
+    $reboot_win)
+    run_cmd --reboot_win
         ;;
 esac
