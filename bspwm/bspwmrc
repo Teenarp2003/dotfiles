@@ -29,9 +29,9 @@ bspc rule -a Nitrogen state=floating
 bspc rule -a Google-chrome desktop='^2' -l monocle
 bspc rule -a Chromium desktop='^2' -l monocle
 bspc rule -a firefox desktop='^2'
-bspc rule -a spotify desktop='^4'
-bspc rule -a GitKraken desktop='^5'
-bspc rule -a Code desktop='^3'
+bspc rule -a Spotify desktop='^3' state=floating
+bspc rule -a GitKraken desktop='^6'
+bspc rule -a Code desktop='^5'
 bspc rule -a Screenkey manage=off
 bspc rule -a env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify %U desktop='^4'
 
@@ -42,12 +42,11 @@ lxpolkit &
 dunst &
 clipmenud &
 # polybar and other stuff
-$HOME/.config/polybar/launch.sh 
+$HOME/.config/polybar/launch.sh & 
 #glava ! cant stop anymore..
-glava-colors
+glava-colors &
 #glava -d -m radial &
-wmname LG3D
+wmname LG3D &
 #chown teenarp2003 /sys/class/backlight/amdgpu_bl0/brightness
 # sudo chgrp video  /sys/class/backlight/amdgpu_bl0/brightness
-killall kdeconnectd
-/usr/lib/kdeconnectd
+/usr/lib/kdeconnectd &

@@ -1,6 +1,7 @@
 #!/bin/bash
 ## Create a variable with the path to the FIFO (First-In-First-Out Queue) we want to use. $XDG_RUNTIME_DIR is a standard location on many Linux distros that is similar to /tmp but only accessible by the current user. It should be a path like /run/user/1000.
 
+current_hour=$(date +%H)
 background="$(jq --raw-output '.colors.color0' "$HOME/.cache/wal/colors.json")"
 foreground="$(jq --raw-output '.colors.color2' "$HOME/.cache/wal/colors.json")"
 fifo="$XDG_RUNTIME_DIR/glava.fifo"
@@ -20,4 +21,8 @@ echo "$foreground" >> "$fifo"
 echo "$background" >> "$lifo"
 killall glava
 tail -f "$fifo" | /bin/glava --desktop --stdin &
+if [ "$current_hour" -ge 22 ]; then
 tail -f "$lifo" | /bin/glava --desktop --force-mod=graph --stdin &
+else
+ echo "not yet 6 pm, disabling graph. "
+fi

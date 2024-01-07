@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -nrs 'renam.jpg' 'renam.jpg'
+wpg -nrs 'alx-colorful-clouds.png' 'alx-colorful-clouds.png'

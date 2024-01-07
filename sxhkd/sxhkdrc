@@ -1,8 +1,12 @@
 # Reload sxhkdrc
 super + shift + r
     pkill -usr1 -x sxhkd; notify-send 'SXHKD' 'Reloaded config'
+super + k
+  bsp-layout next tall,grid && notify-mode.sh
+
 super + {1-6}
      bspc desktop -f focused:^{1-6}
+super 
 #switch to last used desktop
 super + Tab
     bspc desktop -f last
@@ -59,16 +63,16 @@ alt + {_,shift +}Tab
 	bspc node -f {next,prev}.local.window
 #Sound Controls
 XF86Audio{Raise,Lower}Volume
-    amixer set Master 1%{+,-} 1>/dev/null && volume-up
+  pactl set-sink-volume 0 {+,-}1%>/dev/null && volume-up
 XF86AudioMute
-    amixer -D pulse set Master 1+ toggle 1>/dev/null
+  pactl set-sink-mute 0 toggle>/dev/null
 XF86MonBrightness{Up,Down}  
   brillo -q {-A,-U} 10 && ~/.config/sxhkd/brightness
 XF86Audio{Play,Stop,Prev,Next}
-	playerctl -i chromium {play-pause,stop,previous,next
+	playerctl -i chromium {play-pause,stop,previous,next}
 # Launch Spotify
 super + s 
-     bspc desktop -f focused:^4 && spicetify watch -s 
+     spicetify watch -s 
 # Toggle floating
 alt + d
 	bspc node -t "~"{floating,tiled}
