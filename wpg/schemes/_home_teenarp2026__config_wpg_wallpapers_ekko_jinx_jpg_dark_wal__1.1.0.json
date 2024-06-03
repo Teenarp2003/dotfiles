@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/ekko_jinx.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#101316",
+        "foreground": "#f4ffff",
+        "cursor": "#f4ffff"
+    },
+    "colors": {
+        "color0": "#101316",
+        "color1": "#958F69",
+        "color2": "#637689",
+        "color3": "#758A9C",
+        "color4": "#8DA1B4",
+        "color5": "#CAEC9A",
+        "color6": "#A1B5C9",
+        "color7": "#d2dbe4",
+        "color8": "#242b33",
+        "color9": "#d2c578",
+        "color10": "#7199c1",
+        "color11": "#86b4dc",
+        "color12": "#a2d1fe",
+        "color13": "#ffffae",
+        "color14": "#b9ebff",
+        "color15": "#f4ffff"
+    }
+}

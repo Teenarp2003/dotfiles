@@ -1,4 +1,4 @@
 #!/bin/bash
 
-vol=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
+vol=$(pactl get-sink-volume 0 | awk '{print $5}')
 notif=$(notify-send.sh -t 500 --print-id --replace=10 "VOLUME" "${vol}")

@@ -1,7 +1,7 @@
 if status is-interactive
   ## Adding paths
   set -e fish_user_paths
-  set -U fish_user_paths ~/.config/bin ~/.local/bin ~/.local/share/gem/ruby/3.0.0/bin 
+  set -U fish_user_paths ~/.config/bin ~/.local/bin ~/.local/share/gem/ruby/3.0.0/bin
 function fish_greeting
    
     #   echo 

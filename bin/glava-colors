@@ -15,14 +15,14 @@ for ((i = 0; i < ${#hexcode}; i++)); do
     inverted+="$(printf '%x' $((15 - 0x$char)))"
 done
 inverted="#$inverted"
-rm "/$XDG_RUNTIME_DIR/glava.fifo"
-rm "/$XDG_RUNTIME_DIR/glava-bg.fifo"
+rm "$XDG_RUNTIME_DIR/glava.fifo"
+rm "$XDG_RUNTIME_DIR/glava-bg.fifo"
 echo "$foreground" >> "$fifo"
 echo "$background" >> "$lifo"
 killall glava
 tail -f "$fifo" | /bin/glava --desktop --stdin &
-if [ "$current_hour" -ge 22 ]; then
-tail -f "$lifo" | /bin/glava --desktop --force-mod=graph --stdin &
-else
- echo "not yet 6 pm, disabling graph. "
-fi
+#if [ "$current_hour" -ge 22 ]; then
+#tail -f "$lifo" | /bin/glava --desktop --force-mod=graph --stdin &
+#else
+# echo "not yet 6 pm, disabling graph. "
+#fi

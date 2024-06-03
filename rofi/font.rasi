@@ -4,5 +4,5 @@
 /* Text Font */
 
 * {
-    font:				 	"CaskaydiaCove Nerd Font Bold 13";
+    font:				 	"CascadiaCode Bold 13";
 }

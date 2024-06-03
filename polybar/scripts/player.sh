@@ -21,12 +21,12 @@ fi
 
 player_status=$(playerctl -p "$player_f" status 2> /dev/null)
 song_name=$(playerctl -p "$player_f" metadata title --no-messages)
-song_name_mod=${song_name:0:12}"..."
+song_name_mod=${song_name:0:9}"..."
 song_name_set=$(echo "$song_name" | wc -w)
 
 artist_name=$(playerctl -p "$player_f" metadata artist --no-messages)
 artist_name_len=$(echo "$artist_name" | wc -c)
-artist_name_mod=$(echo "$artist_name" | head -n1 | awk '{print $1;}')
+artist_name_mod=$(echo "$artist_name" | head -n1 | awk '{print substr($1, 1, 5)}')
 
 if [ "$song_name_set" -gt "2" ]; then
     song_name_disp=${song_name_mod}
@@ -41,9 +41,9 @@ else
 fi
 
 if [[ "$player_status" = "Playing" || "$player_status" = "Stopped" ]]; then
-    echo "${artist_name_disp}  ${song_name_disp}"
+    echo "${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
 elif [ "$player_status" = "Paused" ]; then
-    echo "${artist_name_disp}  ${song_name_disp}"
+    echo "${artist_name_disp}   ${song_name_disp}"
 else
     echo ""
 fi

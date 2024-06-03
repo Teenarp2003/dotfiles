@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 # Terminate already running bar instances and env programs
-pkill polybar 
-pkill fusuma 
+killall polybar 
+killall fusuma 
 # Wait until the processes have been shut down
 while pgrep -x polybar >/dev/null; do sleep 1; done
 while pgrep -x fusuma >/dev/null; do sleep 1; done
