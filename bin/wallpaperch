@@ -26,3 +26,6 @@ glava-colors
 . "${HOME}/.cache/wal/colors.sh"
 ~/.config/bin/remove_hash.sh ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
 betterlockscreen -u $wallpaper_path blur
+
+
+sudo cp .cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf

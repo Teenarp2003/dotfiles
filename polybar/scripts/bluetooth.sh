@@ -18,6 +18,6 @@ if [ "$status" = "no" ]; then
 elif [[ "$status" = "yes" && -z "$name" ]]; then
   echo "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}"
 elif [ -n "$name" ]; then
-    echo "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}%{T7}%{F$color3}${name}%{T-}%{F-}%{T7}%{F$color5} ${upower_final} %{T-}%{F-}"
+    echo "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}%{T4}%{F$color3}${name}%{T-}%{F-}%{T4}%{F$color5} ${upower_final} %{T-}%{F-}"
 fi
 echo $upower_final

@@ -1,7 +1,7 @@
 // Configuration.
 configuration {
     show-icons:                 false;
-    font:                       "Cascaydia Cove Nerd Font 10";
+    font:                       "Cascaydia Cove Nerd Font 50";
     monitor: -1;
 }
 // Nord palette with some extra colors.

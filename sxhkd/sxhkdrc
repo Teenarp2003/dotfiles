@@ -69,7 +69,7 @@ XF86AudioMute
 XF86MonBrightness{Up,Down}  
   brillo -q {-A,-U} 10 && ~/.config/sxhkd/brightness
 XF86Audio{Play,Stop,Prev,Next}
-	playerctl -i chromium -i kdeconnect {play-pause,stop,previous,next}
+	playerctl -i kdeconnect -i chromium {play-pause,stop,previous,next}
 XF86AudioMicMute
   pactl set-source-mute @DEFAULT_SOURCE@ toggle && get-mic.sh
 XF86Touchpad

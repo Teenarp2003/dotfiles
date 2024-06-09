@@ -43,7 +43,7 @@ fi
 if [[ "$player_status" = "Playing" || "$player_status" = "Stopped" ]]; then
     echo "${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
 elif [ "$player_status" = "Paused" ]; then
-    echo "${artist_name_disp}   ${song_name_disp}"
+    echo "${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp}%{T-}"
 else
     echo ""
 fi
