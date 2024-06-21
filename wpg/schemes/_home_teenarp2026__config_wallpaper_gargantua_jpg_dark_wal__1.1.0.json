@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/gargantua.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#040505",
+        "foreground": "#e3e0df",
+        "cursor": "#e3e0df"
+    },
+    "colors": {
+        "color0": "#040505",
+        "color1": "#484C56",
+        "color2": "#545964",
+        "color3": "#696A71",
+        "color4": "#7D7C82",
+        "color5": "#A19C9F",
+        "color6": "#C7BCB9",
+        "color7": "#e3e0df",
+        "color8": "#9e9c9c",
+        "color9": "#484C56",
+        "color10": "#545964",
+        "color11": "#696A71",
+        "color12": "#7D7C82",
+        "color13": "#A19C9F",
+        "color14": "#C7BCB9",
+        "color15": "#e3e0df"
+    }
+}

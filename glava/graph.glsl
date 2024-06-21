@@ -2,7 +2,7 @@
 /* Vertical scale, larger values will amplify output */
 #define VSCALE 100
 /* Rendering direction, either -1 (outwards) or 1 (inwards). */
-#define DIRECTION -1
+#define DIRECTION 1
 
 /* Color gradient scale, (optionally) used in `COLOR` macro */
 #define GRADIENT_SCALE 10

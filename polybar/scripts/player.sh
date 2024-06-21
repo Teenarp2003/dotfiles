@@ -1,4 +1,5 @@
 #!/bin/sh
+session=$(echo $DESKTOP_SESSION)
 player_list=($(playerctl -l))
 def_player=${player_list[0]}
 player_on=""
@@ -40,11 +41,19 @@ else
     artist_name_disp=${artist_name}
 fi
 
+
+output=""
+output_hyprland=""
 if [[ "$player_status" = "Playing" || "$player_status" = "Stopped" ]]; then
-    echo "${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
+    output="${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
+    output_hyprland="${artist_name_disp}<span font_family='Iosevka Nerd Font' size='medium' >  </span> ${song_name_disp}"
 elif [ "$player_status" = "Paused" ]; then
-    echo "${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp}%{T-}"
-else
-    echo ""
+    output="${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
+    output_hyprland="${artist_name_disp}<span font_family='Iosevka Nerd Font' size='medium' >    </span> ${song_name_disp}"
 fi
 
+if [ "$session" == "hyprland" ]; then
+    echo "$output_hyprland"
+  elif [ "$session" == "bspwm" ]; then
+    echo "$output"
+fi

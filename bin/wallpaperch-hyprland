@@ -1,0 +1,17 @@
+#!/bin/bash
+wallpaper=$(exa ~/.config/wallpaper | while read A ; do  echo -en "$A\x00icon\x1f~/.config/wallpaper/$A\n" ; done | rofi -dmenu -theme ~/.config/rofi/wallpaper.rasi)
+wallpaper_path=~/.config/wallpaper/$wallpaper
+if [ -z "$wallpaper" ]; then 
+  wallpaper_path=$(cat ~/.cache/wal/wal); 
+fi
+hyprctl hyprpaper preload "$wallpaper_path"
+hyprctl hyprpaper wallpaper "eDP-1,$wallpaper_path"
+wal -a 50 -i "$wallpaper_path"
+wpg --alpha 50 -a "$wallpaper_path"
+~/.config/bin/remove_hash.sh ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
+# wpg --alpha 50 -ns "$wl allpaper_path"
+glava-colors
+replace-wal.sh
+sudo cp .cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
+killall waybar
+waybar

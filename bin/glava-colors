@@ -21,6 +21,8 @@ echo "$foreground" >> "$fifo"
 echo "$background" >> "$lifo"
 killall glava
 tail -f "$fifo" | /bin/glava --desktop --stdin &
+rm ~/.config/hypr/glava-on 
+echo plugin:hyprwinwrap:class = GLava > ~/.config/hypr/glava-on
 #if [ "$current_hour" -ge 22 ]; then
 #tail -f "$lifo" | /bin/glava --desktop --force-mod=graph --stdin &
 #else

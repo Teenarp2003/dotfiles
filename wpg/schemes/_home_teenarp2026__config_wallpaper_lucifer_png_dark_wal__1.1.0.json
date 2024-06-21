@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/lucifer.png",
+    "alpha": "100",
+    "special": {
+        "background": "#030203",
+        "foreground": "#dce1e6",
+        "cursor": "#dce1e6"
+    },
+    "colors": {
+        "color0": "#030203",
+        "color1": "#6D3944",
+        "color2": "#374758",
+        "color3": "#4C5C6C",
+        "color4": "#AC2E3A",
+        "color5": "#6E7E92",
+        "color6": "#9AA7B6",
+        "color7": "#dce1e6",
+        "color8": "#9a9da1",
+        "color9": "#6D3944",
+        "color10": "#374758",
+        "color11": "#4C5C6C",
+        "color12": "#AC2E3A",
+        "color13": "#6E7E92",
+        "color14": "#9AA7B6",
+        "color15": "#dce1e6"
+    }
+}

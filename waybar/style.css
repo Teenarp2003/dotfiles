@@ -1,0 +1,207 @@
+
+@import "/home/teenarp2026/.cache/wal/colors.css";
+
+* {
+    font-family: "Cascadia Code NF Semibold", "Iosevka Nerd Font";
+}
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#temperature,
+#custom-sep,
+#pulseaudio ,
+#backlight{
+  
+  font-size: 16px;
+  background-color:@BG; /* Ensure the background is transparent */
+}
+#custom-cava {
+ border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+ font-size: 16px;
+  padding: 10 20px;
+  background-color: @BGC;
+  /*border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+*/
+  color: @color6;
+}
+#custom-sep {
+  font-size: 16px;
+  color: #808080;
+}
+#custom-emptybg{
+  color: @BG;
+  background-color: @BG;
+}
+#custom-empty{
+  background-color: transparent;
+  color: transparent;
+}
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 25px;
+    border-color: @FG;
+    transition-property: transparent;
+    transition-duration: .5s;
+}
+window#waybar.empty #window {
+  background: transparent;
+}
+button {
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @color7;
+}
+
+#pulseaudio:hover {
+    background-color: @BG;
+}
+
+#workspaces button {
+    
+  padding: 0 10px;
+  background-color: rgba(0,0,0,0);
+    color: @color7;
+}
+#workspaces button.active{
+  font-size: 25px;
+  color: @color9;
+}
+#workspaces button.hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: rgba(0,0,0,0);
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.urgent {
+  background-color: rgba(0,0,0,0);
+}
+
+#mode {
+    background-color: @BG;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#network{
+  border-radius: 15px;
+  padding: 0 10px;
+  background-color:@BG; /* Ensure the background is transparent */
+}
+
+#backlight{
+  color: @color7;
+}
+
+
+
+
+
+#pulseaudio {
+  padding-left: 12px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius:15px;
+  color: @color7;
+}
+
+#network {
+   
+  color: @color7;
+}
+
+#temperature {
+    color: @color7;
+}
+
+#cpu {
+    color: @color7;
+}
+
+#memory {
+    color: @color7;
+}
+
+#battery {
+  color: @color7;
+}
+
+#clock {
+  padding: 0 20px;
+  border-radius: 15px;
+    color: @color11;
+}
+
+.modules-left {
+    border-radius: 15px;
+}
+
+.modules-right {
+}
+
+.modules-left {
+    padding: 0 20px;
+}
+
+.modules-center {
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+#battery.charging, #battery.plugged {
+    color: @color7;
+}
+
+@keyframes blink {
+    to {
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: @BG;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @BG;
+}
+#custom-sep {
+  padding: 0 5px;
+  font-size: 16px;
+  color: #808080;
+}
+#pulseaudio.muted {
+    color: @color7;
+}
+#custom-player{
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding-left: 16px;
+  background-color: @BGC;
+  font-size: 16px;
+  color: @color3;
+  }
+#custom-bluetooth{
+  padding-right: 16px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: @BG;
+  font-size: 16px;
+  color: @color3;
+  }
+  

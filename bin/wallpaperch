@@ -7,7 +7,7 @@ echo "$wallpapersel" > ~/.cache/wal/wal-n.txt
 wallpaper_path=~/.config/wallpaper/$wallpapersel
 # Set the theme using pywal
 if [ -z "$wallpapersel" ]; then 
-  wallpaper_path="NULL"; 
+  wallpaper_path=$(~/.cache/wal/wal); 
 fi
 wal -i "$wallpaper_path"
 . "${HOME}/.cache/wal/colors.sh"
@@ -26,6 +26,6 @@ glava-colors
 . "${HOME}/.cache/wal/colors.sh"
 ~/.config/bin/remove_hash.sh ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
 betterlockscreen -u $wallpaper_path blur
-
-
+exec killall waybar
+exec waybar
 sudo cp .cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf

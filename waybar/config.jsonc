@@ -1,0 +1,174 @@
+{
+    "margin-top" : 5,
+        "margin-left": 10,
+        "margin-right": 10,
+        "height" : 40,
+        "reload_style_on_change" : true,
+        "modules-center": [
+        "custom/player",
+        "custom/cava"
+        ],
+        "modules-left": [
+        "clock",
+        "custom/empty",
+        "hyprland/workspaces"
+        // "hyprland/window",
+        ],
+        "modules-right": [
+        "pulseaudio",
+        "custom/sep",
+        "temperature",
+        "custom/sep",
+        "cpu",
+        "custom/sep",
+        "memory",
+        "custom/sep",
+        "battery",
+        "custom/sep",
+        "custom/emptybbgg",
+        "custom/bluetooth",
+        "custom/empty",
+        "network"
+        ],
+
+    "backlight": {
+    "device": "amdgpu_bl0",
+    "format": "{icon}  {percent}%",
+    "format-icons": ["<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000' >󰃟</span>", "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000'>󰃠</span>"]
+},
+
+        "memory": {
+    "interval": 1,
+    "format": "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='small'></span> {used} GB",
+    "max-length": 10
+},
+"custom/sep": {
+  "format" : "<span font_family='Iosevka Nerd Font' size='medium' > </span>"
+} ,   
+"custom/empty": {
+        "format": " "
+    },
+"custom/emptybg": {
+        "format": " "
+    },
+      "cpu": {
+    "interval": 1,
+    "format": "<span font_family='Iosevka Nerd Font' color='#0db9d7' size='small'></span> {usage}%", 
+    "max-length": 10
+      },
+      "custom/bluetooth":{
+        "exec": "$HOME/.config/polybar/scripts/bluetooth.sh"
+        
+      },
+        "custom/player": {
+          "exec": "$HOME/.config/polybar/scripts/player.sh",
+          "interval": 2
+        },
+        "custom/cava": {
+          "format": "<span font_family='Cascadia Code NF' size='small'>{}</span>",
+          "exec" :"$HOME/.config/polybar/scripts/cava.sh"
+        },
+        "hyprland/window": {
+            "format": "{}",
+            "max-length": 35,
+            "rewrite": {
+  		"": "Hyprland"
+  	},
+            "separate-outputs": true,
+        },
+
+
+"hyprland/workspaces": {
+  "format": "{icon}",
+  "on-click": "activate",
+  "format-icons": {
+    "1": "<span font_family='Iosevka Nerd Font' color='#53D512' size='large'> </span>",
+    "2": "<span font_family='Iosevka Nerd Font'color='#FFCE44' size='large'> </span>",
+    "3": "<span font_family='Iosevka Nerd Font'color='#1DB954' size='large'> </span>",
+    "4": "<span font_family='Iosevka Nerd Font'color='#E85E00' size='large'> </span>",
+    "5": "<span font_family='Iosevka Nerd Font'color='#1276D5' size='large'> </span>",
+    "urgent": ""
+  },
+  "sort-by-number": true,
+"persistent-workspaces": {
+                "*": 5, // 5 workspaces by default on every monitor
+                "HDMI-A-1": 3 // but only three on HDMI-A-1
+}
+},
+    //    "clock": {  
+     //     "format": "{:%I:%M %p}",
+      //    "tooltip-format": "<big>{:%I:%M:%S}</big>\n<tt><small>{calendar}</small></tt>",
+      //      "format-alt": "{:%a, %d %b %Y}"
+      //  },
+
+
+
+
+        "clock": {
+        "format": "{:%a %d, %I:%M %p}",
+        "format-alt": "{:%a, %d %b %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+        },"temperature": {
+            "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+            "critical-threshold": 80,
+            "format": "{icon}{temperatureC}°C",
+            "format-icons": ["<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>"]
+        },
+        "battery": {
+            "states": {
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon}  {capacity}%",
+            "format-full": "{icon} ",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
+            "format-alt": "{time} {icon}",
+            "format-icons": ["<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c'  size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>"]
+        },
+        "network": {
+            //"format-wifi": "<span font_family='Cascadia Code NF' rise='-4000' size='large'></span> {usage}%",
+            "format-wifi" : "<span font_family='Iosevka Nerd Font' color='#bb9af7' size='large'>  </span>{essid} {signalStrength}%",
+            "format-ethernet": "{cidr} ",
+            "tooltip-format": "{ifname} via {gwaddr} ",
+            "format-linked": "{ifname} (No IP) ",
+            "format-disconnected": " ⚠ ",
+            "format-alt": "{ipaddr}"
+        },
+        "pulseaudio": {
+            "format": "{icon}{volume}%",
+        //    "format-bluetooth": "{volume}% {icon}<span font_family='Iosevka Nerd Font' size='medium'>  </span> {format_source}",
+        //    "format-bluetooth-muted": "<span font_family='Iosevka Nerd Font' size='large'></span>  <span font_family='Iosevka Nerd Font' size='medium'></span> {format_source}",
+            "format-muted": "<span font_family='Iosevka Nerd Font' color='#707880' size='medium'>󰓄</span> ",
+            "format-icons": {
+        //        "headphone": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
+         //       "hands-free": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
+          //      "headset": "<span font_family='Iosevka Nerd Font' size='large'></span>",
+          //     "phone": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
+        //        "portable": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
+        //        "car": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
+                "default": ["<span font_family='Iosevka Nerd Font' color='#ff7a93'size='medium'>󰓃 </span>", "<span font_family='Iosevka Nerd Font' color = '#ff7a93' size='medium'>󰓃 </span>", "<span font_family='Iosevka Nerd Font' color='#ff7a93'size='medium'>󰓃 </span>"]
+            },
+            "on-click": "pavucontrol"
+        },
+}

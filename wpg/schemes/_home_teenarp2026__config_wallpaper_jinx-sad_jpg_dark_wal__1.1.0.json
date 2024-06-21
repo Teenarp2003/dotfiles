@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/jinx-sad.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0E0B0C",
+        "foreground": "#e4c5a2",
+        "cursor": "#e4c5a2"
+    },
+    "colors": {
+        "color0": "#0E0B0C",
+        "color1": "#8F3336",
+        "color2": "#A33635",
+        "color3": "#A04D35",
+        "color4": "#993944",
+        "color5": "#A64E49",
+        "color6": "#CE6449",
+        "color7": "#e4c5a2",
+        "color8": "#9f8971",
+        "color9": "#8F3336",
+        "color10": "#A33635",
+        "color11": "#A04D35",
+        "color12": "#993944",
+        "color13": "#A64E49",
+        "color14": "#CE6449",
+        "color15": "#e4c5a2"
+    }
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+wal=$(cat /home/teenarp2026/.cache/wal/wal)
+hyprctl hyprpaper preload "$wal"
+hyprctl hyprpaper wallpaper "eDP-1,$wal"
+hyprpm enable hyprwinwrap
+echo $wal

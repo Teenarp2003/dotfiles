@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/asrtro.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#011423",
+        "foreground": "#9cceda",
+        "cursor": "#9cceda"
+    },
+    "colors": {
+        "color0": "#011423",
+        "color1": "#585D68",
+        "color2": "#AD5538",
+        "color3": "#C38B72",
+        "color4": "#21718D",
+        "color5": "#5F7887",
+        "color6": "#298FAB",
+        "color7": "#9cceda",
+        "color8": "#6d9098",
+        "color9": "#585D68",
+        "color10": "#AD5538",
+        "color11": "#C38B72",
+        "color12": "#21718D",
+        "color13": "#5F7887",
+        "color14": "#298FAB",
+        "color15": "#9cceda"
+    }
+}

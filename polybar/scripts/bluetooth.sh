@@ -1,5 +1,6 @@
 #!/bin/sh
 # this script is formatted for polybar output. prerequisites involve setting up xrdb colors using pywal or the like. and bluetoothctl. 
+session=$(echo $DESKTOP_SESSION)
 color3=$(cat ~/.cache/wal/colors.ini | grep color14 | awk '{print $2}')
 color4=$(cat ~/.cache/wal/colors.ini | grep color7 | awk '{print $2}')
 color5=$(cat ~/.cache/wal/colors.ini | grep color6 | awk '{print $2}')
@@ -13,11 +14,21 @@ name_temp=$(bluetoothctl devices Connected | awk '{$1="";$2="";print $0}')
 if [[ ${#upower_final} -gt 4 ]]; then
   upower_final=""
 fi 
+
+bl=""
+bl_hyprland=""
 if [ "$status" = "no" ]; then
-  echo "%{T7}%{F#808080}󰂯 %{T-}%{F-}"
+  bl="%{T7}%{F#808080}󰂯 %{T-}%{F-}"
+  bl_hyprland="<span font_family='Iosevka Nerd Font'color='#808080' size='medium' >󰂯</span>"
 elif [[ "$status" = "yes" && -z "$name" ]]; then
-  echo "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}"
+  bl= "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}"
+  bl_hyprland="<span font_family='Iosevka Nerd Font' color='#1793D1'size='medium' >󰂯</span>"
 elif [ -n "$name" ]; then
-    echo "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}%{T4}%{F$color3}${name}%{T-}%{F-}%{T4}%{F$color5} ${upower_final} %{T-}%{F-}"
+  bl="%{T7}%{F#1793D1}󰂯 %{T-}%{F-}%{T4}%{F$color3}${name}%{T-}%{F-}%{T4}%{F$color5} ${upower_final} %{T-}%{F-}"
+  bl_hyprland="<span font_family='Iosevka Nerd Font' color='#1793D1' size='medium' >󰂯</span> ${upower_final}"
 fi
-echo $upower_final
+if [ "$session" == "hyprland" ]; then
+    echo "$bl_hyprland"
+  elif [ "$session" == "bspwm" ]; then
+    echo "$bl"
+fi

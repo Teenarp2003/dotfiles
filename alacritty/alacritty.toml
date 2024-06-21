@@ -15,7 +15,7 @@ style = "Underline"
 TERM = "xterm-256color"
 
 [font]
-size = 10
+size = 14
 
 [font.bold]
 family = "Victor Mono"

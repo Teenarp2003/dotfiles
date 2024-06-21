@@ -19,7 +19,7 @@
 #request setfloating  false
 #request setdecorated true
 #request setfocused   false
-#request setmaximized false
+#request setmaximized true
 
 /* Set window background opacity mode. Possible values are:
    
@@ -45,7 +45,7 @@
 #request setshaderversion 330
 
 /* Window title */
-#request settitle "glava"
+#request settitle "GLava"
 
 /* Window geometry (x, y, width, height) */
 #request setgeometry 0 40 1920 1040

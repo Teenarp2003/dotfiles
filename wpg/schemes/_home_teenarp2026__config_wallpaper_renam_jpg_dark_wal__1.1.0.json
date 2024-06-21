@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/renam.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#062224",
+        "foreground": "#81bab9",
+        "cursor": "#81bab9"
+    },
+    "colors": {
+        "color0": "#062224",
+        "color1": "#156F6E",
+        "color2": "#557E56",
+        "color3": "#298374",
+        "color4": "#C0AC40",
+        "color5": "#E2CC4C",
+        "color6": "#F5D145",
+        "color7": "#81bab9",
+        "color8": "#5a8281",
+        "color9": "#156F6E",
+        "color10": "#557E56",
+        "color11": "#298374",
+        "color12": "#C0AC40",
+        "color13": "#E2CC4C",
+        "color14": "#F5D145",
+        "color15": "#81bab9"
+    }
+}

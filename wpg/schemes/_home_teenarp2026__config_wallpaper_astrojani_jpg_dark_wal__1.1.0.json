@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/astrojani.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0a1e36",
+        "foreground": "#cddae1",
+        "cursor": "#cddae1"
+    },
+    "colors": {
+        "color0": "#0a1e36",
+        "color1": "#6A90A9",
+        "color2": "#6F94AE",
+        "color3": "#7CA5C0",
+        "color4": "#89A8B9",
+        "color5": "#91B3C6",
+        "color6": "#A3BDCA",
+        "color7": "#cddae1",
+        "color8": "#8f989d",
+        "color9": "#6A90A9",
+        "color10": "#6F94AE",
+        "color11": "#7CA5C0",
+        "color12": "#89A8B9",
+        "color13": "#91B3C6",
+        "color14": "#A3BDCA",
+        "color15": "#cddae1"
+    }
+}
