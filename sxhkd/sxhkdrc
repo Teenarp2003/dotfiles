@@ -44,10 +44,10 @@ super + m
 super + shift + {d,a}
     bspc node @/ -C {forward,backward}
 # Screenshot and copy
-Print
+XF86SelectiveScreenshot
   spectacle -rcb
 # screenshot and open
-alt + Print
+alt + XF86SelectiveScreenshot
   spectacle -f
 # open browser
 super + c

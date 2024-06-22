@@ -40,7 +40,8 @@
         "memory": {
     "interval": 1,
     "format": "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='small'></span> {used} GB",
-    "max-length": 10
+    "max-length": 10,
+    "on-click":"alacritty -e htop"
 },
 "custom/sep": {
   "format" : "<span font_family='Iosevka Nerd Font' size='medium' > </span>"
@@ -54,11 +55,13 @@
       "cpu": {
     "interval": 1,
     "format": "<span font_family='Iosevka Nerd Font' color='#0db9d7' size='small'></span> {usage}%", 
-    "max-length": 10
+    "max-length": 10,
+    "on-click": "alacritty -e btop"
       },
       "custom/bluetooth":{
-        "exec": "$HOME/.config/polybar/scripts/bluetooth.sh"
-        
+        "exec": "$HOME/.config/polybar/scripts/bluetooth.sh",
+       "interval": 2,
+       "on-click": "rofi-bluetooth &"
       },
         "custom/player": {
           "exec": "$HOME/.config/polybar/scripts/player.sh",
@@ -81,6 +84,8 @@
 "hyprland/workspaces": {
   "format": "{icon}",
   "on-click": "activate",
+  "on-scroll-up":"hyprctl dispatch workspace +1",
+  "on-scroll-down":"hyprctl dispatch workspace -1",
   "format-icons": {
     "1": "<span font_family='Iosevka Nerd Font' color='#53D512' size='large'> </span>",
     "2": "<span font_family='Iosevka Nerd Font'color='#FFCE44' size='large'> </span>",
@@ -142,7 +147,7 @@
             "format": "{icon}  {capacity}%",
             "format-full": "{icon} ",
             "format-charging": " {capacity}%",
-            "format-plugged": " {capacity}%",
+            "format-plugged": "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span> {capacity}%",
             "format-alt": "{time} {icon}",
             "format-icons": ["<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c'  size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>"]
         },
@@ -169,6 +174,7 @@
         //        "car": "<span font_family='Iosevka Nerd Font' size='large'> </span>",
                 "default": ["<span font_family='Iosevka Nerd Font' color='#ff7a93'size='medium'>󰓃 </span>", "<span font_family='Iosevka Nerd Font' color = '#ff7a93' size='medium'>󰓃 </span>", "<span font_family='Iosevka Nerd Font' color='#ff7a93'size='medium'>󰓃 </span>"]
             },
-            "on-click": "pavucontrol"
+            "on-click": "pactl set-sink-mute 0 toggle",
+            "on-click-right": "pavucontrol"
         },
 }
