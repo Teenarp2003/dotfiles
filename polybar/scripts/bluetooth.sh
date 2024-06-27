@@ -21,7 +21,7 @@ if [ "$status" = "no" ]; then
   bl="%{T7}%{F#808080}󰂯 %{T-}%{F-}"
   bl_hyprland="<span font_family='Iosevka Nerd Font'color='#808080' size='medium' >󰂯</span>"
 elif [[ "$status" = "yes" && -z "$name" ]]; then
-  bl= "%{T7}%{F#1793D1}󰂯 %{T-}%{F-}"
+  bl="%{T7}%{F#1793D1}󰂯 %{T-}%{F-}"
   bl_hyprland="<span font_family='Iosevka Nerd Font' color='#1793D1'size='medium' >󰂯</span>"
 elif [ -n "$name" ]; then
   bl="%{T7}%{F#1793D1}󰂯 %{T-}%{F-}%{T4}%{F$color3}${name}%{T-}%{F-}%{T4}%{F$color5} ${upower_final} %{T-}%{F-}"

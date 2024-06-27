@@ -38,7 +38,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias rm='rm -i'
-alias mount-phone='sshfs -p 8022 u0_a588@192.168.29.170:/sdcard/ ~/Phone'
+alias mount-phone='sshfs -p 8022 u0_a588@192.168.1.106:/sdcard/ ~/Phone'
 alias fzf='fzf -e'
 alias feh='feh --scale-down'
 export EDITOR=/usr/bin/nvim;

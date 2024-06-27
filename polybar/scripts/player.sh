@@ -51,7 +51,7 @@ elif [ "$player_status" = "Paused" ]; then
     output="${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
     output_hyprland="${artist_name_disp}<span font_family='Iosevka Nerd Font' size='medium' >    </span> ${song_name_disp}"
 elif [ "$player_status" = "" ]; then
-    output="{T7}  %{T-}%{T4}%{T-}"
+    output="%{T7}   %{T-}%{T4}%{T-}"
     output_hyprland="<span font_family='Iosevka Nerd Font' size='medium' >    </span>"
 fi
 

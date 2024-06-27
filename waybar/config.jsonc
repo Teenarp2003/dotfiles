@@ -89,9 +89,9 @@
   "format-icons": {
     "1": "<span font_family='Iosevka Nerd Font' color='#53D512' size='large'> </span>",
     "2": "<span font_family='Iosevka Nerd Font'color='#FFCE44' size='large'> </span>",
-    "3": "<span font_family='Iosevka Nerd Font'color='#1DB954' size='large'> </span>",
+    "3": "<span font_family='Iosevka Nerd Font'color='#1276D5' size='large'> </span>",
     "4": "<span font_family='Iosevka Nerd Font'color='#E85E00' size='large'> </span>",
-    "5": "<span font_family='Iosevka Nerd Font'color='#1276D5' size='large'> </span>",
+    "5": "<span font_family='Iosevka Nerd Font'color='#1DB954' size='large'> </span>",
     "urgent": ""
   },
   "sort-by-number": true,
@@ -146,7 +146,7 @@
             },
             "format": "{icon}  {capacity}%",
             "format-full": "{icon} ",
-            "format-charging": " {capacity}%",
+            "format-charging": "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='large'></span> {capacity}%",
             "format-plugged": "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span> {capacity}%",
             "format-alt": "{time} {icon}",
             "format-icons": ["<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c'  size='medium'></span>", "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='medium'></span>"]
