@@ -21,7 +21,7 @@
         "custom/sep",
         "cpu",
         "custom/sep",
-        "memory",
+        "custom/mem",
         "custom/sep",
         "battery",
         "custom/sep",
@@ -37,11 +37,22 @@
     "format-icons": ["<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000' >󰃟</span>", "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000'>󰃠</span>"]
 },
 
-        "memory": {
+
+
+"memory": {
     "interval": 1,
     "format": "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='small'></span> {used} GB",
     "max-length": 10,
     "on-click":"alacritty -e htop"
+},
+"custom/mem": {
+  "interval": 1,
+  "exec": "$HOME/.config/waybar/mem.sh",
+  //"format": "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='small'></span>  MB",
+  //d"format": "$HOME/.config/waybar/mem.sh",
+    "max-length": 10,
+    "on-click":"alacritty -e htop"
+
 },
 "custom/sep": {
   "format" : "<span font_family='Iosevka Nerd Font' size='medium' > </span>"
@@ -155,9 +166,9 @@
             //"format-wifi": "<span font_family='Cascadia Code NF' rise='-4000' size='large'></span> {usage}%",
             "format-wifi" : "<span font_family='Iosevka Nerd Font' color='#bb9af7' size='large'>  </span>{essid} {signalStrength}%",
             "format-ethernet": "{cidr} ",
-            "tooltip-format": "{ifname} via {gwaddr} ",
-            "format-linked": "{ifname} (No IP) ",
-            "format-disconnected": " ⚠ ",
+            "tooltip-format": "{ifname} via {gwaddr} ",
+            "format-linked": "{ifname} (No IP) ",
+            "format-disconnected": " 󰲛 ",
             "format-alt": "{ipaddr}"
         },
         "pulseaudio": {

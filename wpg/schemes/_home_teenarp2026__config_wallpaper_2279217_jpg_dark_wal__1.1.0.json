@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/2279217.jpg",
+    "alpha": "50",
+    "special": {
+        "background": "#1b091a",
+        "foreground": "#f6e4d9",
+        "cursor": "#f6e4d9"
+    },
+    "colors": {
+        "color0": "#1b091a",
+        "color1": "#FF6C36",
+        "color2": "#C22742",
+        "color3": "#FE7E42",
+        "color4": "#F28550",
+        "color5": "#D0AEA2",
+        "color6": "#FEDBC5",
+        "color7": "#f6e4d9",
+        "color8": "#ac9f97",
+        "color9": "#FF6C36",
+        "color10": "#C22742",
+        "color11": "#FE7E42",
+        "color12": "#F28550",
+        "color13": "#D0AEA2",
+        "color14": "#FEDBC5",
+        "color15": "#f6e4d9"
+    }
+}

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -nrs '/home/teenarp2026/.config/wallpaper/astrojani.jpg' '/home/teenarp2026/.config/wallpaper/astrojani.jpg'
+wpg -nrs '/home/teenarp2026/.config/wallpaper/2279198.png' '/home/teenarp2026/.config/wallpaper/2279198.png'

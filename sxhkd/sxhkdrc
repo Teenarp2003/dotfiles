@@ -15,7 +15,7 @@ alt + shift + {q,r}
 	bspc {quit,wm -r}; notify-send 'BSPWM' 'Reloaded config'
 # open terminal
 super + Return
-	alacritty
+	kitty
 # open rofi-wifimenu	
 super + shift + w
 	wifimenu
