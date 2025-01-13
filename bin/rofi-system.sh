@@ -42,7 +42,7 @@ case $selected_option in
         esac
         ;;
     "Performance Mode")
-        output=$(sudo display-hwmode.sh) && sudo -u teenarp2026 DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -t 3000 'Settings Listed' "$output"
+        output=$(sudo display-hwmode.sh) && notify-send -t 3000 'Settings Listed' "$output"
         ;;
     *)
         exit 0

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/my-neighbor-totoro-sunflowers.png",
+    "alpha": "50",
+    "special": {
+        "background": "#201e1e",
+        "foreground": "#e9e6d7",
+        "cursor": "#e9e6d7"
+    },
+    "colors": {
+        "color0": "#201e1e",
+        "color1": "#5F938E",
+        "color2": "#84A697",
+        "color3": "#ADB091",
+        "color4": "#BCBD95",
+        "color5": "#DFD0AB",
+        "color6": "#EADAB2",
+        "color7": "#e9e6d7",
+        "color8": "#a3a196",
+        "color9": "#5F938E",
+        "color10": "#84A697",
+        "color11": "#ADB091",
+        "color12": "#BCBD95",
+        "color13": "#DFD0AB",
+        "color14": "#EADAB2",
+        "color15": "#e9e6d7"
+    }
+}

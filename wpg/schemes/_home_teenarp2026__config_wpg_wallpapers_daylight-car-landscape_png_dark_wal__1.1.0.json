@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/daylight-car-landscape.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#101f1f",
+        "foreground": "#fefff5",
+        "cursor": "#fefff5"
+    },
+    "colors": {
+        "color0": "#101f1f",
+        "color1": "#76846E",
+        "color2": "#B39941",
+        "color3": "#267B9B",
+        "color4": "#497D85",
+        "color5": "#36839B",
+        "color6": "#5D989B",
+        "color7": "#c5cdbe",
+        "color8": "#204040",
+        "color9": "#95bb7f",
+        "color10": "#f8cf44",
+        "color11": "#24a5d6",
+        "color12": "#51acba",
+        "color13": "#38b1d7",
+        "color14": "#68d4d9",
+        "color15": "#fefff5"
+    }
+}

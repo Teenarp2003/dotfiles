@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/city-night-aerial-aerial-view-lights-traffic-building.jpg",
+    "alpha": "50",
+
+    "special": {
+        "background": "#0e1113",
+        "foreground": "#e8f9fe",
+        "cursor": "#e8f9fe"
+    },
+    "colors": {
+        "color0": "#0e1113",
+        "color1": "#455258",
+        "color2": "#475C63",
+        "color3": "#526970",
+        "color4": "#686B6E",
+        "color5": "#956E66",
+        "color6": "#637B83",
+        "color7": "#afbcc0",
+        "color8": "#222a30",
+        "color9": "#4f6e7c",
+        "color10": "#517d8b",
+        "color11": "#5e8f9e",
+        "color12": "#798b9c",
+        "color13": "#d18474",
+        "color14": "#71a7b9",
+        "color15": "#e8f9fe"
+    }
+}

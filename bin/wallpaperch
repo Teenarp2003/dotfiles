@@ -9,23 +9,22 @@ wallpaper_path=~/.config/wallpaper/$wallpapersel
 if [ -z "$wallpapersel" ]; then 
   wallpaper_path=$(~/.cache/wal/wal); 
 fi
-wal -i "$wallpaper_path"
+wal -a 90 -i "$wallpaper_path"
 . "${HOME}/.cache/wal/colors.sh"
 bspc config normal_border_color "$color1"
 replace-wal.sh
 bspc config active_border_color "$color2"
 bspc config focused_border_color "$color15"
-wpg -a $wallpaper_path
-wpg -ns $wallpapersel
+wpg --alpha 60 -a $wallpaper_path
+wpg --alpha 60 -ns $wallpapersel
 FILE="/home/teenarp2026/.cache/wal/theme.conf"
 wal="$(cat ~/.cache/wal/wal)"
 TEXT="Background=$wal"
 sed -i "3s|.*|$TEXT|" $FILE
 echo "replaced theme.conf with path"
 glava-colors
+cp ~/.cache/wal/hyprpaper.conf ~/.config/hypr/hyprpaper.conf 
 . "${HOME}/.cache/wal/colors.sh"
-~/.config/bin/remove_hash.sh ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
+cp ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
 betterlockscreen -u $wallpaper_path blur
-exec killall waybar
-exec waybar
 sudo cp .cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf

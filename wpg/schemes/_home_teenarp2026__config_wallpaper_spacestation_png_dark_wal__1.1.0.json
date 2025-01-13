@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/spacestation.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0D1316",
+        "foreground": "#c5c7c5",
+        "cursor": "#c5c7c5"
+    },
+    "colors": {
+        "color0": "#0D1316",
+        "color1": "#55625F",
+        "color2": "#867B69",
+        "color3": "#7A8456",
+        "color4": "#919164",
+        "color5": "#54758B",
+        "color6": "#6F909F",
+        "color7": "#c5c7c5",
+        "color8": "#898b89",
+        "color9": "#55625F",
+        "color10": "#867B69",
+        "color11": "#7A8456",
+        "color12": "#919164",
+        "color13": "#54758B",
+        "color14": "#6F909F",
+        "color15": "#c5c7c5"
+    }
+}

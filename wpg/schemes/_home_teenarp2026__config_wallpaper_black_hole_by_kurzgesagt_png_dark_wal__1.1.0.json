@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/black_hole_by_kurzgesagt.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0a030e",
+        "foreground": "#dbd1d9",
+        "cursor": "#dbd1d9"
+    },
+    "colors": {
+        "color0": "#0a030e",
+        "color1": "#B03936",
+        "color2": "#D7CA46",
+        "color3": "#713E95",
+        "color4": "#9859B0",
+        "color5": "#A95FCA",
+        "color6": "#7C87E0",
+        "color7": "#dbd1d9",
+        "color8": "#999297",
+        "color9": "#B03936",
+        "color10": "#D7CA46",
+        "color11": "#713E95",
+        "color12": "#9859B0",
+        "color13": "#A95FCA",
+        "color14": "#7C87E0",
+        "color15": "#dbd1d9"
+    }
+}

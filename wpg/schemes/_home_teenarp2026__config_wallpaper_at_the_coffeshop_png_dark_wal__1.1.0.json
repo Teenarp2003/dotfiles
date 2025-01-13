@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/at_the_coffeshop.png",
+    "alpha": "50",
+    "special": {
+        "background": "#1b1e25",
+        "foreground": "#c2d6d7",
+        "cursor": "#c2d6d7"
+    },
+    "colors": {
+        "color0": "#1b1e25",
+        "color1": "#637A86",
+        "color2": "#6E8A93",
+        "color3": "#7A9CA2",
+        "color4": "#7EA2A6",
+        "color5": "#8FBBBB",
+        "color6": "#92C0BE",
+        "color7": "#c2d6d7",
+        "color8": "#879596",
+        "color9": "#637A86",
+        "color10": "#6E8A93",
+        "color11": "#7A9CA2",
+        "color12": "#7EA2A6",
+        "color13": "#8FBBBB",
+        "color14": "#92C0BE",
+        "color15": "#c2d6d7"
+    }
+}

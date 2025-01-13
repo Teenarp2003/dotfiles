@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/digitalart-mountain.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#1b0e1f",
+        "foreground": "#ffffd4",
+        "cursor": "#ffffd4"
+    },
+    "colors": {
+        "color0": "#1b0e1f",
+        "color1": "#6F2950",
+        "color2": "#4C2966",
+        "color3": "#982B38",
+        "color4": "#AD4D3D",
+        "color5": "#852943",
+        "color6": "#DCB25B",
+        "color7": "#e9d7a7",
+        "color8": "#391d41",
+        "color9": "#9a2b69",
+        "color10": "#642b8d",
+        "color11": "#d22b3f",
+        "color12": "#f05940",
+        "color13": "#b82952",
+        "color14": "#ffee62",
+        "color15": "#ffffd4"
+    }
+}

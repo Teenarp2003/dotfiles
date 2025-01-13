@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/fog.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#0D1C16",
+        "foreground": "#f2ffff",
+        "cursor": "#f2ffff"
+    },
+    "colors": {
+        "color0": "#0D1C16",
+        "color1": "#45796E",
+        "color2": "#468541",
+        "color3": "#4E8676",
+        "color4": "#649C95",
+        "color5": "#86BBB5",
+        "color6": "#90C2BC",
+        "color7": "#cbe0de",
+        "color8": "#1c3e30",
+        "color9": "#4da996",
+        "color10": "#50b947",
+        "color11": "#57bb9f",
+        "color12": "#71dbce",
+        "color13": "#99fffb",
+        "color14": "#a5ffff",
+        "color15": "#f2ffff"
+    }
+}

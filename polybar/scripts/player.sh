@@ -45,7 +45,7 @@ fi
 output=""
 output_hyprland=""
 if [[ "$player_status" = "Playing" || "$player_status" = "Stopped" ]]; then
-    output="${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
+    output=" ${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"
     output_hyprland="${artist_name_disp}<span font_family='Iosevka Nerd Font' size='medium' >  </span> ${song_name_disp}"
 elif [ "$player_status" = "Paused" ]; then
     output="${artist_name_disp}%{T7}  %{T-}%{T4} ${song_name_disp} %{T-}"

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/galaxy.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#0a0313",
+        "foreground": "#c2ffff",
+        "cursor": "#c2ffff"
+    },
+    "colors": {
+        "color0": "#0a0313",
+        "color1": "#9C2463",
+        "color2": "#CA2E60",
+        "color3": "#A15359",
+        "color4": "#E45B62",
+        "color5": "#F4AA67",
+        "color6": "#39508B",
+        "color7": "#91cdca",
+        "color8": "#200840",
+        "color9": "#d72281",
+        "color10": "#ff2b76",
+        "color11": "#e15c66",
+        "color12": "#ff616c",
+        "color13": "#ffdb6f",
+        "color14": "#3d62c1",
+        "color15": "#c2ffff"
+    }
+}

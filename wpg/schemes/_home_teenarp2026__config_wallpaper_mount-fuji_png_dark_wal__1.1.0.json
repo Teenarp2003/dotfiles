@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/mount-fuji.png",
+    "alpha": "50",
+    "special": {
+        "background": "#170e1e",
+        "foreground": "#cfbedd",
+        "cursor": "#cfbedd"
+    },
+    "colors": {
+        "color0": "#170e1e",
+        "color1": "#736498",
+        "color2": "#9A679E",
+        "color3": "#E27198",
+        "color4": "#9C7CC4",
+        "color5": "#EF94A9",
+        "color6": "#9E85D4",
+        "color7": "#cfbedd",
+        "color8": "#90859a",
+        "color9": "#736498",
+        "color10": "#9A679E",
+        "color11": "#E27198",
+        "color12": "#9C7CC4",
+        "color13": "#EF94A9",
+        "color14": "#9E85D4",
+        "color15": "#cfbedd"
+    }
+}

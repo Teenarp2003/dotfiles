@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/sakura--rchannel-boosted--1920-1080.png",
+    "alpha": "50",
+    "special": {
+        "background": "#02131A",
+        "foreground": "#c5b4b9",
+        "cursor": "#c5b4b9"
+    },
+    "colors": {
+        "color0": "#02131A",
+        "color1": "#623A44",
+        "color2": "#3B444A",
+        "color3": "#5A535A",
+        "color4": "#913749",
+        "color5": "#A35662",
+        "color6": "#BA606C",
+        "color7": "#c5b4b9",
+        "color8": "#897d81",
+        "color9": "#623A44",
+        "color10": "#3B444A",
+        "color11": "#5A535A",
+        "color12": "#913749",
+        "color13": "#A35662",
+        "color14": "#BA606C",
+        "color15": "#c5b4b9"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/dr-manhattan.png",
+    "alpha": "50",
+    "special": {
+        "background": "#020202",
+        "foreground": "#bcd1dc",
+        "cursor": "#bcd1dc"
+    },
+    "colors": {
+        "color0": "#020202",
+        "color1": "#B23D47",
+        "color2": "#BB424A",
+        "color3": "#CD4C4F",
+        "color4": "#4E758B",
+        "color5": "#6399B7",
+        "color6": "#74ADCA",
+        "color7": "#bcd1dc",
+        "color8": "#83929a",
+        "color9": "#B23D47",
+        "color10": "#BB424A",
+        "color11": "#CD4C4F",
+        "color12": "#4E758B",
+        "color13": "#6399B7",
+        "color14": "#74ADCA",
+        "color15": "#bcd1dc"
+    }
+}

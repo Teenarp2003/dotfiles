@@ -44,8 +44,9 @@ super + m
 super + shift + {d,a}
     bspc node @/ -C {forward,backward}
 # Screenshot and copy
-XF86SelectiveScreenshot
+Print
   spectacle -rcb
+alt + Print
 # screenshot and open
 alt + XF86SelectiveScreenshot
   spectacle -f
@@ -81,7 +82,7 @@ alt + d
 	bspc node -t "~"{floating,tiled}
 #Open File manager
 super + e
-	thunar ~/Downloads/
+	nemo ~/Downloads/
 #rofi
 super + a
 	exec rofi -show drun -theme ~/.config/rofi/config.rasi

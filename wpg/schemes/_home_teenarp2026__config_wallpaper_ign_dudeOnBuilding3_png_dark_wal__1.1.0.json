@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/ign_dudeOnBuilding3.png",
+    "alpha": "50",
+    "special": {
+        "background": "#1a1e25",
+        "foreground": "#b4cbd9",
+        "cursor": "#b4cbd9"
+    },
+    "colors": {
+        "color0": "#1a1e25",
+        "color1": "#6C676E",
+        "color2": "#566F90",
+        "color3": "#677898",
+        "color4": "#5C7CA4",
+        "color5": "#5E81AC",
+        "color6": "#688AB0",
+        "color7": "#b4cbd9",
+        "color8": "#7d8e97",
+        "color9": "#6C676E",
+        "color10": "#566F90",
+        "color11": "#677898",
+        "color12": "#5C7CA4",
+        "color13": "#5E81AC",
+        "color14": "#688AB0",
+        "color15": "#b4cbd9"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/cozy_street.jpg",
+    "alpha": "50",
+    "special": {
+        "background": "#09172D",
+        "foreground": "#c7cbe6",
+        "cursor": "#c7cbe6"
+    },
+    "colors": {
+        "color0": "#09172D",
+        "color1": "#2472E5",
+        "color2": "#4D7AE0",
+        "color3": "#3F8EB4",
+        "color4": "#3195EE",
+        "color5": "#569DEE",
+        "color6": "#5ED2F7",
+        "color7": "#c7cbe6",
+        "color8": "#8b8ea1",
+        "color9": "#2472E5",
+        "color10": "#4D7AE0",
+        "color11": "#3F8EB4",
+        "color12": "#3195EE",
+        "color13": "#569DEE",
+        "color14": "#5ED2F7",
+        "color15": "#c7cbe6"
+    }
+}

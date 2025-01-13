@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/chinese-cyberpunk.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#020305",
+        "foreground": "#f9f3fa",
+        "cursor": "#f9f3fa"
+    },
+    "colors": {
+        "color0": "#020305",
+        "color1": "#526060",
+        "color2": "#C7583E",
+        "color3": "#E3A452",
+        "color4": "#3961A2",
+        "color5": "#509AB2",
+        "color6": "#599EDF",
+        "color7": "#bdb8be",
+        "color8": "#0c162d",
+        "color9": "#5f8888",
+        "color10": "#ff673f",
+        "color11": "#ffd756",
+        "color12": "#3b7ae0",
+        "color13": "#57d0f8",
+        "color14": "#5fceff",
+        "color15": "#f9f3fa"
+    }
+}

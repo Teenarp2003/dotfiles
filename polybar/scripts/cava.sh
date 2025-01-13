@@ -22,7 +22,7 @@ mkfifo $pipe
 config_file="/tmp/polybar_cava_config"
 echo "
 [general]
-bars =  15
+bars =  20
 [input]
 method = pulse
 source = auto
@@ -34,6 +34,7 @@ ascii_max_range = 7
 " > $config_file
 
 # run cava in the background
+killall cava
 cava -p $config_file &
 
 # reading data from fifo

@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/City-Rainy-Night.png",
+    "alpha": "50",
+    "special": {
+        "background": "#020515",
+        "foreground": "#a5c5e4",
+        "cursor": "#a5c5e4"
+    },
+    "colors": {
+        "color0": "#020515",
+        "color1": "#9E6471",
+        "color2": "#16308F",
+        "color3": "#1F37A5",
+        "color4": "#294CAA",
+        "color5": "#495AB9",
+        "color6": "#2B54C9",
+        "color7": "#a5c5e4",
+        "color8": "#73899f",
+        "color9": "#9E6471",
+        "color10": "#16308F",
+        "color11": "#1F37A5",
+        "color12": "#294CAA",
+        "color13": "#495AB9",
+        "color14": "#2B54C9",
+        "color15": "#a5c5e4"
+    }
+}

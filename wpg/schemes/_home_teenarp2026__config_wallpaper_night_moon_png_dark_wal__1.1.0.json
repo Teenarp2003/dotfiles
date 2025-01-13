@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/night_moon.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0f1012",
+        "foreground": "#f0e480",
+        "cursor": "#f0e480"
+    },
+    "colors": {
+        "color0": "#0f1012",
+        "color1": "#B47514",
+        "color2": "#CD6F13",
+        "color3": "#BA902F",
+        "color4": "#D4991D",
+        "color5": "#D79921",
+        "color6": "#F6B92D",
+        "color7": "#f0e480",
+        "color8": "#a89f59",
+        "color9": "#B47514",
+        "color10": "#CD6F13",
+        "color11": "#BA902F",
+        "color12": "#D4991D",
+        "color13": "#D79921",
+        "color14": "#F6B92D",
+        "color15": "#f0e480"
+    }
+}

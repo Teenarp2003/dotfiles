@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/glitchart.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0b0c0c",
+        "foreground": "#efdbd1",
+        "cursor": "#efdbd1"
+    },
+    "colors": {
+        "color0": "#0b0c0c",
+        "color1": "#993018",
+        "color2": "#AF5945",
+        "color3": "#D9916F",
+        "color4": "#14A3B0",
+        "color5": "#B3A8A8",
+        "color6": "#E2AD9C",
+        "color7": "#efdbd1",
+        "color8": "#a79992",
+        "color9": "#993018",
+        "color10": "#AF5945",
+        "color11": "#D9916F",
+        "color12": "#14A3B0",
+        "color13": "#B3A8A8",
+        "color14": "#E2AD9C",
+        "color15": "#efdbd1"
+    }
+}

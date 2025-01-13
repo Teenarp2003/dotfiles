@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/gradient.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0f0a25",
+        "foreground": "#bdb8d5",
+        "cursor": "#bdb8d5"
+    },
+    "colors": {
+        "color0": "#0f0a25",
+        "color1": "#5E699D",
+        "color2": "#8875AF",
+        "color3": "#3F82B3",
+        "color4": "#5787BA",
+        "color5": "#4E95C7",
+        "color6": "#6E90C6",
+        "color7": "#bdb8d5",
+        "color8": "#848095",
+        "color9": "#5E699D",
+        "color10": "#8875AF",
+        "color11": "#3F82B3",
+        "color12": "#5787BA",
+        "color13": "#4E95C7",
+        "color14": "#6E90C6",
+        "color15": "#bdb8d5"
+    }
+}

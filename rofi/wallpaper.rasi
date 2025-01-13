@@ -18,12 +18,12 @@ window {
     background-color:               @BG;
     text-color:                     @FG;
     border-radius:                  10px;
-    width:                          960px;
-    height:                         520px;
+    width:                          1920px;
+    height:                         1150px;
     location:                       center;
     anchor:                         center;
     x-offset:                       0;
-    y-offset:                       0;
+    y-offset:                       100;
 }
 
 prompt {
@@ -41,8 +41,8 @@ textbox-prompt-colon{
 	expand: 						false;
 	str: 							"Wallpapers:";
     border-radius:                  100%;
-    background-color:               @BGA;
-    text-color:                     @BG;
+    background-color:               @BGC;
+    text-color:                     @BGA;
     padding:                        8px 12px 8px 12px;
 	font:							"SourceCodePro Black 14";
 }
@@ -58,12 +58,13 @@ entry {
     border:                  		0px 0px 2px 0px;
     border-color:                  	@BDR;
     border-radius:                  10px;
-    padding:                        8px;
+    padding:                        0px;
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt, entry ];
-    background-color:               @BG;
+	  enabled: false;
+    children: 						[ textbox-prompt-colon, prompt, entry ];
+    background-color:               @BGC;
     text-color:                     @FG;
     expand:                         false;
     border:                  		0px 0px 0px 0px;
@@ -75,17 +76,17 @@ inputbar {
 }
 
 case-indicator {
-    background-color:               @BG;
+    background-color:               @BGC;
     text-color:                     @FG;
     spacing:                        0;
 }
 
 
 listview {
-    background-color:               @BG;
-    columns:                        7;
-    lines:							10;
-    spacing:                        7px;
+    background-color:               @BGC;
+    columns:                        4;
+    lines:							4;
+    spacing:                        3px;
     cycle:                          true;
     dynamic:                        true;
     layout:                         vertical;
@@ -95,28 +96,29 @@ mainbox {
     background-color:               @BG;
     children:                       [ inputbar,listview ];
     spacing:                       	15px;
-    padding:                        15px;
+    padding:                        0px;
 }
 
 element {
-    background-color:               @BG;
+    background-color:               @BGC;
     text-color:                     @FG;
-    orientation:                    horizontal;
-    border-radius:                  4px;
-    padding:                        6px 6px 6px 6px;
+    orientation:                    vertical;
+    border-radius:                  0px;
+    padding:                        0px 0px 0px 0px;
 }
 
 element-icon {
     background-color: 				inherit;
     text-color:       				inherit;
-    size:                         110px;
+    size:                         250px;
     border:                         0px;
     text:                           "";
     markup: "none";
-    padding: 9px 1px 1px 1px;
+    padding: 10px 10px 10px 10px;
 }
 
 element-text {
+    enabled : false;
     background-color: 				inherit;
     text-color:       				inherit;
     expand:                         true;

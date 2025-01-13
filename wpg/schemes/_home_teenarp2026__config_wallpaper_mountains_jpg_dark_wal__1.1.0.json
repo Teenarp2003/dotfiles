@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/mountains.jpg",
+    "alpha": "50",
+    "special": {
+        "background": "#041E36",
+        "foreground": "#e3ded5",
+        "cursor": "#e3ded5"
+    },
+    "colors": {
+        "color0": "#041E36",
+        "color1": "#4F86B6",
+        "color2": "#3484C7",
+        "color3": "#4F8FC7",
+        "color4": "#6C99C7",
+        "color5": "#76A5D2",
+        "color6": "#57A7E6",
+        "color7": "#e3ded5",
+        "color8": "#9e9b95",
+        "color9": "#4F86B6",
+        "color10": "#3484C7",
+        "color11": "#4F8FC7",
+        "color12": "#6C99C7",
+        "color13": "#76A5D2",
+        "color14": "#57A7E6",
+        "color15": "#e3ded5"
+    }
+}

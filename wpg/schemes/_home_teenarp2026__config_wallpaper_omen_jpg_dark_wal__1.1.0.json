@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/omen.jpg",
+    "alpha": "50",
+    "special": {
+        "background": "#090a0c",
+        "foreground": "#b3cfd9",
+        "cursor": "#b3cfd9"
+    },
+    "colors": {
+        "color0": "#090a0c",
+        "color1": "#324660",
+        "color2": "#4A5168",
+        "color3": "#827C7D",
+        "color4": "#35598C",
+        "color5": "#4D6E9B",
+        "color6": "#699AB3",
+        "color7": "#b3cfd9",
+        "color8": "#7d9097",
+        "color9": "#324660",
+        "color10": "#4A5168",
+        "color11": "#827C7D",
+        "color12": "#35598C",
+        "color13": "#4D6E9B",
+        "color14": "#699AB3",
+        "color15": "#b3cfd9"
+    }
+}

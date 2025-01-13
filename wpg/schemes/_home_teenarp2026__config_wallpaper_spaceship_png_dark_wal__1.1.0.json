@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/spaceship.png",
+    "alpha": "50",
+    "special": {
+        "background": "#191d24",
+        "foreground": "#dcd9d4",
+        "cursor": "#dcd9d4"
+    },
+    "colors": {
+        "color0": "#191d24",
+        "color1": "#5E7CA1",
+        "color2": "#708797",
+        "color3": "#7592A5",
+        "color4": "#91999E",
+        "color5": "#AFB0AE",
+        "color6": "#C3BAB1",
+        "color7": "#dcd9d4",
+        "color8": "#9a9794",
+        "color9": "#5E7CA1",
+        "color10": "#708797",
+        "color11": "#7592A5",
+        "color12": "#91999E",
+        "color13": "#AFB0AE",
+        "color14": "#C3BAB1",
+        "color15": "#dcd9d4"
+    }
+}

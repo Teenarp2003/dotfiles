@@ -1,8 +1,8 @@
 {
-    "margin-top" : 5,
-        "margin-left": 10,
-        "margin-right": 10,
-        "height" : 40,
+    "margin-top" : 7,
+        "margin-left": 3,
+        "margin-right": 23,
+        "height" : 35,
         "reload_style_on_change" : true,
         "modules-center": [
         "custom/player",
@@ -17,7 +17,11 @@
         "modules-right": [
         "pulseaudio",
         "custom/sep",
+        "backlight",
+        "custom/sep",
         "temperature",
+        "custom/sep",
+        "disk",
         "custom/sep",
         "cpu",
         "custom/sep",
@@ -28,12 +32,19 @@
         "custom/emptybbgg",
         "custom/bluetooth",
         "custom/empty",
+        "custom/empty",
         "network"
         ],
 
+"disk": {
+    "interval": 30,
+    "format": "<span font_family='Iosevka Nerd Font' color='#ffc300' size='medium'></span> {percentage_used}%",
+    "path": "/home"
+},
+
     "backlight": {
     "device": "amdgpu_bl0",
-    "format": "{icon}  {percent}%",
+    "format": "{icon} {percent}%",
     "format-icons": ["<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000' >󰃟</span>", "<span font_family='Iosevka Nerd Font' color='#ff9e64' size='medium' rise='1000'>󰃠</span>"]
 },
 
@@ -55,7 +66,7 @@
 
 },
 "custom/sep": {
-  "format" : "<span font_family='Iosevka Nerd Font' size='medium' > </span>"
+  "format" : "<span font_family='Iosevka Nerd Font' size='medium' > </span>"
 } ,   
 "custom/empty": {
         "format": " "
@@ -76,6 +87,9 @@
       },
         "custom/player": {
           "exec": "$HOME/.config/polybar/scripts/player.sh",
+          "on-click": "playerctl previous",
+          "on-click-right": "playerctl next",
+          "on-click-middle": "playerctl play-pause",
           "interval": 2
         },
         "custom/cava": {
@@ -88,7 +102,7 @@
             "rewrite": {
   		"": "Hyprland"
   	},
-            "separate-outputs": true,
+            "separate-outputs": true
         },
 
 
@@ -121,7 +135,8 @@
 
 
         "clock": {
-        "format": "{:%a %d, %I:%M %p}",
+        "interval":1,
+        "format": "{:%a %d, %I:%M:%S %p}",
         "format-alt": "{:%a, %d %b %Y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
@@ -145,16 +160,17 @@
                     "on-scroll-down": "shift_down"
                     }
         },"temperature": {
-            "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
             "critical-threshold": 80,
             "format": "{icon}{temperatureC}°C",
-            "format-icons": ["<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>"]
+            "format-icons": ["<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'>  </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>"]
         },
         "battery": {
             "states": {
                 "warning": 30,
                 "critical": 15
             },
+            "interval": 2,
             "format": "{icon}  {capacity}%",
             "format-full": "{icon} ",
             "format-charging": "<span font_family='Iosevka Nerd Font' color='#b9f27c' size='large'></span> {capacity}%",
@@ -168,6 +184,7 @@
             "format-ethernet": "{cidr} ",
             "tooltip-format": "{ifname} via {gwaddr} ",
             "format-linked": "{ifname} (No IP) ",
+             "max-length": 20,
             "format-disconnected": " 󰲛 ",
             "format-alt": "{ipaddr}"
         },

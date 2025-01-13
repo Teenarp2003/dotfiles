@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/floating-island.png",
+    "alpha": "50",
+    "special": {
+        "background": "#281b19",
+        "foreground": "#e4c9c0",
+        "cursor": "#e4c9c0"
+    },
+    "colors": {
+        "color0": "#281b19",
+        "color1": "#506992",
+        "color2": "#637293",
+        "color3": "#6457C1",
+        "color4": "#907887",
+        "color5": "#75849C",
+        "color6": "#A69498",
+        "color7": "#e4c9c0",
+        "color8": "#9f8c86",
+        "color9": "#506992",
+        "color10": "#637293",
+        "color11": "#6457C1",
+        "color12": "#907887",
+        "color13": "#75849C",
+        "color14": "#A69498",
+        "color15": "#e4c9c0"
+    }
+}

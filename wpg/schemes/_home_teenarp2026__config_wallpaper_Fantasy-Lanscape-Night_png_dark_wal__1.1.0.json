@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/Fantasy-Lanscape-Night.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0C0B18",
+        "foreground": "#bdb0ca",
+        "cursor": "#bdb0ca"
+    },
+    "colors": {
+        "color0": "#0C0B18",
+        "color1": "#334477",
+        "color2": "#CA594C",
+        "color3": "#F89573",
+        "color4": "#2C3F83",
+        "color5": "#374A87",
+        "color6": "#59619C",
+        "color7": "#bdb0ca",
+        "color8": "#847b8d",
+        "color9": "#334477",
+        "color10": "#CA594C",
+        "color11": "#F89573",
+        "color12": "#2C3F83",
+        "color13": "#374A87",
+        "color14": "#59619C",
+        "color15": "#bdb0ca"
+    }
+}

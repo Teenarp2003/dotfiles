@@ -12,29 +12,30 @@
 #temperature,
 #custom-sep,
 #pulseaudio ,
+#disk,
 #backlight{
   
   font-size: 16px;
-  background-color:@BG; /* Ensure the background is transparent */
+  background-color:@BGC; /* Ensure the background is transparent */
 }
 #custom-cava {
  border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
  font-size: 16px;
   padding: 10 20px;
-  background-color: @BGC;
+  background-color: transparent;
   /*border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 */
-  color: @color6;
+  color: @color9;
 }
 #custom-sep {
   font-size: 16px;
   color: #808080;
 }
 #custom-emptybg{
-  color: @BG;
-  background-color: @BG;
+  color: @BGC;
+  background-color: @BGC;
 }
 #custom-empty{
   background-color: transparent;
@@ -45,7 +46,7 @@ window#waybar {
     border-radius: 25px;
     border-color: @FG;
     transition-property: transparent;
-    transition-duration: .5s;
+    transition-duration: 1.5s;
 }
 window#waybar.empty #window {
   background: transparent;
@@ -60,7 +61,7 @@ button:hover {
 }
 
 #pulseaudio:hover {
-    background-color: @BG;
+    background-color: @BGC;
 }
 
 #workspaces button {
@@ -68,13 +69,15 @@ button:hover {
   padding: 0 10px;
   font-size: 17px;
   background-color: rgba(0,0,0,0);
-    color: @color7;
+  color: @color7;
+  transition: all 0.2s ease-in-out;
 }
 #workspaces button.visible{
   font-size: 20px;
 }
 #workspaces button.hover {
-  transition: none;
+  /*transition: none;*/
+   transition: all 0.5s cubic-bezier(.25,1,.50,1.68);
     box-shadow: inherit;
     text-shadow: inherit;
 }
@@ -95,13 +98,13 @@ button:hover {
 }
 
 #mode {
-    background-color: @BG;
+    background-color: @BGC;
 }
 
 #network{
   border-radius: 15px;
   padding: 0 10px;
-  background-color:@BG; /* Ensure the background is transparent */
+  background-color:@BGC; /* Ensure the background is transparent */
 }
 
 #backlight{
@@ -128,6 +131,9 @@ button:hover {
     color: @color7;
 }
 
+#disk {
+    color: @color7;
+  }
 #cpu {
     color: @color7;
 }
@@ -143,7 +149,7 @@ button:hover {
 #clock {
   padding: 0 20px;
   border-radius: 15px;
-    color: @color11;
+  color: @color13;
 }
 
 .modules-left {
@@ -173,7 +179,7 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-    background-color: @BG;
+    background-color: @BGC;
     color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -183,7 +189,7 @@ button:hover {
 }
 
 label:focus {
-    background-color: @BG;
+    background-color: @BGC;
 }
 #custom-sep {
   padding: 0 5px;
@@ -197,19 +203,19 @@ label:focus {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   padding-left: 16px;
-  background-color: @BGC;
+  background-color: transparent;
   font-size: 16px;
-  color: @color3;
+  color: @color9;
   }
 #custom-bluetooth{
   padding-right: 16px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: @BG;
+  background-color: @BGC;
   font-size: 16px;
   color: @color3;
   }
 #custom-mem{
-  background-color: @BG;
+  background-color: @BGC;
   font-size: 16px;
   }  

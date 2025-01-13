@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/lake.jpg",
+    "alpha": "50",
+    "special": {
+        "background": "#0A0D1A",
+        "foreground": "#9db2ca",
+        "cursor": "#9db2ca"
+    },
+    "colors": {
+        "color0": "#0A0D1A",
+        "color1": "#254777",
+        "color2": "#41577F",
+        "color3": "#305889",
+        "color4": "#396495",
+        "color5": "#436B9B",
+        "color6": "#506C95",
+        "color7": "#9db2ca",
+        "color8": "#6d7c8d",
+        "color9": "#254777",
+        "color10": "#41577F",
+        "color11": "#305889",
+        "color12": "#396495",
+        "color13": "#436B9B",
+        "color14": "#506C95",
+        "color15": "#9db2ca"
+    }
+}

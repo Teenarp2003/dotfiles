@@ -1,5 +1,6 @@
 * {{
-    BG:    {color0};
+    BG:    {color0}52;
+    BGC: #00000000;
     BGA:   {color3};
     FG:    {color7};
    BDR:   {color14};

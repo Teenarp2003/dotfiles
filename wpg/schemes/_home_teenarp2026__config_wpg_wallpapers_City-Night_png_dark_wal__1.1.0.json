@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/City-Night.png",
+    "alpha": "50",
+
+    "special": {
+        "background": "#0D1D78",
+        "foreground": "#d2edff",
+        "cursor": "#d2edff"
+    },
+    "colors": {
+        "color0": "#0D1D78",
+        "color1": "#514EB6",
+        "color2": "#223BC4",
+        "color3": "#324BCD",
+        "color4": "#3858E6",
+        "color5": "#5762DC",
+        "color6": "#956FCB",
+        "color7": "#a9bff1",
+        "color8": "#1127a5",
+        "color9": "#5954fd",
+        "color10": "#1d42ff",
+        "color11": "#3056ff",
+        "color12": "#3666ff",
+        "color13": "#5d6eff",
+        "color14": "#be7bff",
+        "color15": "#d2edff"
+    }
+}

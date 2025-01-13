@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/nord-spiderman.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0a0a10",
+        "foreground": "#bdcdec",
+        "cursor": "#bdcdec"
+    },
+    "colors": {
+        "color0": "#0a0a10",
+        "color1": "#60647A",
+        "color2": "#5F718E",
+        "color3": "#6D728A",
+        "color4": "#967591",
+        "color5": "#79A9CE",
+        "color6": "#BFA5D9",
+        "color7": "#bdcdec",
+        "color8": "#848fa5",
+        "color9": "#60647A",
+        "color10": "#5F718E",
+        "color11": "#6D728A",
+        "color12": "#967591",
+        "color13": "#79A9CE",
+        "color14": "#BFA5D9",
+        "color15": "#bdcdec"
+    }
+}

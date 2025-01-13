@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/glitch_fox.png",
+    "alpha": "50",
+    "special": {
+        "background": "#0c121e",
+        "foreground": "#e2aeb8",
+        "cursor": "#e2aeb8"
+    },
+    "colors": {
+        "color0": "#0c121e",
+        "color1": "#712C49",
+        "color2": "#8F2D4F",
+        "color3": "#AC355C",
+        "color4": "#CD3868",
+        "color5": "#AE4660",
+        "color6": "#D05B6E",
+        "color7": "#e2aeb8",
+        "color8": "#9e7980",
+        "color9": "#712C49",
+        "color10": "#8F2D4F",
+        "color11": "#AC355C",
+        "color12": "#CD3868",
+        "color13": "#AE4660",
+        "color14": "#D05B6E",
+        "color15": "#e2aeb8"
+    }
+}

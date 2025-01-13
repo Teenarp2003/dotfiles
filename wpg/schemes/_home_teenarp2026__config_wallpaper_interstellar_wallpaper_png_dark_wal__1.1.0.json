@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/interstellar_wallpaper.png",
+    "alpha": "50",
+    "special": {
+        "background": "#090d10",
+        "foreground": "#dfc1af",
+        "cursor": "#dfc1af"
+    },
+    "colors": {
+        "color0": "#090d10",
+        "color1": "#374B55",
+        "color2": "#3E5561",
+        "color3": "#5F5352",
+        "color4": "#455A64",
+        "color5": "#536872",
+        "color6": "#9A6C5C",
+        "color7": "#dfc1af",
+        "color8": "#9c877a",
+        "color9": "#374B55",
+        "color10": "#3E5561",
+        "color11": "#5F5352",
+        "color12": "#455A64",
+        "color13": "#536872",
+        "color14": "#9A6C5C",
+        "color15": "#dfc1af"
+    }
+}

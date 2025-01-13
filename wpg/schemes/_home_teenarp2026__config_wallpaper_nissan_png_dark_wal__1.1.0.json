@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/nissan.png",
+    "alpha": "50",
+    "special": {
+        "background": "#1d2027",
+        "foreground": "#cac4c4",
+        "cursor": "#cac4c4"
+    },
+    "colors": {
+        "color0": "#1d2027",
+        "color1": "#AC5C66",
+        "color2": "#B9656C",
+        "color3": "#C5726F",
+        "color4": "#A88D79",
+        "color5": "#CF8B77",
+        "color6": "#757D97",
+        "color7": "#cac4c4",
+        "color8": "#8d8989",
+        "color9": "#AC5C66",
+        "color10": "#B9656C",
+        "color11": "#C5726F",
+        "color12": "#A88D79",
+        "color13": "#CF8B77",
+        "color14": "#757D97",
+        "color15": "#cac4c4"
+    }
+}
