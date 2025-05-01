@@ -4,6 +4,7 @@
         "margin-right": 23,
         "height" : 35,
         "reload_style_on_change" : true,
+        "fixed-center": false,
         "modules-center": [
         "custom/player",
         "custom/cava"
@@ -160,7 +161,7 @@
                     "on-scroll-down": "shift_down"
                     }
         },"temperature": {
-            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon0/subsystem/hwmon3/temp1_input",
             "critical-threshold": 80,
             "format": "{icon}{temperatureC}°C",
             "format-icons": ["<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'>  </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>"]
@@ -184,7 +185,8 @@
             "format-ethernet": "{cidr} ",
             "tooltip-format": "{ifname} via {gwaddr} ",
             "format-linked": "{ifname} (No IP) ",
-             "max-length": 20,
+             "max-length": 30,
+             "overflow":"visible",
             "format-disconnected": " 󰲛 ",
             "format-alt": "{ipaddr}"
         },
@@ -204,5 +206,5 @@
             },
             "on-click": "pactl set-sink-mute 0 toggle",
             "on-click-right": "pavucontrol"
-        },
+        }
 }

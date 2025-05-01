@@ -1,5 +1,5 @@
 configuration {
-    show-icons:                     true;
+    show-icons:                   false;
     icon-theme:         "Zafiro";
     display-drun: 					"";
     drun-display-format:            "{icon} {name}";
@@ -15,8 +15,8 @@ window {
     background-color:               @BG;
     text-color:                     @FG;
     border-radius:                  10px;
-    width:                          400px;
-    height:                         420px;
+    width:                          300px;
+    height:                         150px;
     location:                       center;
     anchor:                         center;
     x-offset:                       0;
@@ -24,22 +24,21 @@ window {
 }
 
 prompt {
-    enabled: 						false;
 	margin: 						0px 8px 0px 8px;
-	padding: 						8px;
+	padding: 						18px;
 	background-color: 				@IMG;
 	text-color: 					@BG;
-    border:                  		2px solid;
+    border:                  		0px solid;
     border-color:                  	@BGA;
     border-radius:                  10px;
 }
 
 textbox-prompt-colon{ 
 	expand: 						false;
-	str: 							"Apps:";
+	str: 							"sel:";
     border-radius:                  100%;
     background-color:               @BGA;
-    text-color:                     @BG;
+    text-color:                     @BGC;
     padding:                        8px 12px 8px 12px;
 	font:							"SourceCodePro Black 14";
 }
@@ -52,34 +51,35 @@ entry {
     horizontal-align:               0;
     placeholder:                    "";
     blink:                          true;
-    border:                  		0px 0px 2px 0px;
+    border:                  		10px 0px 2px 0px;
     border-color:                  	@BDR;
     border-radius:                  10px;
-    padding:                        8px;
+    padding:                        18px;
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt, entry ];
-    background-color:               @BG;
+	children: 						[ entry ];
+    background-color:               @BGC;
     text-color:                     @FG;
     expand:                         false;
+    enabled: false;
     border:                  		0px 0px 0px 0px;
     border-radius:                  0px;
     border-color:                  	@BDR;
     margin:                         0px 0px 0px 0px;
-    padding:                        0px;
+    padding:                        10px;
     position:                       center;
 }
 
 case-indicator {
-    background-color:               @BG;
+    background-color:               @BGC;
     text-color:                     @FG;
     spacing:                        0;
 }
 
 
 listview {
-    background-color:               @BG;
+    background-color:               @BGC;
     columns:                        1;
     lines:							7;
     spacing:                        4px;
@@ -92,18 +92,22 @@ mainbox {
     background-color:               @BG;
     children:                       [ inputbar, listview ];
     spacing:                       	15px;
-    padding:                        15px;
+    border: 2px;
+    border-color: @BGA;
+    border-radius: 15px;
+    padding:                        5px;
 }
 
 element {
-    background-color:               @BG;
+    background-color:               @BGC;
     text-color:                     @FG;
-    orientation:                    horizontal;
+    orientation:                    vertical;
     border-radius:                  4px;
     padding:                        6px 6px 6px 6px;
 }
 
 element-icon {
+    enabled: false;
     background-color: 				inherit;
     text-color:       				inherit;
     size:                           30px;

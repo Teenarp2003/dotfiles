@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/Anime-Girl1.png",
+    "alpha": "70",
+    "special": {
+        "background": "#0c0a19",
+        "foreground": "#88cbdc",
+        "cursor": "#88cbdc"
+    },
+    "colors": {
+        "color0": "#0c0a19",
+        "color1": "#C74362",
+        "color2": "#F5AC73",
+        "color3": "#413E84",
+        "color4": "#18648E",
+        "color5": "#584E88",
+        "color6": "#B76B8E",
+        "color7": "#88cbdc",
+        "color8": "#5f8e9a",
+        "color9": "#C74362",
+        "color10": "#F5AC73",
+        "color11": "#413E84",
+        "color12": "#18648E",
+        "color13": "#584E88",
+        "color14": "#B76B8E",
+        "color15": "#88cbdc"
+    }
+}

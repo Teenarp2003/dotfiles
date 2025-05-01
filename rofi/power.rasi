@@ -28,12 +28,12 @@ configuration {
     magenta:    #B48EAD;
 
     background:     @BG;
-    background-alt: @SEL;
-    foreground:     @white2;
-    selected:       @TXTBX;
+    background-alt: @BGC;
+    foreground:     @FG;
+    selected:       @BGA;
     active:         @BGA;
     urgent:         @red;
-    border:         @BG;
+    border:         @TXTBX;
 }
 // Main window.
 window {
@@ -47,7 +47,7 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
+    border:                      2px;
     border-radius:               15px;
     border-color:                @selected;
     cursor:                      "default";
@@ -60,10 +60,10 @@ mainbox {
     spacing:                     15px;
     margin:                      0px;
     padding:                     30px;
-    border:                      2px solid;
+    border:                      0px solid;
     border-radius:               15px;
-    border-color:                @border;
-    background-color:            transparent;
+    border-color:                @BGC;
+    background-color:            @BGC;
     children:                    [ "listview" ];
 }
 
@@ -143,6 +143,6 @@ element-text {
     horizontal-align:            0.5;
 }
 element selected.normal {
-    background-color:            var(selected);
-    text-color:                  var(background);
+    background-color:           @BDR;
+    text-color:                  @SEL;
 }
