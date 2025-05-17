@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 declare -A dictionary
 dictionary["0x0"]="off"
 dictionary["0x1"]="on"
