@@ -90,10 +90,10 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
+		if [[ "$DESKTOP_SESSION" == 'bswpm' ]]; then
 			betterlockscreen -l blur
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
+		elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
+			hyprlock
 		fi
         ;;
     $suspend)

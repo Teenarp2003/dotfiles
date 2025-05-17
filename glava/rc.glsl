@@ -177,7 +177,7 @@
    smooth the data, as accuracy beyond this setting is mostly
    meaningless for visual purposes.
 */
-#request setsamplesize 512
+#request setsamplesize 1024
 
 /* Audio buffer size to be used for processing and shaders. 
    Increasing this value can have the effect of adding 'gravity'

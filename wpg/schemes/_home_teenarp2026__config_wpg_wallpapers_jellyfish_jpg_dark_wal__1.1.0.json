@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/jellyfish.jpg",
+    "alpha": "70",
+
+    "special": {
+        "background": "#0F161E",
+        "foreground": "#dbfbff",
+        "cursor": "#dbfbff"
+    },
+    "colors": {
+        "color0": "#0F161E",
+        "color1": "#2B3543",
+        "color2": "#2F544D",
+        "color3": "#5A5C5A",
+        "color4": "#AE5252",
+        "color5": "#38A75C",
+        "color6": "#B1A14B",
+        "color7": "#a4bcc1",
+        "color8": "#1f2e3f",
+        "color9": "#30435e",
+        "color10": "#347569",
+        "color11": "#698369",
+        "color12": "#f25959",
+        "color13": "#3ae772",
+        "color14": "#f6dc51",
+        "color15": "#dbfbff"
+    }
+}

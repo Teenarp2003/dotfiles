@@ -18,7 +18,7 @@ horizontal_padding = 15
 frame_width = 6
 sort = no
 idle_threshold = 120
-font = VictorMono Nerd Font SemiBold Italic 11
+font = VictorMono Nerd Font Semi-Bold Italic 11
 markup = full
 format = %s\n%b
 alignment = left
@@ -45,18 +45,18 @@ context = ctrl+shift+period
 
 [urgency_low]
 timeout = 7
-background = "#121212"
-foreground = "#e6e6e6"
-frame_color = "#a9290d"
+background = "#000000"
+foreground = "#abc8cc"
+frame_color = "#0B6B71"
 
 [urgency_normal]
 timeout = 20
-background = "#121212"
-foreground = "#e6e6e6"
-frame_color = "#a9290d"
+background = "#000000"
+foreground = "#abc8cc"
+frame_color = "#0B6B71"
 
 [urgency_critical]
 timeout = 20
-background = "#121212"
-foreground = "#e6e6e6"
-frame_color = "#a9290d"
+background = "#000000"
+foreground = "#abc8cc"
+frame_color = "#0B6B71"
