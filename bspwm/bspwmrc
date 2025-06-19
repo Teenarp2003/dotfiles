@@ -43,9 +43,10 @@ clipmenud &
 # polybar and other stuff
 $HOME/.config/polybar/launch.sh & 
 #glava ! cant stop anymore..
-glava-colors &
+#glava-colors &
 #glava -d -m radial &
 wmname LG3D &
 #chown teenarp2003 /sys/class/backlight/amdgpu_bl0/brightness
 # sudo chgrp video  /sys/class/backlight/amdgpu_bl0/brightness
 kdeconnectd &
+bash /home/teenarp2026/.config/bspwm/bspwm_colors.sh &

@@ -2,7 +2,7 @@
 @import "/home/teenarp2026/.cache/wal/colors.css";
 
 * {
-    font-family: "Cascadia Code NF Semibold", "Iosevka Nerd Font";
+    font-family: "CaskaydiaCove Nerd Font", "Iosevka Nerd Font";
 }
 #clock,
 #battery,
@@ -79,7 +79,12 @@ button:hover {
   /*transition: none;*/
    transition: all 0.5s cubic-bezier(.25,1,.50,1.68);
     box-shadow: inherit;
+    color: transparent;
+    box-shadow: none; /* Remove predefined box-shadow */
+    text-shadow: none; /* Remove predefined text-shadow */
+    background: none; /* Remove predefined background color (white) */
     text-shadow: inherit;
+    border-color: transparent;
 }
 #workspaces button.empty {
   font-size: 10px;
@@ -218,4 +223,5 @@ label:focus {
 #custom-mem{
   background-color: @BGC;
   font-size: 16px;
+  color: @color7;
   }  

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/cloudy_shine.jpeg",
+    "alpha": "70",
+
+    "special": {
+        "background": "#080F36",
+        "foreground": "#e7f5ff",
+        "cursor": "#e7f5ff"
+    },
+    "colors": {
+        "color0": "#080F36",
+        "color1": "#2F4775",
+        "color2": "#A24952",
+        "color3": "#E85D5B",
+        "color4": "#295890",
+        "color5": "#5A6E9E",
+        "color6": "#007EC2",
+        "color7": "#b0baca",
+        "color8": "#0d1a62",
+        "color9": "#3258a2",
+        "color10": "#e14f5e",
+        "color11": "#ff6461",
+        "color12": "#2971c7",
+        "color13": "#6488dd",
+        "color14": "#01a3fb",
+        "color15": "#e7f5ff"
+    }
+}

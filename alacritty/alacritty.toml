@@ -7,7 +7,7 @@
 draw_bold_text_with_bright_colors = true
 
 [cursor]
-style = "Underline"
+style = "underline"
 
 [env]
 TERM = "xterm-256color"
@@ -16,11 +16,11 @@ TERM = "xterm-256color"
 size = 14
 
 [font.bold]
-family = "Victor Mono"
+family = "VictorMono Nerd Font"
 style = "Semibold Italic"
-
+ 
 [font.bold_italic]
-family = "Victor Mono"
+family = "VictorMono Nerd Font"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -28,11 +28,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Victor Mono"
+family = "VictorMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Victor Mono"
+family = "VictorMono Nerd Font"
 style = "SemiBold Italic"
 
 [[keyboard.bindings]]

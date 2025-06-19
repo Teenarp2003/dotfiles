@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/cloudy_shine.jpeg",
+    "alpha": "70",
+    "special": {
+        "background": "#080F36",
+        "foreground": "#b0baca",
+        "cursor": "#b0baca"
+    },
+    "colors": {
+        "color0": "#080F36",
+        "color1": "#2F4775",
+        "color2": "#A24952",
+        "color3": "#E85D5B",
+        "color4": "#295890",
+        "color5": "#5A6E9E",
+        "color6": "#007EC2",
+        "color7": "#b0baca",
+        "color8": "#7b828d",
+        "color9": "#2F4775",
+        "color10": "#A24952",
+        "color11": "#E85D5B",
+        "color12": "#295890",
+        "color13": "#5A6E9E",
+        "color14": "#007EC2",
+        "color15": "#b0baca"
+    }
+}

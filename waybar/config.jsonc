@@ -6,8 +6,8 @@
         "reload_style_on_change" : true,
         "fixed-center": false,
         "modules-center": [
-        "custom/player",
-        "custom/cava"
+        "custom/player"
+        //"custom/cava"
         ],
         "modules-left": [
         "clock",
@@ -118,13 +118,18 @@
     "3": "<span font_family='Iosevka Nerd Font'color='#1276D5' size='large'> </span>",
     "4": "<span font_family='Iosevka Nerd Font'color='#E85E00' size='large'> </span>",
     "5": "<span font_family='Iosevka Nerd Font'color='#1DB954' size='large'> </span>",
+    "6": "<span font_family='Iosevka Nerd Font'color='#F14E32' size='large'> </span>",
+    "7": "<span font_family='Iosevka Nerd Font'color='#DAA520' size='large'> </span>",
+    "8": "<span font_family='Iosevka Nerd Font'color='#00BFFF' size='large'> </span>",
+    "9": "<span font_family='Iosevka Nerd Font'color='#9370DB' size='large'> </span>",
+    "10": "<span font_family='Iosevka Nerd Font'color='#708090' size='large'> </span>",
     "urgent": ""
   },
   "sort-by-number": true,
 "persistent-workspaces": {
                 "*": 5, // 5 workspaces by default on every monitor
-                "HDMI-A-1": 3 // but only three on HDMI-A-1
-}
+		"eDP-1": 10
+}	
 },
     //    "clock": {  
      //     "format": "{:%I:%M %p}",
@@ -161,7 +166,7 @@
                     "on-scroll-down": "shift_down"
                     }
         },"temperature": {
-            "hwmon-path": "/sys/class/hwmon/hwmon0/subsystem/hwmon3/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
             "critical-threshold": 80,
             "format": "{icon}{temperatureC}°C",
             "format-icons": ["<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'>  </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>", "<span font_family='Iosevka Nerd Font'color='#88c5bf' size='medium'> </span>"]

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"
+      xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
+      xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
+>
+  <bookmark href="sftp://192.168.29.43:8022/sdcard" added="2023-06-05T19:01:41.949663Z" modified="2023-06-05T19:01:41.949674Z" visited="2023-06-05T19:01:41.949668Z">
+    <title>sdcard</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2023-06-05T19:01:41.949671Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://192.168.29.43:8022/" added="2023-06-05T19:01:56.815978Z" modified="2023-06-05T19:04:49.751213Z" visited="2023-06-05T19:04:49.751210Z">
+    <title>/ on 192.168.29.43</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2023-06-05T19:04:49.751211Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://192.168.29.166:8022/" added="2023-06-06T16:02:27.746270Z" modified="2023-06-06T16:02:27.746284Z" visited="2023-06-06T16:02:27.746277Z">
+    <title>/ on 192.168.29.166</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2023-06-06T16:02:27.746280Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>

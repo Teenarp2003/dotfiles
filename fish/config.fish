@@ -45,10 +45,11 @@ export EDITOR=/usr/bin/nvim;
 export VISUAL=nvim;
 
 fish_add_path /home/teenarp2026/.spicetify
-nitch
+#nitch
 
 
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+set --export PATH /home/teenarp2026/.cargo/bin $PATH
