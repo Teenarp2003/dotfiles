@@ -1,6 +1,10 @@
 #! /bin/bash
 
-bar="▁▂▃▄▅▆▇█"
+#bar="▁▂▃▄▅▆▇█"
+#bar="░░▒▒▓▓██"
+#bar = "░▒▓█"
+bar="⣀⣄⣆⣇⣧⣷⣿"
+
 dict="s/;//g;"
 
 # creating "dictionary" to replace char with bar
@@ -30,7 +34,7 @@ source = auto
 method = raw
 raw_target = $pipe
 data_format = ascii
-ascii_max_range = 7
+ascii_max_range = 6
 " > $config_file
 
 # run cava in the background
