@@ -6,8 +6,8 @@
         "reload_style_on_change" : true,
         "fixed-center": false,
         "modules-center": [
-        "custom/player"
-        //"custom/cava"
+        "custom/player",
+        "custom/cava"
         ],
         "modules-left": [
         "clock",

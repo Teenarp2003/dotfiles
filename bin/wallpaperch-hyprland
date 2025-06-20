@@ -11,11 +11,12 @@ hyprctl hyprpaper wallpaper "DP-2,$wallpaper_path"
 hyprctl hyprpaper wallpaper "DP-3,$wallpaper_path"
 wal -a 70 -i "$wallpaper_path"
 wpg --alpha 70 -a "$wallpaper_path"
-cp ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
-cp ~/.cache/wal/hyprpaper.conf ~/.config/hypr/hyprpaper.conf 
+cp  ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
+cp  ~/.cache/wal/hyprpaper.conf ~/.config/hypr/hyprpaper.conf 
+cp  ~/.cache/wal/hyprlock.conf ~/.config/hypr/hyprlock.conf
 wpg --alpha 70 -ns "$wallpaper_path"
 #glava-colors
 #replace-wal.sh
-sudo cp ~/.cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
 killall waybar
 waybar
+echo "restarted waybar" 

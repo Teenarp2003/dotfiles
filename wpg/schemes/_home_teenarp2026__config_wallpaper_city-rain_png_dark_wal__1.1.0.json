@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/city-rain.png",
+    "alpha": "70",
+    "special": {
+        "background": "#0D0D13",
+        "foreground": "#b2bcb9",
+        "cursor": "#b2bcb9"
+    },
+    "colors": {
+        "color0": "#0D0D13",
+        "color1": "#3A444C",
+        "color2": "#595B5C",
+        "color3": "#A14C32",
+        "color4": "#B55335",
+        "color5": "#6E817F",
+        "color6": "#E6A15B",
+        "color7": "#b2bcb9",
+        "color8": "#7c8381",
+        "color9": "#3A444C",
+        "color10": "#595B5C",
+        "color11": "#A14C32",
+        "color12": "#B55335",
+        "color13": "#6E817F",
+        "color14": "#E6A15B",
+        "color15": "#b2bcb9"
+    }
+}
