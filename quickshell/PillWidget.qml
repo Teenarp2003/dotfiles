@@ -31,8 +31,10 @@ Item {
     return 0
   }
   readonly property int expandedInnerHeight: Math.min(560, Math.max(88, Math.ceil(expandedBody.implicitHeight) + 28))
-  readonly property int liveWidth: root.open ? Math.max(360, root.collapsedWidth) : root.collapsedWidth
-  readonly property int liveHeight: root.barHeight + (root.open ? root.expandedInnerHeight : 0)
+  property bool peeking: false
+  readonly property int peekHeight: Math.min(180, Math.max(88, Math.ceil(peekBody.implicitHeight) + 24))
+  readonly property int liveWidth: (root.open || root.peeking) ? Math.max(360, root.collapsedWidth) : root.collapsedWidth
+  readonly property int liveHeight: root.barHeight + (root.open ? root.expandedInnerHeight : (root.peeking ? root.peekHeight : 0))
   property string lastNotifTitle: ""
   property int lastCollapsedWidth: 196
   property bool keepVisible: false
@@ -64,12 +66,10 @@ Item {
   }
 
   Behavior on width {
-    enabled: root.hasContent || root.keepVisible
     NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
   }
 
   Behavior on height {
-    enabled: root.hasContent || root.keepVisible
     NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
   }
 
@@ -77,8 +77,8 @@ Item {
     id: focusGrab
     windows: root.ownerWindow ? [root.ownerWindow] : []
     onCleared: {
-      if (root.open)
-        root.open = false
+      root.open = false
+      root.peeking = false
     }
   }
 
@@ -99,8 +99,10 @@ Item {
       return
     }
     root.keepVisible = true
-    if (root.open) {
+    if (root.open || root.peeking) {
       root.open = false
+      root.peeking = false
+      peekTimer.stop()
       fadeAfterCloseTimer.restart()
     } else {
       root.keepVisible = false
@@ -114,12 +116,37 @@ Item {
   }
 
   onOpenChanged: {
-    if (open)
+    if (open) {
+      root.peeking = false
+      peekTimer.stop()
       grabTimer.restart()
-    else {
+    } else if (!root.peeking) {
       grabTimer.stop()
       focusGrab.active = false
     }
+  }
+
+  onPeekingChanged: {
+    if (!peeking && !root.open) {
+      grabTimer.stop()
+      focusGrab.active = false
+    }
+  }
+
+  Connections {
+    target: NotificationCenter
+    function onIncoming() {
+      if (NotificationCenter.silent || root.open)
+        return
+      root.peeking = true
+      peekTimer.restart()
+    }
+  }
+
+  Timer {
+    id: peekTimer
+    interval: 4500
+    onTriggered: root.peeking = false
   }
 
   Timer {
@@ -249,7 +276,81 @@ Item {
 
     MouseArea {
       anchors.fill: parent
-      onClicked: root.open = !root.open
+      onClicked: {
+        peekTimer.stop()
+        if (root.peeking) {
+          root.peeking = false
+          root.open = true
+          return
+        }
+        root.open = !root.open
+      }
+    }
+  }
+
+  Item {
+    id: peekPanel
+    anchors.top: compact.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: root.peeking && !root.open ? root.peekHeight : 0
+    clip: true
+    opacity: root.peeking && !root.open ? 1 : 0
+
+    Behavior on opacity {
+      NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
+    }
+
+    MouseArea {
+      anchors.fill: parent
+      enabled: root.peeking && !root.open
+      onClicked: {
+        peekTimer.stop()
+        root.peeking = false
+        root.open = true
+      }
+    }
+
+    Column {
+      id: peekBody
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.top: parent.top
+      anchors.margins: 12
+      spacing: 6
+
+      Text {
+        text: root.notifications[0] ? (root.notifications[0].appName || "Notification") : ""
+        width: parent.width
+        color: Colors.muted
+        font.family: "Cascadia Code NF"
+        font.pixelSize: 11
+        elide: Text.ElideRight
+      }
+
+      Text {
+        text: root.notifications[0] ? (root.notifications[0].summary || "") : ""
+        width: parent.width
+        color: Colors.foreground
+        font.family: "Cascadia Code NF"
+        font.pixelSize: 14
+        font.weight: Font.DemiBold
+        wrapMode: Text.Wrap
+        maximumLineCount: 2
+        elide: Text.ElideRight
+      }
+
+      Text {
+        visible: root.notifications[0] && root.notifications[0].body && root.notifications[0].body.length > 0
+        text: root.notifications[0] ? (root.notifications[0].body || "") : ""
+        width: parent.width
+        color: Colors.muted
+        font.family: "Cascadia Code NF"
+        font.pixelSize: 12
+        wrapMode: Text.Wrap
+        maximumLineCount: 3
+        elide: Text.ElideRight
+      }
     }
   }
 
@@ -258,7 +359,7 @@ Item {
     anchors.top: compact.bottom
     anchors.left: parent.left
     anchors.right: parent.right
-    height: Math.max(0, root.height - root.barHeight)
+    height: root.open ? Math.max(0, root.height - root.barHeight) : 0
     clip: true
     opacity: root.open ? 1 : 0
 
@@ -299,96 +400,102 @@ Item {
             radius: 13
             color: Colors.surfaceRaised
 
-            Column {
-              anchors.left: parent.left
-              anchors.leftMargin: 12
-              anchors.verticalCenter: parent.verticalCenter
-              width: parent.width - 132
-              spacing: 2
-
-              Text {
-                text: root.title || "Unknown title"
-                width: parent.width
-                color: Colors.foreground
-                font.family: "Cascadia Code NF"
-                font.pixelSize: 14
-                font.weight: Font.DemiBold
-                elide: Text.ElideRight
-              }
-
-              Text {
-                text: root.artist || "Unknown artist"
-                width: parent.width
-                color: Colors.muted
-                font.family: "Cascadia Code NF"
-                font.pixelSize: 12
-                elide: Text.ElideRight
-              }
-            }
-
             Row {
-              anchors.right: parent.right
+              anchors.fill: parent
+              anchors.leftMargin: 12
               anchors.rightMargin: 10
-              anchors.verticalCenter: parent.verticalCenter
-              spacing: 6
+              spacing: 10
 
-              Rectangle {
-                width: 34
-                height: 30
-                radius: 13
-                color: Colors.surfaceInteractive
+              Column {
+                anchors.verticalCenter: parent.verticalCenter
+                width: Math.max(40, parent.width - playbackControls.implicitWidth - parent.spacing)
+                spacing: 2
 
                 Text {
-                  anchors.centerIn: parent
-                  text: "󰒮"
+                  text: root.title || "Unknown title"
+                  width: parent.width
                   color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
-                  font.pixelSize: 16
+                  font.family: "Cascadia Code NF"
+                  font.pixelSize: 14
+                  font.weight: Font.DemiBold
+                  elide: Text.ElideRight
+                  maximumLineCount: 1
                 }
 
-                MouseArea {
-                  anchors.fill: parent
-                  onClicked: previous.running = true
+                Text {
+                  text: root.artist || "Unknown artist"
+                  width: parent.width
+                  color: Colors.muted
+                  font.family: "Cascadia Code NF"
+                  font.pixelSize: 12
+                  elide: Text.ElideRight
+                  maximumLineCount: 1
                 }
               }
 
-              Rectangle {
-                width: 34
-                height: 30
-                radius: 13
-                color: Colors.accent
+              Row {
+                id: playbackControls
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 6
 
-                Text {
-                  anchors.centerIn: parent
-                  text: root.playerState === "Playing" ? "" : ""
-                  color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
-                  font.pixelSize: 16
+                Rectangle {
+                  width: 34
+                  height: 30
+                  radius: 13
+                  color: Colors.surfaceInteractive
+
+                  Text {
+                    anchors.centerIn: parent
+                    text: "󰒮"
+                    color: Colors.foreground
+                    font.family: "Iosevka Nerd Font"
+                    font.pixelSize: 16
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: previous.running = true
+                  }
                 }
 
-                MouseArea {
-                  anchors.fill: parent
-                  onClicked: playPause.running = true
+                Rectangle {
+                  width: 34
+                  height: 30
+                  radius: 13
+                  color: Colors.accent
+
+                  Text {
+                    anchors.centerIn: parent
+                    text: root.playerState === "Playing" ? "" : ""
+                    color: Colors.foreground
+                    font.family: "Iosevka Nerd Font"
+                    font.pixelSize: 16
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: playPause.running = true
+                  }
                 }
-              }
 
-              Rectangle {
-                width: 34
-                height: 30
-                radius: 13
-                color: Colors.surfaceInteractive
+                Rectangle {
+                  width: 34
+                  height: 30
+                  radius: 13
+                  color: Colors.surfaceInteractive
 
-                Text {
-                  anchors.centerIn: parent
-                  text: "󰒭"
-                  color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
-                  font.pixelSize: 16
-                }
+                  Text {
+                    anchors.centerIn: parent
+                    text: "󰒭"
+                    color: Colors.foreground
+                    font.family: "Iosevka Nerd Font"
+                    font.pixelSize: 16
+                  }
 
-                MouseArea {
-                  anchors.fill: parent
-                  onClicked: next.running = true
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: next.running = true
+                  }
                 }
               }
             }
@@ -399,43 +506,228 @@ Item {
           }
         }
 
-        Text {
-          visible: root.notifCount > 0
-          text: "Notifications"
-          color: Colors.foreground
-          font.family: "Cascadia Code NF"
-          font.pixelSize: 13
-          font.weight: Font.DemiBold
+        Column {
+          width: parent.width
+          spacing: 8
+
+          Row {
+            width: parent.width
+            spacing: 8
+            height: 26
+
+            Text {
+              id: notifHeading
+              anchors.verticalCenter: parent.verticalCenter
+              text: "Notifications"
+              color: Colors.foreground
+              font.family: "Cascadia Code NF"
+              font.pixelSize: 13
+              font.weight: Font.DemiBold
+            }
+
+            Item {
+              width: Math.max(0, parent.width - notifHeading.implicitWidth - modeToggle.width - clearBtn.width - 24)
+              height: 1
+            }
+
+            Rectangle {
+              id: modeToggle
+              width: 64
+              height: 26
+              radius: 13
+              color: Colors.surfaceInteractive
+              clip: true
+
+              Rectangle {
+                width: parent.width / 2
+                height: parent.height
+                radius: 13
+                color: Colors.accent
+                x: NotificationCenter.silent ? 0 : width
+
+                Behavior on x {
+                  NumberAnimation { duration: 180; easing.type: Easing.OutCubic }
+                }
+              }
+
+              Row {
+                anchors.fill: parent
+
+                Item {
+                  width: parent.width / 2
+                  height: parent.height
+
+                  Text {
+                    anchors.centerIn: parent
+                    text: "󰂛"
+                    color: Colors.foreground
+                    font.family: "Iosevka Nerd Font"
+                    font.pixelSize: 15
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: NotificationCenter.silent = true
+                  }
+                }
+
+                Item {
+                  width: parent.width / 2
+                  height: parent.height
+
+                  Text {
+                    anchors.centerIn: parent
+                    text: "󰂚"
+                    color: Colors.foreground
+                    font.family: "Iosevka Nerd Font"
+                    font.pixelSize: 15
+                  }
+
+                  MouseArea {
+                    anchors.fill: parent
+                    onClicked: NotificationCenter.silent = false
+                  }
+                }
+              }
+            }
+
+            Rectangle {
+              id: clearBtn
+              visible: opacity > 0.01
+              opacity: root.notifCount > 0 && !NotificationCenter.clearingAll ? 1 : 0
+              width: visible ? clearLabel.implicitWidth + 16 : 0
+              height: 26
+              radius: 13
+              color: Colors.surfaceDanger
+              clip: true
+
+              Behavior on opacity {
+                NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
+              }
+
+              Behavior on width {
+                NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
+              }
+
+              Text {
+                id: clearLabel
+                anchors.centerIn: parent
+                text: "Clear all"
+                color: Colors.foreground
+                font.family: "Cascadia Code NF"
+                font.pixelSize: 11
+                font.weight: Font.DemiBold
+              }
+
+              MouseArea {
+                anchors.fill: parent
+                enabled: root.notifCount > 0 && !NotificationCenter.clearingAll
+                onClicked: NotificationCenter.clearAll()
+              }
+            }
+          }
         }
 
         Column {
           visible: root.notifCount > 0
           width: parent.width
-          spacing: 6
+          spacing: 0
 
             Repeater {
             model: NotificationCenter.items
 
-            delegate: Rectangle {
+            delegate: Item {
+              id: notifSlot
               required property var modelData
               property var notification: modelData
+              property bool closing: NotificationCenter.closing.indexOf(notification) !== -1
               width: parent ? parent.width : 0
-              implicitHeight: notifCol.implicitHeight + 20
-              radius: 13
-              color: Colors.surfaceRaised
+              height: notifCard.implicitHeight + 6
+              implicitHeight: height
+              clip: true
 
-              MouseArea {
-                anchors.fill: parent
-                onClicked: notification.dismiss()
+              onClosingChanged: {
+                if (!closing)
+                  return
+                if (NotificationCenter.clearingAll)
+                  clearSlideAnim.start()
+                else {
+                  height = height
+                  dismissAnim.start()
+                }
               }
 
-              Row {
-                z: 1
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.margins: 10
-                spacing: 10
+              ParallelAnimation {
+                id: clearSlideAnim
+                NumberAnimation {
+                  target: notifCard
+                  property: "x"
+                  to: notifSlot.width + 24
+                  duration: 280
+                  easing.type: Easing.OutCubic
+                }
+                NumberAnimation {
+                  target: notifCard
+                  property: "opacity"
+                  to: 0
+                  duration: 220
+                  easing.type: Easing.OutCubic
+                }
+                onStopped: NotificationCenter.finishClose(notification)
+              }
+
+              SequentialAnimation {
+                id: dismissAnim
+                ParallelAnimation {
+                  NumberAnimation {
+                    target: notifCard
+                    property: "x"
+                    to: notifSlot.width + 24
+                    duration: 280
+                    easing.type: Easing.OutCubic
+                  }
+                  NumberAnimation {
+                    target: notifCard
+                    property: "opacity"
+                    to: 0
+                    duration: 220
+                    easing.type: Easing.OutCubic
+                  }
+                }
+                NumberAnimation {
+                  target: notifSlot
+                  property: "height"
+                  to: 0
+                  duration: 280
+                  easing.type: Easing.OutCubic
+                }
+                ScriptAction {
+                  script: NotificationCenter.finishClose(notification)
+                }
+              }
+
+              Rectangle {
+                id: notifCard
+                width: parent.width
+                implicitHeight: notifCol.implicitHeight + 20
+                height: implicitHeight
+                radius: 13
+                color: Colors.surfaceRaised
+                opacity: 1
+                x: 0
+
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: NotificationCenter.beginClose(notification)
+                }
+
+                Row {
+                  z: 1
+                  anchors.left: parent.left
+                  anchors.right: parent.right
+                  anchors.top: parent.top
+                  anchors.margins: 10
+                  spacing: 10
 
                 Image {
                   visible: notification.image && notification.image.length > 0
@@ -514,6 +806,7 @@ Item {
                     }
                   }
                 }
+              }
               }
             }
           }

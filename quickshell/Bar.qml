@@ -39,12 +39,16 @@ Scope {
       exclusiveZone: barHeight + 12
       focusable: wifiPill.open || bluetoothWidget.open || pillWidget.open
       mask: Region {
+        id: inputMask
         x: 0
         y: 0
         width: bar.width
         height: bar.barHeight + 12
         Region {
-          item: pillWidget
+          x: pillWidget.x
+          y: pillWidget.y
+          width: pillWidget.width
+          height: pillWidget.height
         }
         Region {
           item: bluetoothWidget
@@ -59,7 +63,17 @@ Scope {
           item: wifiPill.panel
         }
       }
-      HyprlandWindow.visibleMask: mask
+      HyprlandWindow.visibleMask: inputMask
+
+      Connections {
+        target: pillWidget
+        function onXChanged() { inputMask.changed() }
+        function onYChanged() { inputMask.changed() }
+        function onWidthChanged() { inputMask.changed() }
+        function onHeightChanged() { inputMask.changed() }
+        function onOpenChanged() { inputMask.changed() }
+        function onPeekingChanged() { inputMask.changed() }
+      }
 
       margins {
         top: 3
@@ -196,6 +210,12 @@ Scope {
             bluetoothWidget.open = false
           }
         }
+        onPeekingChanged: {
+          if (peeking) {
+            wifiPill.open = false
+            bluetoothWidget.open = false
+          }
+        }
       }
 
       Rectangle {
@@ -290,6 +310,7 @@ Scope {
           if (open) {
             wifiPill.open = false
             pillWidget.open = false
+            pillWidget.peeking = false
           }
         }
       }
@@ -305,6 +326,7 @@ Scope {
           if (open) {
             bluetoothWidget.open = false
             pillWidget.open = false
+            pillWidget.peeking = false
           }
         }
       }
