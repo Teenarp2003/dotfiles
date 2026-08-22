@@ -1,7 +1,7 @@
 // Configuration.
 configuration {
     show-icons:                 false;
-    font:                       "CaskaydiaCove Nerd Font 20";
+    font:                       "CaskaydiaCove Nerd Font 25";
     monitor: -1;
 }
 // Nord palette with some extra colors.
@@ -135,7 +135,7 @@ element {
     cursor:                      pointer;
 }
 element-text {
-    font:                        "CaskaydiaCove Nerd Font 20";
+    font:                        "CaskaydiaCove Nerd Font 26";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-battery_info=$(upower -i $(upower -e | awk 'NR ==4')| grep percentage)
+battery_info=$(upower -i $(upower -e | grep -ivE "bat|line|display")| grep percentage)
 
 if [ -n "$battery_info" ]; then
     percentage=$(echo "$battery_info" | awk '{print $2}')

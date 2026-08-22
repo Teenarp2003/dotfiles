@@ -1,28 +1,28 @@
 {
     "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/night_city.jpg",
-    "alpha": "70",
+    "alpha": "100",
 
     "special": {
-        "background": "#0A0E11",
-        "foreground": "#f5feff",
-        "cursor": "#f5feff"
+        "background": "#151515",
+        "foreground": "#b8cece",
+        "cursor": "#b8cece"
     },
     "colors": {
-        "color0": "#0A0E11",
-        "color1": "#304C5D",
-        "color2": "#525E67",
-        "color3": "#5A6A92",
-        "color4": "#404CA0",
-        "color5": "#A66C8B",
-        "color6": "#6598AE",
-        "color7": "#cad1d9",
-        "color8": "#1c2731",
-        "color9": "#356582",
-        "color10": "#5e7b91",
-        "color11": "#6583cd",
-        "color12": "#4457de",
-        "color13": "#e97ab5",
-        "color14": "#71ccf4",
-        "color15": "#f5feff"
+        "color0": "#151515",
+        "color1": "#112531",
+        "color2": "#2f3546",
+        "color3": "#33436c",
+        "color4": "#1f2c74",
+        "color5": "#824364",
+        "color6": "#3c728a",
+        "color7": "#93aac3",
+        "color8": "#151515",
+        "color9": "#163953",
+        "color10": "#37546c",
+        "color11": "#3d59a7",
+        "color12": "#2232b3",
+        "color13": "#c5558e",
+        "color14": "#47a5be",
+        "color15": "#b8cece"
     }
 }

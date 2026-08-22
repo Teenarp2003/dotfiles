@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Push the current pywal palette colors to GLava's live color feed.
+# Call this once at startup (the launcher does) and again from your pywal
+# theme-switch flow (e.g. right after `wal -i <image>`).
+set -euo pipefail
+
+feed="${XDG_RUNTIME_DIR:-/tmp}/glava-pywal.feed"
+colors="$HOME/.cache/wal/colors.json"
+
+# Nothing to do until pywal has generated a palette.
+[ -f "$colors" ] || exit 0
+
+# Choose which palette entries form the gradient (base -> tips).
+low="$(jq -r '.colors.color1' "$colors")"
+echo $low
+high="$(jq -r '.colors.color7' "$colors")"
+echo $high
+# GLava reads `name = value` lines from stdin; '#RRGGBB' parses as a vec4.
+printf 'low=%s\nhigh=%s\n' "$low" "$high" >> "$feed"
+echo 'low=%s\nhigh=%s\n' "$low" "$high" 
+

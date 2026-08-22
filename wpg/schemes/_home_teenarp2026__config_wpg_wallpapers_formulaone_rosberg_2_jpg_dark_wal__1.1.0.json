@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wpg/wallpapers/formulaone_rosberg_2.jpg",
+    "alpha": "70",
+
+    "special": {
+        "background": "#1c1f26",
+        "foreground": "#fffeff",
+        "cursor": "#fffeff"
+    },
+    "colors": {
+        "color0": "#1c1f26",
+        "color1": "#7A7C82",
+        "color2": "#7F8080",
+        "color3": "#7C8386",
+        "color4": "#7CA9C7",
+        "color5": "#8E8E8E",
+        "color6": "#A09E9F",
+        "color7": "#cac9ca",
+        "color8": "#313642",
+        "color9": "#8e99b9",
+        "color10": "#94b6b6",
+        "color11": "#90b0be",
+        "color12": "#8cdfff",
+        "color13": "#caa6a6",
+        "color14": "#e4b8ce",
+        "color15": "#fffeff"
+    }
+}

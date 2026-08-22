@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/cyberpunk-2077.jpg",
+    "alpha": "70",
+    "special": {
+        "background": "#050509",
+        "foreground": "#cad0d8",
+        "cursor": "#cad0d8"
+    },
+    "colors": {
+        "color0": "#050509",
+        "color1": "#535E65",
+        "color2": "#A37165",
+        "color3": "#3954A0",
+        "color4": "#596B95",
+        "color5": "#AF5BAF",
+        "color6": "#5D99B1",
+        "color7": "#cad0d8",
+        "color8": "#8d9197",
+        "color9": "#535E65",
+        "color10": "#A37165",
+        "color11": "#3954A0",
+        "color12": "#596B95",
+        "color13": "#AF5BAF",
+        "color14": "#5D99B1",
+        "color15": "#cad0d8"
+    }
+}

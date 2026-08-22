@@ -1,0 +1,357 @@
+-- =============================================================================
+-- HYPRLAND 0.57+ LUA CONFIGURATION
+-- =============================================================================
+
+-- Sources & External Colors
+-- Equivalent to: source = ~/.cache/wal/colors-hyprland
+local home = os.getenv("HOME")
+package.path = package.path .. ";" .. home .. "/.cache/wal/?.lua"
+pcall(require, "colors-hyprland")
+
+--------------------------------------------------------------------------------
+-- VARIABLES & PROGRAM DEFINITIONS
+--------------------------------------------------------------------------------
+local mainMod = "SUPER"
+local shift = "SHIFT"
+local mainMod_shift = "SUPER_SHIFT"
+local altshift = "ALT_SHIFT"
+
+local reload = "defaultwal"
+local terminal = "alacritty"
+local fileManager = "nemo ~/Downloads/"
+local menu = "rofi -show drun -theme ~/.config/rofi/config.rasi"
+local spotify = home .. "/.spicetify/spicetify watch -s"
+local openBrowser = "firefox"
+local pause_notif = ""
+local wallpaperchanger = "wallpaperch-hyprland"
+local clipmenu = "clipmenu"
+local lenovo_system = "rofi-system.sh"
+
+local soundVolumeUp = "pactl set-sink-volume 0 +1% && volume-up"
+local soundVolumeDown = "pactl set-sink-volume 0 -1% && volume-up"
+local soundMuteToggle = "pactl set-sink-mute 0 toggle"
+local brightnessUp = "brillo -q -A 10 && ~/.config/sxhkd/brightness"
+local brightnessDown = "brillo -q -U 10 && ~/.config/sxhkd/brightness"
+local mediaPlayPause = "playerctl -i kdeconnect,firefox play-pause"
+local mediaStop = "playerctl -i kdeconnect,firefox stop"
+local mediaPrev = "playerctl -i kdeconnect,firefox previous"
+local mediaNext = "playerctl -i kdeconnect,firefox next"
+local micMuteToggle = "pactl set-source-mute @DEFAULT_SOURCE@ toggle && get-mic.sh"
+local emoji_picker = '$(export BEMOJI_PICKER_CMD="rofi -dmenu -theme ' .. home .. '/.config/rofi/emoji.rasi" && bemoji -t)'
+
+--------------------------------------------------------------------------------
+-- AUTOSTART (exec-once)
+--------------------------------------------------------------------------------
+hl.on("hyprland.start", function()
+    hl.exec_cmd("clipse -listen")
+    hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 20")
+    hl.exec_cmd("hyprpm reload")
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+    hl.exec_cmd("hyprpaper & fusuma -c ~/.config/fusuma/config1.yml & lxpolkit & sleep 1s")
+    hl.exec_cmd("glava-pywal-start")
+    hl.exec_cmd("waybar & kdeconnectd")
+end)
+
+--------------------------------------------------------------------------------
+-- ENVIRONMENT VARIABLES
+--------------------------------------------------------------------------------
+hl.env("XCURSOR_SIZE", "20")
+hl.env("HYPRCURSOR_SIZE", "20")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("WLR_RENDERER_ALLOW_SOFTWARE", "1")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("NVD_BACKEND", "direct")
+--------------------------------------------------------------------------------
+-- MONITORS & WORKSPACES
+--------------------------------------------------------------------------------
+hl.monitor({
+    output = "eDP-1",
+    mode ="modeline 368.76 1920 2073 2288 2656 1080 1081 1084 1157 -HSync +Vsync",
+    position = "auto",
+    scale = "1",
+})
+
+hl.monitor({
+    output = "HDMI-A-1",
+    mode = "2560x1440@100",
+    position = "auto",
+    scale = "1",
+    mirror = "eDP-1",
+})
+
+hl.workspace_rule({
+    workspace = "1",
+    monitor = "eDP-1",
+    
+    decorate = true,
+    -- TODO: manual review — workspace field ""
+})
+
+hl.workspace_rule({
+    workspace = "2",
+    monitor = "eDP-1",
+    
+    decorate = true,
+})
+
+hl.workspace_rule({
+    workspace = "3",
+    monitor = "eDP-1",
+    
+    decorate = true,
+})
+
+hl.workspace_rule({
+    workspace = "4",
+    monitor = "eDP-1",
+    
+    decorate = true,
+})
+
+hl.workspace_rule({
+    workspace = "5",
+    monitor = "eDP-1",
+    
+    decorate = true,
+})
+
+
+
+-- GENERAL LOOK & FEEL CONFIGURATION
+--------------------------------------------------------------------------------
+hl.config({
+    cursor = {
+        no_hardware_cursors = true,
+    },
+    general = {
+        gaps_in = 5,
+        gaps_out = 10,
+        border_size = 3,
+        resize_on_border = false,
+        allow_tearing = false,
+        layout = "dwindle",
+    },
+    decoration = {
+        rounding = 8,
+        active_opacity = 1.0,
+        inactive_opacity = 1.0,
+        dim_strength = 0.1,
+        dim_around = 0.2,
+        shadow = {
+            enabled = false,
+            range = 50,
+            render_power = 9,
+            offset = { 10, 10 },
+            scale = 1.5,
+            color = "rgba(1a1a1aa0)",
+        },
+        blur = {
+            enabled = true,
+            size = 5,
+            passes = 3,
+            new_optimizations = false,
+            contrast = 1,
+            brightness = 1,
+            vibrancy = 0.2800,
+        },
+    },
+    debug = {
+        disable_logs = false,
+        enable_stdout_logs = true,
+    },
+    animations = {
+        enabled = true,
+        bezier = {
+            myBezier = { 0.4, 0.0, 0.2, 1.0 },
+            linear = { 0.0, 0.0, 1.0, 1.0 },
+        },
+        animation = {
+            { name = "windows", enabled = true, speed = 2.5, curve = "myBezier", style = "popin 80%" },
+            { name = "border", enabled = true, speed = 2.5, curve = "myBezier" },
+            { name = "fade", enabled = true, speed = 2.5, curve = "myBezier" },
+            { name = "workspaces", enabled = true, speed = 2.5, curve = "myBezier", style = "slidefade 20%" },
+        },
+    },
+    dwindle = {
+        preserve_split = true,
+    },
+    misc = {
+        force_default_wallpaper = 1,
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+    },
+    binds = {
+        allow_workspace_cycles = true,
+    },
+    xwayland = {
+        force_zero_scaling = true,
+    },
+    input = {
+        kb_layout = "us",
+        numlock_by_default = true,
+        follow_mouse = 1,
+        scroll_button = 274,
+        force_no_accel = false,
+        touchpad = {
+            natural_scroll = true,
+            disable_while_typing = true,
+            drag_lock = true,
+            clickfinger_behavior = true,
+            tap_and_drag = true,
+        },
+    },
+})
+
+--------------------------------------------------------------------------------
+-- GESTURES & DEVICES
+--------------------------------------------------------------------------------
+hl.gesture(
+    { 
+    fingers = 3, 
+    direction = "horizontal", 
+    action = "workspace" 
+    })
+hl.gesture(
+    { 
+    fingers = 3, 
+    direction = "down", 
+    mods =  "ALT" , 
+    action = "close" 
+    })
+hl.gesture({ 
+    fingers = 3, 
+    direction = "up", 
+    scale = 1.5, 
+    action = "fullscreen" 
+    })
+
+
+hl.device({ name = "synaptics-tm3276-022", sensitivity = 0.2 })
+hl.device({ name = "logitech-g304-1", sensitivity = 0.0 })
+
+--------------------------------------------------------------------------------
+-- KEYBINDINGS
+--------------------------------------------------------------------------------
+hl.bind({
+    { flags = "e", key = "Xf86AudioRaiseVolume", action = "exec " .. soundVolumeUp },
+    { flags = "e", key = "Xf86AudioLowerVolume", action = "exec " .. soundVolumeDown },
+    { key = "Xf86AudioMute", action = "exec " .. soundMuteToggle },
+    { key = "Xf86AudioMicMute", action = "exec " .. micMuteToggle },
+    { key = "XF86AudioPlay", action = "exec " .. mediaPlayPause },
+    { key = "Xf86AudioStop", action = "exec " .. mediaStop },
+    { key = "XF86AudioPrev", action = "exec " .. mediaPrev },
+    { key = "XF86AudioNext", action = "exec " .. mediaNext },
+    { key = "XF86Calculator", action = "exec " .. pause_notif },
+    { flags = "e", key = "XF86MonBrightnessUp", action = "exec " .. brightnessUp },
+    { flags = "e", key = "XF86MonBrightnessDown", action = "exec " .. brightnessDown },
+    { key = "XF86SelectiveScreenshot", action = "exec hyprshot -m region" },
+    { key = "XF86wakeup", action = "exec ~/.config/hypr/gamemode.sh" },
+    { key = "XF86TouchpadOff", action = 'exec notify-send.sh -t 1000 --replace=10 "Dunst" "Notifications off" && sleep 1s && dunstctl set-paused true' },
+    { key = "XF86TouchpadOn", action = 'exec dunstctl set-paused false && notify-send.sh -t 1000 --replace=10 "Dunst" "Notifications on"' },
+
+    -- Locked Binds (Line 257 Fix)
+    { flags = "l", mods = { mainMod }, key = "l", action = "exec hyprlock" },
+
+    -- Application & Action Binds
+    { mods = { "ALT" }, key = "V", action = "exec alacritty --class clipse -e 'clipse'" },
+    { mods = { mainMod }, key = "G", action = "exec glava-pywal-start" },
+    { mods = { mainMod }, key = "C", action = "exec " .. openBrowser },
+    { mods = { mainMod }, key = "RETURN", action = "exec " .. terminal },
+    { mods = { mainMod }, key = "S", action = "exec " .. spotify },
+    { mods = { mainMod }, key = "V", action = "exec code" },
+    { mods = { mainMod }, key = "W", action = "exec " .. wallpaperchanger },
+    { mods = { mainMod }, key = "H", action = "exec " .. lenovo_system },
+    { mods = { mainMod }, key = "period", action = "exec " .. emoji_picker },
+    { mods = { "ALT" }, key = "X", action = "killactive" },
+    { mods = { altshift }, key = "Q", action = "exit" },
+    { mods = { altshift }, key = "R", action = "exec " .. reload },
+    { mods = { mainMod }, key = "E", action = "exec " .. fileManager },
+    { mods = { "ALT" }, key = "D", action = "togglefloating" },
+    { mods = { mainMod }, key = "A", action = "exec " .. menu },
+    { mods = { mainMod }, key = "P", action = "pseudo" },
+    { mods = { mainMod_shift }, key = "A", action = "movewindow l" },
+    { mods = { mainMod_shift }, key = "Z", action = "movewindow r" },
+    { mods = { mainMod_shift }, key = "S", action = "movewindow u" },
+    { mods = { mainMod_shift }, key = "X", action = "movewindow d" },
+    { mods = { mainMod }, key = "Tab", action = "workspace previous" },
+    { mods = { mainMod }, key = "Q", action = "exec ~/.config/rofi/power.sh" },
+
+    -- Navigation
+    { mods = { mainMod }, key = "left", action = "workspace -1" },
+    { mods = { mainMod }, key = "right", action = "workspace +1" },
+    { mods = { mainMod }, key = "up", action = "movefocus u" },
+    { mods = { mainMod }, key = "down", action = "movefocus d" },
+    { mods = { "ALT" }, key = "Tab", action = "cyclenext" },
+
+    -- Resizing
+    { flags = "e", mods = { mainMod, "ALT" }, key = "right", action = "resizeactive 20 0" },
+    { flags = "e", mods = { mainMod, "ALT" }, key = "left", action = "resizeactive -20 0" },
+    { flags = "e", mods = { mainMod, "ALT" }, key = "up", action = "resizeactive 0 -20" },
+    { flags = "e", mods = { mainMod, "ALT" }, key = "down", action = "resizeactive 0 20" },
+
+    -- OBS Pass-through
+    { key = "print", action = "pass ^(com\\.obsproject\\.Studio)$" },
+
+    -- Workspaces 1-10
+    { mods = { mainMod }, key = "1", action = "workspace 1" },
+    { mods = { mainMod }, key = "2", action = "workspace 2" },
+    { mods = { mainMod }, key = "3", action = "workspace 3" },
+    { mods = { mainMod }, key = "4", action = "workspace 4" },
+    { mods = { mainMod }, key = "5", action = "workspace 5" },
+    { mods = { mainMod }, key = "6", action = "workspace 6" },
+    { mods = { mainMod }, key = "7", action = "workspace 7" },
+    { mods = { mainMod }, key = "8", action = "workspace 8" },
+    { mods = { mainMod }, key = "9", action = "workspace 9" },
+    { mods = { mainMod }, key = "0", action = "workspace 10" },
+
+    -- Move to Workspaces 1-10
+    { mods = { mainMod, shift }, key = "1", action = "movetoworkspace 1" },
+    { mods = { mainMod, shift }, key = "2", action = "movetoworkspace 2" },
+    { mods = { mainMod, shift }, key = "3", action = "movetoworkspace 3" },
+    { mods = { mainMod, shift }, key = "4", action = "movetoworkspace 4" },
+    { mods = { mainMod, shift }, key = "5", action = "movetoworkspace 5" },
+    { mods = { mainMod, shift }, key = "6", action = "movetoworkspace 6" },
+    { mods = { mainMod, shift }, key = "7", action = "movetoworkspace 7" },
+    { mods = { mainMod, shift }, key = "8", action = "movetoworkspace 8" },
+    { mods = { mainMod, shift }, key = "9", action = "movetoworkspace 9" },
+    { mods = { mainMod, shift }, key = "0", action = "movetoworkspace 10" },
+
+    { mods = { mainMod, shift }, key = "right", action = "movetoworkspace +1" },
+    { mods = { mainMod, shift }, key = "left", action = "movetoworkspace -1" },
+
+    -- Mouse Scroll Workspaces
+    { mods = { mainMod }, key = "mouse_up", action = "workspace e-1" },
+
+    -- Submap Trigger
+    { key = "Xf86Favorites", action = "submap mediacontrols" },
+})
+
+-- Mouse Drag Binds
+hl.bindm({
+    { mods = { mainMod }, button = "mouse:272", action = "movewindow" },
+    { mods = { mainMod }, button = "mouse:273", action = "resizewindow" },
+})
+
+--------------------------------------------------------------------------------
+-- WINDOW RULES & LAYER RULES
+--------------------------------------------------------------------------------
+hl.window_rule({
+    { match = { class = "blueberry.py" }, float = true },
+    { match = { class = "clipse" }, float = true, size = { 622, 652 }, stay_focused = true, move = "(monitor_w*0.5-(window_w*0.5)) (monitor_h*0.5-(window_h*0.5))" },
+    { match = { class = "GLava" }, xray = true },
+    { match = { class = "firefox" }, workspace = 2 },
+    { match = { class = "spotify" }, workspace = 5, opacity = { 0.8, 0.6 } },
+    { match = { class = "vlc" }, workspace = 4 },
+    { match = { class = "Code" }, workspace = 3 },
+})
+
+hl.layer_rule({
+    { match = { namespace = "cava-bg" }, xray = true },
+    { match = { namespace = "rofi" }, blur = true },
+    { match = { namespace = "hyprpicker" }, no_anim = true },
+    { match = { namespace = "selection" }, no_anim = true },
+    { match = { namespace = "GLava" }, order = -1 },
+})

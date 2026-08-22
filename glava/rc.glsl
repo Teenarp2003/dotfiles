@@ -19,7 +19,7 @@
 #request setfloating  false
 #request setdecorated true
 #request setfocused   false
-#request setmaximized true
+#request setmaximized false
 
 /* Set window background opacity mode. Possible values are:
    
@@ -36,7 +36,8 @@
    "none"   - Disable window opacity completely. */
 #request setopacity "native"
 
-/* Whether to mirror left and right audio input channels from PulseAudio.*/
+/* Whether to average and mirror left and right audio input channels.
+   This may cause some modules to only render a single channel. */
 #request setmirror false
 
 /* OpenGL context and GLSL shader versions, do not change unless
@@ -48,9 +49,9 @@
 #request settitle "GLava"
 
 /* Window geometry (x, y, width, height) */
-#request setgeometry 0 40 1920 1040
+#request setgeometry 0 0 800 600
 
-/* Window background color (RGB format).
+/* Window background color (RGBA format).
    Does not work with `setopacity "xroot"` */
 #request setbg 00000000
 
@@ -68,7 +69,7 @@
    will do nothing, but you can use "!+" and "!-" to stack on top
    or below other windows.
 */
-#request setxwintype "dock"
+#request setxwintype "normal"
 
 /* (X11 only) EWMH Window state atoms (multiple can be specified).
    Possible values are:
@@ -111,7 +112,7 @@
 /* Buffer swap interval (vsync), set to '0' to prevent
    waiting for refresh, '1' (or more) to wait for the specified
    amount of frames. */
-#request setswap 0
+#request setswap 1
 
 /* Linear interpolation for audio data frames. Drastically
    improves smoothness with configurations that yield low UPS
@@ -127,11 +128,11 @@
    
    This will delay data output by one update frame, so it can
    desync audio with visual effects on low UPS configs. */
-#request setinterpolate true
+#request setinterpolate false
 
 /* Frame limiter, set to the frames per second (FPS) desired or
    simply set to zero (or lower) to disable the frame limiter. */
-#request setframerate 60
+#request setframerate 0
 
 /* Suspends rendering if a fullscreen window is focused while
    GLava is still visible (ie. on another monitor). This prevents
@@ -200,6 +201,14 @@
    backend. Instead, an ideal rate should be be configured
    in the application generating the output. */
 #request setsamplerate 22050
+
+/* Enable GPU acceleration of the audio buffer's fourier transform.
+   This drastically reduces CPU usage, but should be avoided on
+   old integrated graphics hardware.
+   
+   Enabling this also enables acceleration for post-FFT processing
+   effects, such as gravity, averaging, windowing, and interpolation. */
+#request setaccelfft true
 
 /*                    ** DEPRECATED **
    Force window geometry (locking the window in place), useful

@@ -1,0 +1,1 @@
+/home/teenarp2026/.cache/wal/Colors.qml

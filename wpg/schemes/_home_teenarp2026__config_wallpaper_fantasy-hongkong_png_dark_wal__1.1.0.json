@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/fantasy-hongkong.png",
+    "alpha": "70",
+    "special": {
+        "background": "#030215",
+        "foreground": "#ccc6d2",
+        "cursor": "#ccc6d2"
+    },
+    "colors": {
+        "color0": "#030215",
+        "color1": "#553B88",
+        "color2": "#354994",
+        "color3": "#60549D",
+        "color4": "#9E6495",
+        "color5": "#CB7191",
+        "color6": "#6295C4",
+        "color7": "#ccc6d2",
+        "color8": "#8e8a93",
+        "color9": "#553B88",
+        "color10": "#354994",
+        "color11": "#60549D",
+        "color12": "#9E6495",
+        "color13": "#CB7191",
+        "color14": "#6295C4",
+        "color15": "#ccc6d2"
+    }
+}

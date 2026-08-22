@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Launch GLava as a Wayland desktop-background visualizer whose bar gradient is
+# driven live by pywal. Owns the feed file + `tail -f` + glava so the stdin pipe
+# never breaks. Use this from `exec-once` in hyprland.conf.
+set -euo pipefail
+
+here="$(cd "$(dirname "$0")" && pwd)"
+feed="${XDG_RUNTIME_DIR:-/tmp}/glava-pywal.feed"
+
+# Start each session with a fresh, empty feed.
+: > "$feed"
+
+# Replace any existing instance.
+pkill -x glava 2>/dev/null || true
+
+# tail -f keeps stdin open so GLava reads new color lines as they are appended.
+# NOTE: do NOT pass --desktop here. On Wayland that triggers GLava's X11/EWMH
+# auto-detection 
+#The background behavior comes from `#request setxwintype "desktop"` in rc.glsl instead.
+tail -n +1 -f "$feed" | glava --backend wayland \
+    --pipe="low:vec4" --pipe="high:vec4" &
+sleep 1
+"$here/glava-pywal-update" || true

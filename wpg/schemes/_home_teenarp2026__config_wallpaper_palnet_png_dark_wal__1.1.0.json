@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/teenarp2026/.config/wallpaper/palnet.png",
+    "alpha": "70",
+    "special": {
+        "background": "#0A0613",
+        "foreground": "#dbcfed",
+        "cursor": "#dbcfed"
+    },
+    "colors": {
+        "color0": "#0A0613",
+        "color1": "#7141C8",
+        "color2": "#8C7995",
+        "color3": "#8B5DB7",
+        "color4": "#9862DD",
+        "color5": "#A99BB6",
+        "color6": "#B492E6",
+        "color7": "#dbcfed",
+        "color8": "#9990a5",
+        "color9": "#7141C8",
+        "color10": "#8C7995",
+        "color11": "#8B5DB7",
+        "color12": "#9862DD",
+        "color13": "#A99BB6",
+        "color14": "#B492E6",
+        "color15": "#dbcfed"
+    }
+}

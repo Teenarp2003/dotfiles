@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the current battery percentage
-battery_percentage=$(cat /sys/class/power_supply/BAT1/capacity)
+battery_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
 
 # Get the battery status (Charging or Discharging)
 battery_status=$(cat /sys/class/power_supply/BAT1/status)

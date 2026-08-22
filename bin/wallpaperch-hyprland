@@ -1,23 +1,57 @@
 #!/bin/bash
+
+echo "Dependencies required for this script:
+- exa
+- rofi
+- mpv
+- mpvpaper
+- hyprctl (Hyprland)
+- pywal
+- wpg
+- coreutils (cp, echo, cat)
+- psmisc (killall)
+- waybar
+- sudo
+
+Optional:
+- glava
+- custom scripts like replace-wal.sh"
+
+
+
+
 wallpaper=$(exa ~/.config/wallpaper | while read A ; do  echo -en "$A\x00icon\x1f~/.config/wallpaper/$A\n" ; done | rofi -dmenu -theme ~/.config/rofi/wallpaper.rasi)
 wallpaper_path=~/.config/wallpaper/$wallpaper
+if [ "$wallpaper" = "cyberpunk-2077.jpg" ]; then
+  killall mpvpaper 
+  mpvpaper --fork -o "--loop-file=inf" '*' ~/.config/wallpaper/Cyberpunk_2077_1080.mp4 
+  echo "using mpvpaper" 
+fi 
 if [ -z "$wallpaper" ]; then 
   exit 1
   #wallpaper_path=$(cat ~/.cache/wal/wal); 
 fi
-hyprctl hyprpaper preload "$wallpaper_path"
+cat > ~/.config/hypr/hyprlock-wallpaper.conf <<EOL
+background {
+    monitor = 
+    path = $wallpaper_path
+    blur_passes=2 
+    contrast=0.8916
+    brightness=0.7172
+    vibrancy=0.1696
+    vibrancy_darkness=0
+  }
+EOL
 hyprctl hyprpaper wallpaper "eDP-1,$wallpaper_path"
-hyprctl hyprpaper wallpaper "DP-1,$wallpaper_path"
-hyprctl hyprpaper wallpaper "DP-2,$wallpaper_path"
-hyprctl hyprpaper wallpaper "DP-3,$wallpaper_path"
+#hyprctl hyprpaper wallpaper "DP-2,$wallpaper_path"
+#hyprctl hyprpaper wallpaper "DP-3,$wallpaper_path"
 wal -a 70 -i "$wallpaper_path"
 wpg --alpha 70 -a "$wallpaper_path"
-cp  ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
-cp  ~/.cache/wal/hyprpaper.conf ~/.config/hypr/hyprpaper.conf 
-cp  ~/.cache/wal/hyprlock.conf ~/.config/hypr/hyprlock.conf
+cp ~/.cache/wal/color.ini ~/.config/spicetify/Themes/Comfy/color.ini
+cp ~/.cache/wal/hyprpaper.conf ~/.config/hypr/hyprpaper.conf 
 wpg --alpha 70 -ns "$wallpaper_path"
-#glava-colors
+glava-pywal-update
 #replace-wal.sh
-killall waybar
-waybar
-echo "restarted waybar" 
+sudo cp ~/.cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
+hyprctl reload
+echo "hyprland reloaded"
