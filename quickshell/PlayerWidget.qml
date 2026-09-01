@@ -33,10 +33,10 @@ Item {
     }
 
     Text {
-      text: root.playerState === "Playing" ? "" : ""
+      text: root.playerState === "Playing" ? "pause" : "play_arrow"
       height: 24
       color: Colors.accent
-      font.family: "Iosevka Nerd Font"
+      font.family: Icons.fontFamily
       font.pixelSize: 17
       verticalAlignment: Text.AlignVCenter
     }

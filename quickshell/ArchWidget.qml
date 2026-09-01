@@ -1,5 +1,4 @@
 import Quickshell
-import Quickshell.Bluetooth
 import Quickshell.Hyprland
 import QtQuick
 
@@ -9,13 +8,8 @@ Item {
   property var ownerWindow
   property bool open: false
   property int barHeight: 40
-  property var adapter: Bluetooth.defaultAdapter
-  property bool bluetoothEnabled: !!root.adapter && root.adapter.enabled
-  property var connectedDevice: root.bluetoothEnabled
-    ? Bluetooth.devices.values.find(device => device.connected)
-    : null
   property alias panel: morph.panel
-  readonly property int collapsedWidth: compactRow.implicitWidth + 24
+  readonly property int collapsedWidth: root.barHeight
   readonly property int panelWidth: 360
 
   implicitWidth: morph.implicitWidth
@@ -25,8 +19,10 @@ Item {
   z: 2
   clip: false
 
-  function batteryIcon(level) {
-    return Icons.batteryLevel(level)
+  GlobalShortcut {
+    name: "toggleLauncher"
+    description: "Toggle app launcher"
+    onPressed: root.open = !root.open
   }
 
   HyprlandFocusGrab {
@@ -55,10 +51,12 @@ Item {
   onOpenChanged: {
     if (open) {
       grabTimer.restart()
-      manager.pendingForget = null
+      manager.resetTransientState()
+      manager.focusSearch()
     } else {
       grabTimer.stop()
       focusGrab.active = false
+      manager.resetTransientState()
     }
   }
 
@@ -79,37 +77,22 @@ Item {
     panelWidth: root.panelWidth
     panelHeight: manager.panelHeight
     pillRadius: Colors.barRadius
-    expandDirection: "left"
+    expandDirection: "right"
 
-    panelContent: BluetoothManager {
+    panelContent: ArchPanel {
       id: manager
       anchors.fill: parent
+      onAppLaunched: root.open = false
     }
 
-    Row {
-      id: compactRow
-      anchors.centerIn: parent
-      height: 24
-      spacing: 5
-
-      Text {
-        text: root.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
-        height: 24
-        color: root.bluetoothEnabled ? "#1793d1" : Colors.muted
-        font.family: Icons.fontFamily
-        font.pixelSize: 18
-        verticalAlignment: Text.AlignVCenter
-      }
-
-      Text {
-        visible: root.bluetoothEnabled && !!root.connectedDevice && root.connectedDevice.batteryAvailable
-        text: visible ? root.batteryIcon(root.connectedDevice.battery) : ""
-        height: 24
-        color: Colors.battery_bluetooth
-        font.family: Icons.fontFamily
-        font.pixelSize: 18
-        verticalAlignment: Text.AlignVCenter
-      }
+    Text {
+      anchors.fill: parent
+      text: "apps"
+      color: Colors.accent
+      font.family: Icons.fontFamily
+      font.pixelSize: 22
+      horizontalAlignment: Text.AlignHCenter
+      verticalAlignment: Text.AlignVCenter
     }
 
     MouseArea {

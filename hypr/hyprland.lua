@@ -219,7 +219,8 @@ hl.bind("ALT + X", hl.dsp.window.close())
 hl.bind(altshift .. " + Q", hl.dsp.exit())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind("ALT + D", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + A", hl.dsp.global("quickshell:toggleLauncher"))
+hl.bind(mainMod_shift .. " + M", hl.dsp.global("quickshell:toggleMorphTune"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod_shift .. " + A", hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod_shift .. " + Z", hl.dsp.window.move({ direction = "r" }))
@@ -364,7 +365,7 @@ hl.config({
     general = {
         gaps_in = 5,
         gaps_out = 10,
-        border_size = 3,
+        border_size = 0,
         -- https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
         col = {
         inactive_border = {
@@ -392,10 +393,10 @@ hl.config({
         dim_around = 0.2,
         -- https://wiki.hyprland.org/Configuring/Variables/#blur
         shadow = {
-            enabled = false,
-            range = 50,
+            enabled = true,
+            range = 10,
             render_power = 9,
-            offset = "10 10",
+            offset = "5 5",
             scale = 1.5,
             color = "rgba(1a1a1aa0)",
         },

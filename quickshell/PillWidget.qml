@@ -8,6 +8,7 @@ Item {
 
   property var ownerWindow
   property int barHeight: 40
+  property int maxWidth: 720
   property bool open: false
   property string artist: ""
   property string title: ""
@@ -15,30 +16,62 @@ Item {
   property bool available: root.playerState === "Playing" || root.playerState === "Paused" || root.playerState === "Stopped"
   readonly property var notifications: NotificationCenter.items
   readonly property int notifCount: NotificationCenter.count
+  readonly property var latestNotification: {
+    if (!root.notifications || root.notifications.length <= 0)
+      return null
+    return root.notifications[0] || null
+  }
   readonly property bool hasContent: root.available || root.notifCount > 0
   readonly property string compactNotifTitle: {
-    if (root.notifCount <= 0)
+    const notification = root.latestNotification
+    if (!notification)
       return ""
-    const notification = root.notifications[0]
     return notification.summary || notification.appName || "Notification"
   }
-  readonly property int compactMusicTextWidth: Math.max(180, Math.ceil(musicMetrics.averageCharacterWidth * 20))
+  readonly property int compactPad: 20
+  readonly property int compactIconSlot: 20
+  readonly property int compactMusicChrome: root.compactPad + compactMusic.spacing * 2 + root.compactIconSlot
+  readonly property int compactNotifChrome: root.compactPad + compactNotif.spacing + root.compactIconSlot
+  readonly property int compactTextBudget: Math.max(48, root.maxWidth - root.compactMusicChrome)
+  readonly property int artistShare: {
+    const artistWant = Math.ceil(artistLabel.implicitWidth)
+    const titleWant = Math.ceil(titleLabel.implicitWidth)
+    const budget = root.compactTextBudget
+    if (artistWant + titleWant <= budget)
+      return artistWant
+    const half = Math.floor(budget / 2)
+    if (artistWant <= half)
+      return artistWant
+    if (titleWant <= half)
+      return Math.min(artistWant, budget - titleWant)
+    return Math.max(24, half)
+  }
+  readonly property int titleShare: {
+    const titleWant = Math.ceil(titleLabel.implicitWidth)
+    const budget = root.compactTextBudget
+    const artistWant = Math.ceil(artistLabel.implicitWidth)
+    if (artistWant + titleWant <= budget)
+      return titleWant
+    return Math.max(24, Math.min(titleWant, budget - root.artistShare))
+  }
+  readonly property int notifTitleShare: Math.min(Math.ceil(notifTitleLabel.implicitWidth), Math.max(48, root.maxWidth - root.compactNotifChrome))
   readonly property int collapsedWidth: {
     if (root.available)
-      return compactMusic.implicitWidth + 36
+      return Math.min(root.maxWidth, root.compactPad + root.compactIconSlot + compactMusic.spacing * 2 + artistLabel.width + titleLabel.width)
     if (root.notifCount > 0)
-      return compactNotif.implicitWidth + 36
+      return Math.min(root.maxWidth, root.compactPad + root.compactIconSlot + compactNotif.spacing + notifTitleLabel.width)
     return 0
   }
   readonly property int expandedInnerHeight: Math.min(560, Math.max(88, Math.ceil(expandedBody.implicitHeight) + 28))
   property bool peeking: false
   readonly property int peekHeight: Math.min(180, Math.max(88, Math.ceil(peekBody.implicitHeight) + 24))
-  readonly property int liveWidth: (root.open || root.peeking) ? Math.max(360, root.collapsedWidth) : root.collapsedWidth
+  readonly property int liveWidth: Math.min(root.maxWidth, (root.open || root.peeking) ? Math.max(Math.min(360, root.maxWidth), root.collapsedWidth) : root.collapsedWidth)
   readonly property int liveHeight: root.barHeight + (root.open ? root.expandedInnerHeight : (root.peeking ? root.peekHeight : 0))
   property string lastNotifTitle: ""
   property int lastCollapsedWidth: 196
   property bool keepVisible: false
   readonly property bool dismissing: !root.hasContent && (root.keepVisible || root.opacity > 0.01)
+  property alias panel: shell
 
   visible: root.hasContent || root.dismissing
   opacity: root.hasContent || root.keepVisible ? 1 : 0
@@ -46,7 +79,7 @@ Item {
     if (root.hasContent)
       return root.liveWidth
     if (root.dismissing)
-      return root.open ? Math.max(360, root.lastCollapsedWidth) : root.lastCollapsedWidth
+      return root.open ? Math.min(root.maxWidth, Math.max(360, root.lastCollapsedWidth)) : Math.min(root.maxWidth, root.lastCollapsedWidth)
     return 0
   }
   height: {
@@ -77,8 +110,22 @@ Item {
     id: focusGrab
     windows: root.ownerWindow ? [root.ownerWindow] : []
     onCleared: {
+      if (MorphTune.visible)
+        return
       root.open = false
       root.peeking = false
+    }
+  }
+
+  Connections {
+    target: MorphTune
+    function onVisibleChanged() {
+      if (MorphTune.visible) {
+        grabTimer.stop()
+        focusGrab.active = false
+      } else if (root.open || root.peeking) {
+        grabTimer.restart()
+      }
     }
   }
 
@@ -152,14 +199,10 @@ Item {
   Timer {
     id: grabTimer
     interval: 80
-    onTriggered: focusGrab.active = true
-  }
-
-  FontMetrics {
-    id: musicMetrics
-    font.family: "Cascadia Code NF"
-    font.pixelSize: 15
-    font.weight: Font.DemiBold
+    onTriggered: {
+      if (!MorphTune.visible)
+        focusGrab.active = true
+    }
   }
 
   Rectangle {
@@ -174,24 +217,6 @@ Item {
     width: parent.width
     height: root.barHeight
 
-    Text {
-      id: artistMeasure
-      visible: false
-      text: root.artist || "Spotify"
-      font.family: "Cascadia Code NF"
-      font.pixelSize: 15
-      font.weight: Font.DemiBold
-    }
-
-    Text {
-      id: titleMeasure
-      visible: false
-      text: root.title || "Now playing"
-      font.family: "Cascadia Code NF"
-      font.pixelSize: 15
-      font.weight: Font.DemiBold
-    }
-
     Row {
       id: compactMusic
       visible: root.available
@@ -200,48 +225,46 @@ Item {
       spacing: 5
 
       Text {
+        id: artistLabel
         text: root.artist || "Spotify"
-        width: Math.min(artistMeasure.implicitWidth, root.compactMusicTextWidth)
+        width: Math.min(Math.ceil(implicitWidth), root.artistShare)
         height: 24
         color: Colors.foreground
         font.family: "Cascadia Code NF"
         font.pixelSize: 15
         font.weight: Font.DemiBold
-        elide: Text.ElideRight
+        elide: implicitWidth > width ? Text.ElideRight : Text.ElideNone
+        wrapMode: Text.NoWrap
         maximumLineCount: 1
         verticalAlignment: Text.AlignVCenter
       }
 
       Text {
-        text: root.playerState === "Playing" ? "" : ""
+        id: compactPlayIcon
+        text: root.playerState === "Playing" ? "play_arrow" : "pause"
+        width: root.compactIconSlot
         height: 24
         color: Colors.accent
-        font.family: "Iosevka Nerd Font"
+        font.family: Icons.fontFamily
         font.pixelSize: 17
+        horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
       }
 
       Text {
+        id: titleLabel
         text: root.title || "Now playing"
-        width: Math.min(titleMeasure.implicitWidth, root.compactMusicTextWidth)
+        width: Math.min(Math.ceil(implicitWidth), root.titleShare)
         height: 24
         color: Colors.foreground
         font.family: "Cascadia Code NF"
         font.pixelSize: 15
         font.weight: Font.DemiBold
-        elide: Text.ElideRight
+        elide: implicitWidth > width ? Text.ElideRight : Text.ElideNone
+        wrapMode: Text.NoWrap
         maximumLineCount: 1
         verticalAlignment: Text.AlignVCenter
       }
-    }
-
-    Text {
-      id: notifTitleMeasure
-      visible: false
-      text: root.compactNotifTitle || root.lastNotifTitle
-      font.family: "Cascadia Code NF"
-      font.pixelSize: 15
-      font.weight: Font.DemiBold
     }
 
     Row {
@@ -252,23 +275,28 @@ Item {
       spacing: 8
 
       Text {
-        text: "󰂚"
+        id: compactNotifIcon
+        text: "notifications"
+        width: root.compactIconSlot
         height: 24
         color: Colors.accent
-        font.family: "Iosevka Nerd Font"
+        font.family: Icons.fontFamily
         font.pixelSize: 17
+        horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
       }
 
       Text {
+        id: notifTitleLabel
         text: root.compactNotifTitle || root.lastNotifTitle
-        width: Math.min(notifTitleMeasure.implicitWidth, root.compactMusicTextWidth)
+        width: Math.min(Math.ceil(implicitWidth), root.notifTitleShare)
         height: 24
         color: Colors.foreground
         font.family: "Cascadia Code NF"
         font.pixelSize: 15
         font.weight: Font.DemiBold
-        elide: Text.ElideRight
+        elide: implicitWidth > width ? Text.ElideRight : Text.ElideNone
+        wrapMode: Text.NoWrap
         maximumLineCount: 1
         verticalAlignment: Text.AlignVCenter
       }
@@ -320,7 +348,7 @@ Item {
       spacing: 6
 
       Text {
-        text: root.notifications[0] ? (root.notifications[0].appName || "Notification") : ""
+        text: root.latestNotification ? (root.latestNotification.appName || "Notification") : ""
         width: parent.width
         color: Colors.muted
         font.family: "Cascadia Code NF"
@@ -329,7 +357,7 @@ Item {
       }
 
       Text {
-        text: root.notifications[0] ? (root.notifications[0].summary || "") : ""
+        text: root.latestNotification ? (root.latestNotification.summary || "") : ""
         width: parent.width
         color: Colors.foreground
         font.family: "Cascadia Code NF"
@@ -341,8 +369,8 @@ Item {
       }
 
       Text {
-        visible: root.notifications[0] && root.notifications[0].body && root.notifications[0].body.length > 0
-        text: root.notifications[0] ? (root.notifications[0].body || "") : ""
+        visible: !!(root.latestNotification && root.latestNotification.body && root.latestNotification.body.length > 0)
+        text: root.latestNotification ? (root.latestNotification.body || "") : ""
         width: parent.width
         color: Colors.muted
         font.family: "Cascadia Code NF"
@@ -379,123 +407,99 @@ Item {
       Column {
         id: expandedBody
         width: parent.width
-        spacing: 12
+        spacing: 10
 
         Column {
           visible: root.available
           width: parent.width
-          spacing: 8
+          spacing: 10
 
-          Text {
-            text: "Now playing"
-            color: Colors.foreground
-            font.family: "Cascadia Code NF"
-            font.pixelSize: 13
-            font.weight: Font.DemiBold
-          }
-
-          Rectangle {
+          Row {
             width: parent.width
-            height: 72
-            radius: 13
-            color: Colors.surfaceRaised
+            height: 44
+            spacing: 10
+
+            Column {
+              anchors.verticalCenter: parent.verticalCenter
+              width: Math.max(40, parent.width - playbackControls.implicitWidth - parent.spacing)
+              spacing: 2
+
+              Text {
+                text: root.title || "Unknown title"
+                width: parent.width
+                color: Colors.foreground
+                font.family: "Cascadia Code NF"
+                font.pixelSize: 14
+                font.weight: Font.DemiBold
+                elide: Text.ElideRight
+                maximumLineCount: 1
+              }
+
+              Text {
+                text: root.artist || "Unknown artist"
+                width: parent.width
+                color: Colors.muted
+                font.family: "Cascadia Code NF"
+                font.pixelSize: 12
+                elide: Text.ElideRight
+                maximumLineCount: 1
+              }
+            }
 
             Row {
-              anchors.fill: parent
-              anchors.leftMargin: 12
-              anchors.rightMargin: 10
-              spacing: 10
+              id: playbackControls
+              anchors.verticalCenter: parent.verticalCenter
+              spacing: 4
 
-              Column {
-                anchors.verticalCenter: parent.verticalCenter
-                width: Math.max(40, parent.width - playbackControls.implicitWidth - parent.spacing)
-                spacing: 2
+              Text {
+                width: 28
+                height: 28
+                text: "skip_previous"
+                color: Colors.foreground
+                font.family: Icons.fontFamily
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
-                Text {
-                  text: root.title || "Unknown title"
-                  width: parent.width
-                  color: Colors.foreground
-                  font.family: "Cascadia Code NF"
-                  font.pixelSize: 14
-                  font.weight: Font.DemiBold
-                  elide: Text.ElideRight
-                  maximumLineCount: 1
-                }
-
-                Text {
-                  text: root.artist || "Unknown artist"
-                  width: parent.width
-                  color: Colors.muted
-                  font.family: "Cascadia Code NF"
-                  font.pixelSize: 12
-                  elide: Text.ElideRight
-                  maximumLineCount: 1
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: previous.running = true
                 }
               }
 
-              Row {
-                id: playbackControls
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: 6
+              Rectangle {
+                width: 32
+                height: 32
+                radius: 16
+                color: Colors.accent
 
-                Rectangle {
-                  width: 34
-                  height: 30
-                  radius: 13
-                  color: Colors.surfaceInteractive
-
-                  Text {
-                    anchors.centerIn: parent
-                    text: "󰒮"
-                    color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
-                    font.pixelSize: 16
-                  }
-
-                  MouseArea {
-                    anchors.fill: parent
-                    onClicked: previous.running = true
-                  }
+                Text {
+                  anchors.centerIn: parent
+                  text: root.playerState === "Playing" ? "pause" : "play_arrow"
+                  color: Colors.foreground
+                  font.family: Icons.fontFamily
+                  font.pixelSize: 18
                 }
 
-                Rectangle {
-                  width: 34
-                  height: 30
-                  radius: 13
-                  color: Colors.accent
-
-                  Text {
-                    anchors.centerIn: parent
-                    text: root.playerState === "Playing" ? "" : ""
-                    color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
-                    font.pixelSize: 16
-                  }
-
-                  MouseArea {
-                    anchors.fill: parent
-                    onClicked: playPause.running = true
-                  }
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: playPause.running = true
                 }
+              }
 
-                Rectangle {
-                  width: 34
-                  height: 30
-                  radius: 13
-                  color: Colors.surfaceInteractive
+              Text {
+                width: 28
+                height: 28
+                text: "skip_next"
+                color: Colors.foreground
+                font.family: Icons.fontFamily
+                font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
-                  Text {
-                    anchors.centerIn: parent
-                    text: "󰒭"
-                    color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
-                    font.pixelSize: 16
-                  }
-
-                  MouseArea {
-                    anchors.fill: parent
-                    onClicked: next.running = true
-                  }
+                MouseArea {
+                  anchors.fill: parent
+                  onClicked: next.running = true
                 }
               }
             }
@@ -559,9 +563,9 @@ Item {
 
                   Text {
                     anchors.centerIn: parent
-                    text: "󰂛"
+                    text: "notifications_off"
                     color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
+                    font.family: Icons.fontFamily
                     font.pixelSize: 15
                   }
 
@@ -577,9 +581,9 @@ Item {
 
                   Text {
                     anchors.centerIn: parent
-                    text: "󰂚"
+                    text: "notifications"
                     color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
+                    font.family: Icons.fontFamily
                     font.pixelSize: 15
                   }
 
@@ -639,8 +643,8 @@ Item {
             delegate: Item {
               id: notifSlot
               required property var modelData
-              property var notification: modelData
-              property bool closing: NotificationCenter.closing.indexOf(notification) !== -1
+              property var notification: modelData || null
+              property bool closing: notification ? NotificationCenter.closing.indexOf(notification) !== -1 : false
               width: parent ? parent.width : 0
               height: notifCard.implicitHeight + 6
               implicitHeight: height
@@ -709,16 +713,25 @@ Item {
               Rectangle {
                 id: notifCard
                 width: parent.width
-                implicitHeight: notifCol.implicitHeight + 20
+                implicitHeight: notifCol.implicitHeight + 16
                 height: implicitHeight
-                radius: 13
-                color: Colors.surfaceRaised
+                radius: 0
+                color: "transparent"
                 opacity: 1
                 x: 0
 
                 MouseArea {
                   anchors.fill: parent
                   onClicked: NotificationCenter.beginClose(notification)
+                }
+
+                Rectangle {
+                  anchors.left: parent.left
+                  anchors.right: parent.right
+                  anchors.bottom: parent.bottom
+                  height: 1
+                  color: Colors.outline
+                  opacity: 0.12
                 }
 
                 Row {
@@ -730,8 +743,8 @@ Item {
                   spacing: 10
 
                 Image {
-                  visible: notification.image && notification.image.length > 0
-                  source: visible ? notification.image : ""
+                  visible: !!(notification && notification.image && notification.image.length > 0)
+                  source: visible && notification ? notification.image : ""
                   width: 36
                   height: 36
                   fillMode: Image.PreserveAspectCrop
@@ -739,11 +752,11 @@ Item {
 
                 Column {
                   id: notifCol
-                  width: parent.width - (notification.image && notification.image.length > 0 ? 46 : 0)
+                  width: parent.width - (notification && notification.image && notification.image.length > 0 ? 46 : 0)
                   spacing: 4
 
                   Text {
-                    text: notification.appName || "Notification"
+                    text: (notification && notification.appName) || "Notification"
                     width: parent.width
                     color: Colors.muted
                     font.family: "Cascadia Code NF"
@@ -752,7 +765,7 @@ Item {
                   }
 
                   Text {
-                    text: notification.summary || ""
+                    text: (notification && notification.summary) || ""
                     width: parent.width
                     color: Colors.foreground
                     font.family: "Cascadia Code NF"
@@ -762,8 +775,8 @@ Item {
                   }
 
                   Text {
-                    visible: notification.body && notification.body.length > 0
-                    text: notification.body || ""
+                    visible: !!(notification && notification.body && notification.body.length > 0)
+                    text: (notification && notification.body) || ""
                     width: parent.width
                     color: Colors.muted
                     font.family: "Cascadia Code NF"
@@ -774,12 +787,12 @@ Item {
                   }
 
                   Flow {
-                    visible: notification.actions && notification.actions.length > 0
+                    visible: !!(notification && notification.actions && notification.actions.length > 0)
                     width: parent.width
                     spacing: 6
 
                     Repeater {
-                      model: notification.actions
+                      model: notification && notification.actions ? notification.actions : []
 
                       delegate: Rectangle {
                         required property var modelData
@@ -803,6 +816,7 @@ Item {
                           onClicked: action.invoke()
                         }
                       }
+                      }
                     }
                   }
                 }
@@ -813,7 +827,6 @@ Item {
         }
       }
     }
-  }
 
   Process {
     id: artistProcess

@@ -1,7 +1,6 @@
 import Quickshell
 import Quickshell.Bluetooth
 import QtQuick
-import QtQuick.Controls
 
 Item {
   id: root
@@ -9,6 +8,9 @@ Item {
   property var adapter: Bluetooth.defaultAdapter
   property var pendingForget
   property var savedDevices: Bluetooth.devices.values.filter(device => device.paired || device.bonded)
+  property var displayedDiscovered: []
+  property bool clearingDiscovered: false
+  property int pendingDiscoveredLeaves: 0
   property var discoveredDevices: Bluetooth.devices.values.filter(device => !device.paired && !device.bonded)
   readonly property int maxPanelHeight: 560
   readonly property int panelHeight: {
@@ -19,6 +21,44 @@ Item {
 
   implicitHeight: root.panelHeight
   clip: true
+
+  function snapshotList(list) {
+    const out = []
+    for (let i = 0; i < list.length; i++)
+      out.push(list[i])
+    return out
+  }
+
+  function beginStopScan() {
+    if (!root.adapter)
+      return
+    if (root.clearingDiscovered)
+      return
+    if (root.displayedDiscovered.length === 0)
+      root.displayedDiscovered = root.snapshotList(root.discoveredDevices)
+    if (root.displayedDiscovered.length === 0) {
+      root.adapter.discovering = false
+      return
+    }
+    root.pendingDiscoveredLeaves = root.displayedDiscovered.length
+    root.clearingDiscovered = true
+    root.adapter.discovering = false
+  }
+
+  function finishDiscoveredLeave() {
+    root.pendingDiscoveredLeaves = Math.max(0, root.pendingDiscoveredLeaves - 1)
+    if (root.pendingDiscoveredLeaves > 0)
+      return
+    root.displayedDiscovered = []
+    root.clearingDiscovered = false
+  }
+
+  onDiscoveredDevicesChanged: {
+    if (root.clearingDiscovered)
+      return
+    if (root.adapter?.discovering)
+      root.displayedDiscovered = root.snapshotList(root.discoveredDevices)
+  }
 
   Flickable {
     id: deviceList
@@ -51,7 +91,7 @@ Item {
           }
 
           Text {
-            text: root.adapter ? (root.adapter.enabled ? (root.adapter.discovering ? "Scanning for devices" : "Ready to connect") : "Bluetooth is off") : "No adapter found"
+            text: root.adapter ? (root.adapter.enabled ? "Ready to connect" : "Bluetooth is off") : "No adapter found"
             color: Colors.battery_bluetooth
             font.family: "Cascadia Code NF"
             font.pixelSize: 12
@@ -90,20 +130,21 @@ Item {
 
           Text {
             anchors.centerIn: parent
-            text: root.adapter?.discovering ? "󰓛" : "󰍉"
+            text: root.adapter?.discovering ? "close" : "search"
             color: Colors.foreground
-            font.family: "Iosevka Nerd Font"
+            font.family: Icons.fontFamily
             font.pixelSize: 17
           }
 
           MouseArea {
             anchors.fill: parent
-            hoverEnabled: true
-            enabled: !!root.adapter && root.adapter.enabled
-            onClicked: root.adapter.discovering = !root.adapter.discovering
-
-            ToolTip.visible: containsMouse
-            ToolTip.text: root.adapter?.discovering ? "Stop scanning" : "Start scanning"
+            enabled: !!root.adapter && root.adapter.enabled && !root.clearingDiscovered
+            onClicked: {
+              if (root.adapter.discovering)
+                root.beginStopScan()
+              else
+                root.adapter.discovering = true
+            }
           }
         }
       }
@@ -153,11 +194,25 @@ Item {
                 width: parent.width
               }
 
-              Text {
-                text: device.connected ? "󰂱 Connected" : device.pairing ? "Pairing..." : stateText
-                color: device.connected ? Colors.battery_bluetooth : transitioning ? Colors.accent : Colors.muted
-                font.family: "Cascadia Code NF"
-                font.pixelSize: 11
+              Row {
+                spacing: 4
+                width: parent.width
+
+                Text {
+                  visible: device.connected
+                  text: "bluetooth_connected"
+                  color: Colors.battery_bluetooth
+                  font.family: Icons.fontFamily
+                  font.pixelSize: 14
+                  verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                  text: device.connected ? "Connected" : device.pairing ? "Pairing..." : stateText
+                  color: device.connected ? Colors.battery_bluetooth : transitioning ? Colors.accent : Colors.muted
+                  font.family: "Cascadia Code NF"
+                  font.pixelSize: 11
+                }
               }
             }
 
@@ -176,9 +231,9 @@ Item {
 
                 Text {
                   anchors.centerIn: parent
-                  text: confirming ? "󰅖" : "󰆴"
+                  text: confirming ? "close" : "delete"
                   color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
+                  font.family: Icons.fontFamily
                   font.pixelSize: 17
                 }
 
@@ -196,9 +251,9 @@ Item {
 
                 Text {
                   anchors.centerIn: parent
-                  text: confirming ? "󰄬" : transitioning ? "󰑐" : device.connected ? "󰚦" : "󰚥"
+                  text: confirming ? "check" : transitioning ? "sync" : device.connected ? "link_off" : "link"
                   color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
+                  font.family: Icons.fontFamily
                   font.pixelSize: 17
                 }
 
@@ -221,7 +276,7 @@ Item {
       }
 
       Text {
-        visible: root.discoveredDevices.length > 0
+        visible: root.displayedDiscovered.length > 0
         text: "Discovered devices"
         color: Colors.foreground
         font.family: "Cascadia Code NF"
@@ -230,22 +285,70 @@ Item {
       }
 
       Column {
-        visible: root.discoveredDevices.length > 0
+        visible: root.displayedDiscovered.length > 0
         width: parent.width
         spacing: 6
 
         Repeater {
-          model: root.discoveredDevices
+          model: root.displayedDiscovered
 
-          delegate: Rectangle {
+          delegate: Item {
+            id: discoveredSlot
             required property var modelData
             property var device: modelData
             property string stateText: BluetoothDeviceState.toString(device.state)
             property bool transitioning: device.pairing || stateText === "Connecting" || stateText === "Disconnecting"
             width: parent ? parent.width : 0
             height: 52
-            radius: 12
-            color: Colors.surfaceRaised
+            implicitHeight: height
+            clip: true
+
+            Connections {
+              target: root
+              function onClearingDiscoveredChanged() {
+                if (!root.clearingDiscovered)
+                  return
+                discoveredSlot.height = discoveredSlot.height
+                discoveredLeaveAnim.start()
+              }
+            }
+
+            SequentialAnimation {
+              id: discoveredLeaveAnim
+              ParallelAnimation {
+                NumberAnimation {
+                  target: discoveredCard
+                  property: "x"
+                  to: discoveredSlot.width + 24
+                  duration: 280
+                  easing.type: Easing.OutCubic
+                }
+                NumberAnimation {
+                  target: discoveredCard
+                  property: "opacity"
+                  to: 0
+                  duration: 220
+                  easing.type: Easing.OutCubic
+                }
+              }
+              NumberAnimation {
+                target: discoveredSlot
+                property: "height"
+                to: 0
+                duration: 280
+                easing.type: Easing.OutCubic
+              }
+              ScriptAction {
+                script: root.finishDiscoveredLeave()
+              }
+            }
+
+            Rectangle {
+              id: discoveredCard
+              width: parent.width
+              height: 52
+              radius: 12
+              color: Colors.surfaceRaised
 
             Column {
               anchors.left: parent.left
@@ -284,17 +387,18 @@ Item {
 
               Text {
                 anchors.centerIn: parent
-                text: device.pairing || transitioning ? "󰑐" : "󰚥"
+                text: device.pairing || transitioning ? "sync" : "link"
                 color: Colors.foreground
-                font.family: "Iosevka Nerd Font"
+                font.family: Icons.fontFamily
                 font.pixelSize: 17
               }
 
               MouseArea {
                 anchors.fill: parent
-                enabled: !transitioning || device.pairing
+                enabled: (!transitioning || device.pairing) && !root.clearingDiscovered
                 onClicked: device.pairing ? device.cancelPair() : device.pair()
               }
+            }
             }
           }
         }

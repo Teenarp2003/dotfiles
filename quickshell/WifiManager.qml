@@ -15,6 +15,9 @@ Item {
       return []
     return device.networks.values.filter(network => network.known)
   }
+  property var displayedDiscovered: []
+  property bool clearingDiscovered: false
+  property int pendingDiscoveredLeaves: 0
   property var discoveredNetworks: {
     const device = root.wifiDevice
     if (!device)
@@ -41,15 +44,7 @@ Item {
   }
 
   function signalIcon(percent) {
-    if (percent >= 80)
-      return "󰤥"
-    if (percent >= 60)
-      return "󰤢"
-    if (percent >= 35)
-      return "󰤟"
-    if (percent > 0)
-      return "󰤯"
-    return "󰤯"
+    return Icons.wifi(percent)
   }
 
   function needsPassword(network) {
@@ -88,18 +83,57 @@ Item {
       return "No adapter found"
     if (!Networking.wifiEnabled)
       return "Wi-Fi is off"
-    if (root.wifiDevice.scannerEnabled)
-      return "Scanning for networks"
     const active = root.wifiDevice.networks.values.find(network => network.connected)
     if (active)
       return "Connected to " + (active.name || "network")
     return "Ready to connect"
   }
 
+  function snapshotList(list) {
+    const out = []
+    for (let i = 0; i < list.length; i++)
+      out.push(list[i])
+    return out
+  }
+
+  function beginStopScan() {
+    if (!root.wifiDevice)
+      return
+    if (root.clearingDiscovered)
+      return
+    if (root.displayedDiscovered.length === 0)
+      root.displayedDiscovered = root.snapshotList(root.discoveredNetworks)
+    if (root.displayedDiscovered.length === 0) {
+      root.wifiDevice.scannerEnabled = false
+      return
+    }
+    root.pendingDiscoveredLeaves = root.displayedDiscovered.length
+    root.clearingDiscovered = true
+    root.wifiDevice.scannerEnabled = false
+  }
+
+  function finishDiscoveredLeave() {
+    root.pendingDiscoveredLeaves = Math.max(0, root.pendingDiscoveredLeaves - 1)
+    if (root.pendingDiscoveredLeaves > 0)
+      return
+    root.displayedDiscovered = []
+    root.clearingDiscovered = false
+  }
+
+  onDiscoveredNetworksChanged: {
+    if (root.clearingDiscovered)
+      return
+    if (root.wifiDevice?.scannerEnabled)
+      root.displayedDiscovered = root.snapshotList(root.discoveredNetworks)
+  }
+
   function resetTransientState() {
     root.pendingForget = null
     root.pendingPassword = null
     pskInput.text = ""
+    root.displayedDiscovered = []
+    root.clearingDiscovered = false
+    root.pendingDiscoveredLeaves = 0
     if (root.wifiDevice)
       root.wifiDevice.scannerEnabled = false
   }
@@ -186,20 +220,21 @@ Item {
 
           Text {
             anchors.centerIn: parent
-            text: root.wifiDevice?.scannerEnabled ? "󰓛" : "󰍉"
+            text: root.wifiDevice?.scannerEnabled ? "close" : "search"
             color: Colors.foreground
-            font.family: "Iosevka Nerd Font"
+            font.family: Icons.fontFamily
             font.pixelSize: 17
           }
 
           MouseArea {
             anchors.fill: parent
-            hoverEnabled: true
-            enabled: !!root.wifiDevice && Networking.wifiEnabled
-            onClicked: root.wifiDevice.scannerEnabled = !root.wifiDevice.scannerEnabled
-
-            ToolTip.visible: containsMouse
-            ToolTip.text: root.wifiDevice?.scannerEnabled ? "Stop scanning" : "Start scanning"
+            enabled: !!root.wifiDevice && Networking.wifiEnabled && !root.clearingDiscovered
+            onClicked: {
+              if (root.wifiDevice.scannerEnabled)
+                root.beginStopScan()
+              else
+                root.wifiDevice.scannerEnabled = true
+            }
           }
         }
       }
@@ -368,11 +403,25 @@ Item {
                   width: parent.width
                 }
 
-                Text {
-                  text: network.connected ? (root.signalIcon(percent) + " Connected") : transitioning ? "Connecting..." : (root.signalIcon(percent) + " " + (percent > 0 ? percent + "%" : stateText))
-                  color: network.connected ? Colors.network : transitioning ? Colors.accent : Colors.muted
-                  font.family: "Cascadia Code NF"
-                  font.pixelSize: 11
+                Row {
+                  spacing: 4
+                  width: parent.width
+
+                  Text {
+                    visible: !transitioning
+                    text: root.signalIcon(percent)
+                    color: network.connected ? Colors.network : Colors.muted
+                    font.family: Icons.fontFamily
+                    font.pixelSize: 14
+                    verticalAlignment: Text.AlignVCenter
+                  }
+
+                  Text {
+                    text: network.connected ? "Connected" : transitioning ? "Connecting..." : (percent > 0 ? percent + "%" : stateText)
+                    color: network.connected ? Colors.network : transitioning ? Colors.accent : Colors.muted
+                    font.family: "Cascadia Code NF"
+                    font.pixelSize: 11
+                  }
                 }
               }
 
@@ -391,9 +440,9 @@ Item {
 
                   Text {
                     anchors.centerIn: parent
-                    text: confirming ? "󰅖" : "󰆴"
+                    text: confirming ? "close" : "delete"
                     color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
+                    font.family: Icons.fontFamily
                     font.pixelSize: 17
                   }
 
@@ -414,9 +463,9 @@ Item {
 
                   Text {
                     anchors.centerIn: parent
-                    text: confirming ? "󰄬" : transitioning ? "󰑐" : network.connected ? "󰚦" : "󰚥"
+                    text: confirming ? "check" : transitioning ? "sync" : network.connected ? "link_off" : "link"
                     color: Colors.foreground
-                    font.family: "Iosevka Nerd Font"
+                    font.family: Icons.fontFamily
                     font.pixelSize: 17
                   }
 
@@ -439,7 +488,7 @@ Item {
         }
 
         Text {
-          visible: root.discoveredNetworks.length > 0
+          visible: root.displayedDiscovered.length > 0
           text: "Available networks"
           color: Colors.foreground
           font.family: "Cascadia Code NF"
@@ -448,14 +497,15 @@ Item {
         }
 
         Column {
-          visible: root.discoveredNetworks.length > 0
+          visible: root.displayedDiscovered.length > 0
           width: parent.width
           spacing: 6
 
           Repeater {
-            model: root.discoveredNetworks
+            model: root.displayedDiscovered
 
-            delegate: Rectangle {
+            delegate: Item {
+              id: discoveredSlot
               required property var modelData
               property var network: modelData
               property string stateText: ConnectionState.toString(network.state)
@@ -463,8 +513,55 @@ Item {
               property int percent: root.signalPercent(network)
               width: parent ? parent.width : 0
               height: 52
-              radius: 12
-              color: transitioning ? Colors.surfaceWarning : Colors.surfaceRaised
+              implicitHeight: height
+              clip: true
+
+              Connections {
+                target: root
+                function onClearingDiscoveredChanged() {
+                  if (!root.clearingDiscovered)
+                    return
+                  discoveredSlot.height = discoveredSlot.height
+                  discoveredLeaveAnim.start()
+                }
+              }
+
+              SequentialAnimation {
+                id: discoveredLeaveAnim
+                ParallelAnimation {
+                  NumberAnimation {
+                    target: discoveredCard
+                    property: "x"
+                    to: discoveredSlot.width + 24
+                    duration: 280
+                    easing.type: Easing.OutCubic
+                  }
+                  NumberAnimation {
+                    target: discoveredCard
+                    property: "opacity"
+                    to: 0
+                    duration: 220
+                    easing.type: Easing.OutCubic
+                  }
+                }
+                NumberAnimation {
+                  target: discoveredSlot
+                  property: "height"
+                  to: 0
+                  duration: 280
+                  easing.type: Easing.OutCubic
+                }
+                ScriptAction {
+                  script: root.finishDiscoveredLeave()
+                }
+              }
+
+              Rectangle {
+                id: discoveredCard
+                width: parent.width
+                height: 52
+                radius: 12
+                color: transitioning ? Colors.surfaceWarning : Colors.surfaceRaised
 
               Connections {
                 target: network
@@ -491,11 +588,25 @@ Item {
                   width: parent.width
                 }
 
-                Text {
-                  text: transitioning ? "Connecting..." : (root.signalIcon(percent) + " " + (percent > 0 ? percent + "%" : WifiSecurityType.toString(network.security)))
-                  color: transitioning ? Colors.accent : Colors.muted
-                  font.family: "Cascadia Code NF"
-                  font.pixelSize: 11
+                Row {
+                  spacing: 4
+                  width: parent.width
+
+                  Text {
+                    visible: !transitioning
+                    text: root.signalIcon(percent)
+                    color: Colors.muted
+                    font.family: Icons.fontFamily
+                    font.pixelSize: 14
+                    verticalAlignment: Text.AlignVCenter
+                  }
+
+                  Text {
+                    text: transitioning ? "Connecting..." : (percent > 0 ? percent + "%" : WifiSecurityType.toString(network.security))
+                    color: transitioning ? Colors.accent : Colors.muted
+                    font.family: "Cascadia Code NF"
+                    font.pixelSize: 11
+                  }
                 }
               }
 
@@ -511,17 +622,18 @@ Item {
 
                 Text {
                   anchors.centerIn: parent
-                  text: transitioning ? "󰑐" : "󰚥"
+                  text: transitioning ? "sync" : "link"
                   color: Colors.foreground
-                  font.family: "Iosevka Nerd Font"
+                  font.family: Icons.fontFamily
                   font.pixelSize: 17
                 }
 
                 MouseArea {
                   anchors.fill: parent
-                  enabled: !transitioning
+                  enabled: !transitioning && !root.clearingDiscovered
                   onClicked: root.connectNetwork(network)
                 }
+              }
               }
             }
           }

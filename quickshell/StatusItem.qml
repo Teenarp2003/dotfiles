@@ -10,8 +10,11 @@ Item {
   property string value: fallback
   property string icon: ""
   property string mutedIcon: ""
+  property string chargingIcon: ""
   property bool muted: false
+  property bool charging: false
   property bool splitIcon: false
+  property bool levelIcons: false
   property color iconColor: Colors.foreground
   property bool useFallbackOnEmpty: true
   property var clickCommand: []
@@ -31,10 +34,22 @@ Item {
     spacing: root.icon.length > 0 ? 3 : 0
 
     Text {
-      text: root.muted && root.mutedIcon.length > 0 ? root.mutedIcon : root.icon
+      text: {
+        if (root.muted && root.mutedIcon.length > 0)
+          return root.mutedIcon
+        if (root.charging && root.chargingIcon.length > 0)
+          return root.chargingIcon
+        if (root.levelIcons) {
+          const percent = parseInt(root.value, 10)
+          if (Number.isNaN(percent))
+            return root.icon
+          return Icons.battery(percent)
+        }
+        return root.icon
+      }
       height: 24
       color: root.iconColor
-      font.family: "Iosevka Nerd Font"
+      font.family: Icons.fontFamily
       font.pixelSize: 18
       verticalAlignment: Text.AlignVCenter
     }
@@ -126,10 +141,14 @@ Item {
     stdout: StdioCollector {
       onStreamFinished: {
         const line = text.trim()
+        root.muted = false
+        root.charging = false
         if (root.splitIcon) {
           const sep = line.indexOf("|")
           if (sep !== -1) {
-            root.muted = line.slice(0, sep) === "mute"
+            const state = line.slice(0, sep)
+            root.muted = state === "mute"
+            root.charging = state === "charge"
             root.value = line.slice(sep + 1) || (root.useFallbackOnEmpty ? root.fallback : "")
             return
           }

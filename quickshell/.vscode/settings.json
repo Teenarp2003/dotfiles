@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "Cascadia Code NF",
+    "editor.codeLensFontFamily": "Cascadia Code NF",
+    "editor.inlayHints.fontFamily": "Cascadia Code NF",
+    "editor.inlineSuggest.fontFamily": "Cascadia Code NF",
+    "debug.console.fontFamily": "Cascadia Code NF",
+    "scm.inputFontFamily": "Cascadia Code NF",
+    "terminal.integrated.fontFamily": "Cascadia Code NF",
+    "notebook.markup.fontFamily": "Cascadia Code NF",
+    "notebook.output.fontFamily": "Cascadia Code NF"
+}

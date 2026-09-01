@@ -13,22 +13,16 @@ Item {
   property var activeNetwork: root.wifiDevice ? root.wifiDevice.networks.values.find(network => network.connected) : null
   property bool wifiEnabled: Networking.wifiEnabled
   property bool connected: root.wifiEnabled && !!root.activeNetwork
-  property alias panel: bubble
+  property alias panel: morph.panel
   readonly property int collapsedWidth: (root.connected ? compactRow.implicitWidth : offIcon.implicitWidth) + 24
   readonly property int panelWidth: 360
-  readonly property int expandedInnerHeight: manager.panelHeight
-  readonly property int bubbleGap: 8
 
-  implicitWidth: root.collapsedWidth
-  implicitHeight: height
-  width: root.collapsedWidth
-  height: root.barHeight + (root.open ? root.bubbleGap + root.expandedInnerHeight : 0)
+  implicitWidth: morph.implicitWidth
+  implicitHeight: morph.implicitHeight
+  width: morph.width
+  height: morph.height
   z: 2
   clip: false
-
-  Behavior on height {
-    NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
-  }
 
   function signalPercent(network) {
     const value = Number(network?.signalStrength)
@@ -38,24 +32,29 @@ Item {
   }
 
   function signalIcon() {
-    const percent = root.activeNetwork ? root.signalPercent(root.activeNetwork) : 0
-    if (percent >= 80)
-      return "󰤥"
-    if (percent >= 60)
-      return "󰤢"
-    if (percent >= 35)
-      return "󰤟"
-    if (percent > 0)
-      return "󰤯"
-    return "󰤯"
+    return Icons.wifi(root.activeNetwork ? root.signalPercent(root.activeNetwork) : 0)
   }
 
   HyprlandFocusGrab {
     id: focusGrab
     windows: root.ownerWindow ? [root.ownerWindow] : []
     onCleared: {
+      if (MorphTune.visible)
+        return
       if (root.open)
         root.open = false
+    }
+  }
+
+  Connections {
+    target: MorphTune
+    function onVisibleChanged() {
+      if (MorphTune.visible) {
+        grabTimer.stop()
+        focusGrab.active = false
+      } else if (root.open) {
+        grabTimer.restart()
+      }
     }
   }
 
@@ -74,48 +73,26 @@ Item {
   Timer {
     id: grabTimer
     interval: 80
-    onTriggered: focusGrab.active = true
+    onTriggered: {
+      if (!MorphTune.visible)
+        focusGrab.active = true
+    }
   }
 
-  Rectangle {
-    id: bubble
-    anchors.right: parent.right
-    anchors.top: compact.bottom
-    anchors.topMargin: root.open ? root.bubbleGap : 0
-    width: root.open ? Math.max(root.panelWidth, root.collapsedWidth) : root.collapsedWidth
-    height: root.open ? root.expandedInnerHeight : 0
-    radius: 16
-    color: Colors.background
-    clip: true
-    opacity: root.open ? 1 : 0
-    z: 2
+  MorphBubble {
+    id: morph
+    open: root.open
+    barHeight: root.barHeight
+    collapsedWidth: root.collapsedWidth
+    panelWidth: root.panelWidth
+    panelHeight: manager.panelHeight
+    pillRadius: Colors.barRadius
+    expandDirection: "left"
 
-    Behavior on width {
-      NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
-    }
-
-    Behavior on height {
-      NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
-    }
-
-    Behavior on opacity {
-      NumberAnimation { duration: 280; easing.type: Easing.OutCubic }
-    }
-
-    WifiManager {
+    panelContent: WifiManager {
       id: manager
       anchors.fill: parent
     }
-  }
-
-  Rectangle {
-    id: compact
-    anchors.right: parent.right
-    width: root.collapsedWidth
-    height: root.barHeight
-    radius: Colors.barRadius
-    color: Colors.background
-    z: 3
 
     Row {
       id: compactRow
@@ -139,7 +116,7 @@ Item {
         text: root.signalIcon()
         height: 24
         color: Colors.network
-        font.family: "Iosevka Nerd Font"
+        font.family: Icons.fontFamily
         font.pixelSize: 18
         verticalAlignment: Text.AlignVCenter
       }
@@ -149,9 +126,9 @@ Item {
       id: offIcon
       visible: !root.connected
       anchors.centerIn: parent
-      text: "󰤭 "
+      text: "wifi_off"
       color: Colors.network
-      font.family: "Iosevka Nerd Font"
+      font.family: Icons.fontFamily
       font.pixelSize: 18
       horizontalAlignment: Text.AlignHCenter
       verticalAlignment: Text.AlignVCenter

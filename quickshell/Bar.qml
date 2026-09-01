@@ -17,8 +17,19 @@ Scope {
 
       property int barHeight: 40
       property int pillRadius: 17
+      property int centerGap: 8
+      property int lastGoodCenterMaxWidth: 0
+      readonly property int centerMaxWidth: {
+        const gap = Math.floor(rightPill.x - (leftPill.x + leftPill.width) - 2 * bar.centerGap)
+        if (rightPill.x > 0 && leftPill.width > 0 && gap >= 48)
+          return Math.max(96, gap)
+        if (bar.lastGoodCenterMaxWidth > 96)
+          return bar.lastGoodCenterMaxWidth
+        return Math.max(96, Math.floor(width * 0.5))
+      }
+      readonly property int centerLeft: leftPill.x + leftPill.width + bar.centerGap
       property var occupiedWorkspaceIds: []
-      property var workspaceIcons: ["", "", "", "", "", "", "", "", "", ""]
+      property var workspaceIcons: ["terminal", "language", "code", "play_circle_filled", "library_music", "source", "folder", "chat", "edit", "settings"]
       property int workspaceCount: modelData.name === "eDP-1" ? 10 : 5
       property int workspaceCellWidth: 37
 
@@ -35,9 +46,15 @@ Scope {
         right: true
       }
 
+      onCenterMaxWidthChanged: {
+        const gap = Math.floor(rightPill.x - (leftPill.x + leftPill.width) - 2 * bar.centerGap)
+        if (rightPill.x > 0 && leftPill.width > 0 && gap >= 48)
+          bar.lastGoodCenterMaxWidth = bar.centerMaxWidth
+      }
+
       implicitHeight: barHeight + 12 + 560
-      exclusiveZone: barHeight + 12
-      focusable: wifiPill.open || bluetoothWidget.open || pillWidget.open
+      exclusiveZone: barHeight + 5
+      focusable: !MorphTune.visible && (wifiPill.open || bluetoothWidget.open || pillWidget.open || archWidget.open)
       mask: Region {
         id: inputMask
         x: 0
@@ -49,6 +66,15 @@ Scope {
           y: pillWidget.y
           width: pillWidget.width
           height: pillWidget.height
+        }
+        Region {
+          item: pillWidget.panel
+        }
+        Region {
+          item: archWidget
+        }
+        Region {
+          item: archWidget.panel
         }
         Region {
           item: bluetoothWidget
@@ -77,7 +103,7 @@ Scope {
 
       margins {
         top: 3
-        left: 3
+        left: 15
         right: 15
       }
 
@@ -104,9 +130,29 @@ Scope {
         onTriggered: occupiedWorkspaceProcess.running = true
       }
 
+      ArchWidget {
+        id: archWidget
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.topMargin: 7
+        z: 2
+        ownerWindow: bar
+        onOpenChanged: {
+          if (open) {
+            wifiPill.open = false
+            bluetoothWidget.open = false
+            pillWidget.open = false
+            pillWidget.peeking = false
+          }
+          inputMask.changed()
+        }
+      }
+
       Rectangle {
         id: leftPill
-        anchors.left: parent.left
+        z: 5
+        anchors.left: archWidget.right
+        anchors.leftMargin: 8
         anchors.top: parent.top
         anchors.topMargin: 7
         width: leftContent.implicitWidth + 20
@@ -150,7 +196,7 @@ Scope {
                 color: workspaceColors[index]
                 opacity: active ? 1 : occupied ? 0.93 : 0.50
                 scale: active ? 1.12 : occupied ? 1 : 0.86
-                font.family: "Iosevka Nerd Font"
+                font.family: Icons.fontFamily
                 font.pixelSize: active ? 25 : occupied ? 22 : 17
 
                 Behavior on color {
@@ -199,27 +245,31 @@ Scope {
 
       PillWidget {
         id: pillWidget
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: bar.centerLeft + Math.max(0, Math.floor((bar.centerMaxWidth - width) / 2))
         anchors.top: parent.top
         anchors.topMargin: 7
         barHeight: bar.barHeight
+        maxWidth: bar.centerMaxWidth
         ownerWindow: bar
         onOpenChanged: {
           if (open) {
             wifiPill.open = false
             bluetoothWidget.open = false
+            archWidget.open = false
           }
         }
         onPeekingChanged: {
           if (peeking) {
             wifiPill.open = false
             bluetoothWidget.open = false
+            archWidget.open = false
           }
         }
       }
 
       Rectangle {
         id: rightPill
+        z: 5
         anchors.right: bluetoothWidget.left
         anchors.rightMargin: 8
         anchors.top: parent.top
@@ -240,8 +290,8 @@ Scope {
             interval: 25
             fallback: "--%"
             splitIcon: true
-            icon: "󰓃"
-            mutedIcon: "󰓄"
+            icon: "volume_up"
+            mutedIcon: "volume_off"
             iconColor: Colors.volume
             clickCommand: ["pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle"]
             rightClickCommand: ["pavucontrol"]
@@ -252,7 +302,7 @@ Scope {
             command: ["sh", "-c", "brightnessctl -m 2>/dev/null | awk -F, '{print \$4}'"]
             interval: 25
             fallback: "--%"
-            icon: "󰃠"
+            icon: "brightness_6"
             iconColor: Colors.brightness
             wheelUpCommand: ["brightnessctl", "set", "5%+"]
             wheelDownCommand: ["brightnessctl", "set", "5%-"]
@@ -261,21 +311,21 @@ Scope {
             command: ["sh", "-c", "awk '{printf \"%d°C\", $1/1000}' /sys/class/hwmon/hwmon5/temp1_input 2>/dev/null"]
             interval: 2000
             fallback: "--°C"
-            icon: ""
+            icon: "device_thermostat"
             iconColor: Colors.temperature
           }
           StatusItem {
             command: ["sh", "-c", "df -P /home | awk 'NR==2 {gsub(/%/, \"\", $5); print $5 \"%\"}'"]
             interval: 30000
             fallback: "--%"
-            icon: "󰋊"
+            icon: "storage"
             iconColor: Colors.disk
           }
           StatusItem {
             command: ["sh", "-c", "top -bn1 | awk '/Cpu/ {printf \"%.0f%%\", 100-$8; exit}'"]
             interval: 500
             fallback: "--%"
-            icon: ""
+            icon: "developer_board"
             iconColor: Colors.cpu
             clickCommand: ["alacritty", "-e", "btop"]
           }
@@ -283,18 +333,11 @@ Scope {
             command: ["sh", "-c", "free -m | awk 'NR==2 {print $3 \" MB\"}'"]
             interval: 500
             fallback: "-- MB"
-            icon: ""
+            icon: "memory"
             iconColor: Colors.memory
             clickCommand: ["alacritty", "-e", "htop"]
           }
-          StatusItem {
-            command: ["sh", "-c", "upower -i \$(upower -e | grep battery | head -n 1) 2>/dev/null | awk '/percentage/ {if ($2 != \"100%\") print $2; exit}'"]
-            interval: 2000
-            fallback: "--%"
-            useFallbackOnEmpty: false
-            icon: ""
-            iconColor: Colors.battery
-          }
+          BatteryWidget {}
         }
       }
 
@@ -304,13 +347,14 @@ Scope {
         anchors.rightMargin: 8
         anchors.top: parent.top
         anchors.topMargin: 7
-        z: 2
+        z: 3
         ownerWindow: bar
         onOpenChanged: {
           if (open) {
             wifiPill.open = false
             pillWidget.open = false
             pillWidget.peeking = false
+            archWidget.open = false
           }
         }
       }
@@ -327,6 +371,7 @@ Scope {
             bluetoothWidget.open = false
             pillWidget.open = false
             pillWidget.peeking = false
+            archWidget.open = false
           }
         }
       }

@@ -12,7 +12,7 @@ echo "Dependencies required for this script:
 - psmisc (killall)
 - waybar
 - sudo
-
+- pywalfox
 Optional:
 - glava
 - custom scripts like replace-wal.sh"
@@ -54,4 +54,5 @@ glava-pywal-update
 #replace-wal.sh
 sudo cp ~/.cache/wal/theme.conf /usr/share/sddm/themes/sugar-candy/theme.conf
 hyprctl reload
+pywalfox update
 echo "hyprland reloaded"
