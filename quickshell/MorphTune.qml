@@ -6,7 +6,7 @@ import QtQuick
 Singleton {
   property bool visible: false
   property int neckHeight: 10
-  property real blendK: 52.5
+  property real blendK: 22.6
 
   function toggle() {
     visible = !visible
