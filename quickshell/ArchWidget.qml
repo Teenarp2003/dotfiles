@@ -87,10 +87,10 @@ Item {
 
     Text {
       anchors.fill: parent
-      text: "apps"
+      text: "󰣇"
       color: Colors.accent
-      font.family: Icons.fontFamily
-      font.pixelSize: 22
+      font.family: "Cascadia Code NF"
+      font.pixelSize: 33
       horizontalAlignment: Text.AlignHCenter
       verticalAlignment: Text.AlignVCenter
     }
