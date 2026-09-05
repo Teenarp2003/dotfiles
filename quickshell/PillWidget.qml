@@ -241,7 +241,7 @@ Item {
 
       Text {
         id: compactPlayIcon
-        text: root.playerState === "Playing" ? "play_arrow" : "pause"
+        text: root.playerState === "Playing" ? "play_circle" : "pause_circle"
         width: root.compactIconSlot
         height: 24
         color: Colors.accent

@@ -501,14 +501,15 @@ hl.config({
 })
 
 hl.on("hyprland.start", function()
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+    hl.exec_cmd("qs -n -p ~/.config/quickshell/")
     hl.exec_cmd("clipse -listen")
     hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 20")
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-    hl.exec_cmd("hyprpaper & fusuma -c ~/.config/fusuma/config1.yml & lxpolkit & sleep 1s")
+    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("fusuma -c ~/.config/fusuma/config1.yml")
+    hl.exec_cmd("lxpolkit")
     hl.exec_cmd("glava-pywal-start")
     hl.exec_cmd("kdeconnectd")
-    hl.exec_cmd("qs --config ~/.config/quickshell/")
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
 
 

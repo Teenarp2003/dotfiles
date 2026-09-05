@@ -11,6 +11,9 @@ Item {
   readonly property int maxPanelHeight: 560
   readonly property int panelHeight: root.maxPanelHeight
   property string query: searchField.text
+  property int selectedIndex: 0
+  readonly property bool browsingGrid: root.query.trim().length === 0
+  readonly property int gridColumns: 4
 
   signal appLaunched()
 
@@ -39,14 +42,32 @@ Item {
     root.appLaunched()
   }
 
-  function launchFirst() {
+  function launchSelected() {
     const list = appModel.values
-    if (list && list.length > 0)
-      root.launch(list[0])
+    if (!list || list.length === 0)
+      return
+    const i = Math.max(0, Math.min(list.length - 1, root.selectedIndex))
+    root.launch(list[i])
+  }
+
+  function moveSelection(delta) {
+    const count = appModel.values.length
+    if (count <= 0)
+      return
+    root.selectedIndex = Math.max(0, Math.min(count - 1, root.selectedIndex + delta))
+    root.ensureSelectedVisible()
+  }
+
+  function ensureSelectedVisible() {
+    if (root.browsingGrid)
+      appGrid.positionViewAtIndex(root.selectedIndex, GridView.Contain)
+    else
+      appList.positionViewAtIndex(root.selectedIndex, ListView.Contain)
   }
 
   function resetTransientState() {
     searchField.text = ""
+    root.selectedIndex = 0
   }
 
   function focusSearch() {
@@ -76,6 +97,8 @@ Item {
       return list.filter(entry => root.matches(entry, q))
     }
   }
+
+  onQueryChanged: root.selectedIndex = 0
 
   Column {
     id: chrome
@@ -136,13 +159,99 @@ Item {
         color: Colors.surfaceContainer
       }
       Keys.onEscapePressed: root.appLaunched()
-      Keys.onReturnPressed: root.launchFirst()
-      Keys.onEnterPressed: root.launchFirst()
+      Keys.onReturnPressed: root.launchSelected()
+      Keys.onEnterPressed: root.launchSelected()
+      Keys.onPressed: event => {
+        if (event.key === Qt.Key_Down) {
+          root.moveSelection(root.browsingGrid ? root.gridColumns : 1)
+          event.accepted = true
+        } else if (event.key === Qt.Key_Up) {
+          root.moveSelection(root.browsingGrid ? -root.gridColumns : -1)
+          event.accepted = true
+        } else if (root.browsingGrid && event.key === Qt.Key_Left) {
+          root.moveSelection(-1)
+          event.accepted = true
+        } else if (root.browsingGrid && event.key === Qt.Key_Right) {
+          root.moveSelection(1)
+          event.accepted = true
+        }
+      }
+    }
+  }
+
+  GridView {
+    id: appGrid
+    visible: root.browsingGrid
+    anchors.top: chrome.bottom
+    anchors.topMargin: 8
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: powerChrome.top
+    anchors.bottomMargin: 8
+    anchors.leftMargin: 16
+    anchors.rightMargin: 16
+    clip: true
+    boundsBehavior: Flickable.StopAtBounds
+    cellWidth: Math.max(1, Math.floor(width / root.gridColumns))
+    cellHeight: 86
+    model: appModel
+    currentIndex: root.selectedIndex
+    keyNavigationEnabled: false
+    focus: false
+
+    delegate: Item {
+      required property var modelData
+      required property int index
+      property var entry: modelData
+      width: appGrid.cellWidth
+      height: appGrid.cellHeight
+
+      Rectangle {
+        anchors.fill: parent
+        anchors.margins: 3
+        radius: 13
+        color: index === root.selectedIndex || gridHover.containsMouse ? Colors.surfaceInteractive : Colors.surfaceRaised
+        border.width: index === root.selectedIndex ? 1 : 0
+        border.color: Colors.accent
+
+        Column {
+          anchors.centerIn: parent
+          spacing: 6
+          width: parent.width - 8
+
+          AppIcon {
+            anchors.horizontalCenter: parent.horizontalCenter
+            size: 32
+            iconName: entry && entry.icon ? entry.icon : ""
+          }
+
+          Text {
+            width: parent.width
+            text: (entry && entry.name) || "Unknown"
+            color: Colors.foreground
+            font.family: "Cascadia Code NF"
+            font.pixelSize: 11
+            font.weight: Font.DemiBold
+            elide: Text.ElideRight
+            horizontalAlignment: Text.AlignHCenter
+            maximumLineCount: 1
+          }
+        }
+
+        MouseArea {
+          id: gridHover
+          anchors.fill: parent
+          hoverEnabled: true
+          onEntered: root.selectedIndex = index
+          onClicked: root.launch(entry)
+        }
+      }
     }
   }
 
   ListView {
     id: appList
+    visible: !root.browsingGrid
     anchors.top: chrome.bottom
     anchors.topMargin: 8
     anchors.left: parent.left
@@ -155,14 +264,20 @@ Item {
     boundsBehavior: Flickable.StopAtBounds
     spacing: 4
     model: appModel
+    currentIndex: root.selectedIndex
+    keyNavigationEnabled: false
+    focus: false
 
     delegate: Rectangle {
       required property var modelData
+      required property int index
       property var entry: modelData
       width: appList.width
       height: 44
       radius: 13
-      color: appHover.containsMouse ? Colors.surfaceInteractive : Colors.surfaceRaised
+      color: index === root.selectedIndex || appHover.containsMouse ? Colors.surfaceInteractive : Colors.surfaceRaised
+      border.width: index === root.selectedIndex ? 1 : 0
+      border.color: Colors.accent
 
       Row {
         anchors.fill: parent
@@ -170,12 +285,10 @@ Item {
         anchors.rightMargin: 10
         spacing: 10
 
-        Image {
+        AppIcon {
           anchors.verticalCenter: parent.verticalCenter
-          width: 28
-          height: 28
-          fillMode: Image.PreserveAspectFit
-          source: entry && entry.icon ? Quickshell.iconPath(entry.icon, true) : ""
+          size: 28
+          iconName: entry && entry.icon ? entry.icon : ""
         }
 
         Column {
@@ -209,6 +322,7 @@ Item {
         id: appHover
         anchors.fill: parent
         hoverEnabled: true
+        onEntered: root.selectedIndex = index
         onClicked: root.launch(entry)
       }
     }

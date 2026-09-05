@@ -5,6 +5,26 @@ import QtQuick
 
 Singleton {
   readonly property string fontFamily: "Material Icons"
+  readonly property string telaRoot: "/usr/share/icons/Tela-circle"
+
+  function iconBaseName(icon) {
+    if (!icon)
+      return ""
+    let name = String(icon)
+    if (name.startsWith("file://"))
+      name = decodeURIComponent(name.slice(7))
+    const slash = Math.max(name.lastIndexOf("/"), name.lastIndexOf("\\"))
+    if (slash !== -1)
+      name = name.slice(slash + 1)
+    return name.replace(/\.(svg|png|xpm|jpg|jpeg)$/i, "")
+  }
+
+  function telaFileUrl(icon) {
+    const name = iconBaseName(icon)
+    if (!name)
+      return ""
+    return "file://" + telaRoot + "/scalable/apps/" + encodeURIComponent(name) + ".svg"
+  }
 
   function battery(percent) {
     if (percent >= 90)

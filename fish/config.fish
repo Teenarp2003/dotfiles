@@ -44,6 +44,7 @@ export EDITOR=/usr/bin/nvim;
 export VISUAL=nvim;
 
 fish_add_path /home/teenarp2026/.spicetify
+set -x STARSHIP_LOG error
 #nitch
 
 
